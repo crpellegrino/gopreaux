@@ -8,6 +8,11 @@ import matplotlib.pyplot as plt
 from statistics import median
 import numpy as np
 
+from matplotlib import rc
+import matplotlib
+
+rc('font', **{'family': 'serif', 'serif': ['cmr10']})
+matplotlib.rcParams['axes.unicode_minus'] = False
 
 
 class ZTFFP:
@@ -120,6 +125,7 @@ class ZTFFP:
         # Make baseline correction
         colors = {'ZTF_g': 'green', 'ZTF_r': 'red', 'ZTF_i': 'brown'}
 
+        fig, ax = plt.subplots(1, 2, figsize=(10, 6))
         for filt in ['ZTF_g', 'ZTF_r', 'ZTF_i']:
             ### Get unique values of field, ccdid, qid
             fields = set(df[df['filter'] == filt]['field'].values)
@@ -134,18 +140,25 @@ class ZTFFP:
                             print('Not enough epochs to estimate baseline for ', filt)
                             continue
 
-                        plt.errorbar(current_df['jd'], current_df['forcediffimflux'], yerr=abs(current_df['forcediffimfluxunc']), fmt='o', color=colors[filt], mec='k')
+                        ax[0].errorbar(current_df['jd'], current_df['forcediffimflux'], yerr=abs(current_df['forcediffimfluxunc']), fmt='o', color=colors[filt], mec='k')
                         median_flux = median(current_df['forcediffimflux'])
                         print(filt, median_flux)
                         df.loc[(df['filter'] == filt) & (df['field'] == field) & (df['ccdid'] == ccdid) & (df['qid'] == qid), 'forcediffimflux'] -= median_flux
+
+            ax[0].errorbar([], [], yerr=[], color=colors[filt], fmt='o', mec='k', label=filt.replace('_', ' '))
             
-            
-        plt.show()
+        ax[0].set_xlabel("MJD")
+        ax[0].set_ylabel("Difference-imaged Flux")
+        plt.locator_params(axis='x', nbins=5)
+        ax[0].xaxis.minorticks_on()
+        ax[0].yaxis.minorticks_on()
+        ax[0].legend()
+        # plt.show()
 
-        return df
+        return df, ax
 
 
-    def get_mag_from_ztf_fp(self, full_df):
+    def get_mag_from_ztf_fp(self, full_df, ax=None):
 
         """
         Takes as input a dataframe of cleaned ZTF forced photometry
@@ -155,6 +168,8 @@ class ZTFFP:
         
         colors = {'ZTF_g': 'green', 'ZTF_r': 'red', 'ZTF_i': 'brown'}
         ztf_data = {}
+        if ax is None:
+            fig, ax = plt.subplots(1, 2, figsize=(10, 6))
         for filt in ['ZTF_g', 'ZTF_r', 'ZTF_i']:
             
             df = full_df[full_df['filter'] == filt]
@@ -177,8 +192,8 @@ class ZTFFP:
             df['mag'][bad] = df['zpdiff'][bad] - 2.5*np.log10(snu * df['forcediffimfluxunc'][bad])
         
 
-            plt.errorbar(df['jd'][good], df['mag'][good], yerr=df['sigma_mag'][good], fmt='o', color=colors[filt], mec='black')
-            plt.scatter(df['jd'][bad], df['mag'][bad], marker='v', color=colors[filt], edgecolor='black')
+            ax[1].errorbar(df['jd'][good], df['mag'][good], yerr=df['sigma_mag'][good], fmt='o', color=colors[filt], mec='black')
+            ax[1].scatter(df['jd'][bad], df['mag'][bad], marker='v', color=colors[filt], edgecolor='black', alpha=0.2)
             
             good_jds = df['jd'][good].to_numpy()
             good_mags = df['mag'][good].to_numpy()
@@ -194,8 +209,16 @@ class ZTFFP:
             for i in range(len(bad_jds)):
                 ztf_data.setdefault(filt.replace('ZTF_', ''), []).append({'mag': bad_mags[i], 'err': 9999, 'mjd': bad_jds[i]-2400000.5})
             
+            ax[1].errorbar([], [], yerr=[], color=colors[filt], fmt='o', mec='k', label=filt.replace('_', ' '))
             
-        plt.gca().invert_yaxis()
+        ax[1].set_xlabel("MJD")
+        ax[1].set_ylabel("Magnitude")
+        plt.locator_params(axis='x', nbins=5)
+        ax[1].xaxis.minorticks_on()
+        ax[1].yaxis.minorticks_on()
+        # plt.legend()
+        ax[1].invert_yaxis()
+        # plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/ztf_fp_reductions.pdf")
         plt.show()
         
         return ztf_data
@@ -217,18 +240,24 @@ class ZTFFP:
                         ### Get jdstart and jdend from sn
                         jdstart = Time(sn['discovered'], format='iso', scale='utc').jd - 20
                         jdend = Time(sn['discovered'], format='iso', scale='utc').jd + duration
-                        df = self.process_ztf_fp(os.path.join(base_path, sn['name'], f), jdstart, jdend)
-                        ztf_data = self.get_mag_from_ztf_fp(df)
+                        df, ax = self.process_ztf_fp(os.path.join(base_path, sn['name'], f), jdstart, jdend)
+                        ztf_data = self.get_mag_from_ztf_fp(df, ax=ax)
                         if not os.path.isfile(os.path.join(base_path, sn['name'], sn['name']+'_ztf_fp.json')):
                             with open(os.path.join(base_path, sn['name'], sn['name']+'_ztf_fp.json'), 'w+') as newfile:
                                 json.dump(ztf_data, newfile, indent=4)
 
 
-### For testing:
+## For testing:
 # with open('../swift_uvot_reductions/sn_list_with_template_info.json', 'r') as f:
 #     sn_list = json.load(f)
 
-# typ = 'SESNe'
-# subtyp = 'SN Ic'
-# duration = 365 #365 days, SN duration to use for baseline estimate
-# base_path = '/home/cmp5cr/nasa_adap/data/'+typ.replace(' ', '')+'/'+subtyp.replace(' ', '')+'/'
+typ = 'FBOT'
+subtyp = 'SNIcn'
+
+sn_list = {typ: {subtyp: [{"name": "SN2021csp", "discovered": "2021-02-01 00:00:00"}]}}
+
+duration = 180 #365 days, SN duration to use for baseline estimate
+base_path = '/Users/craigpellegrino/github/nasa-adap/data/'+typ.replace(' ', '')+'/'+subtyp.replace(' ', '')+'/'
+
+ztf = ZTFFP()
+ztf.reduce_ztf_data(typ, subtyp, base_path, sn_list, duration)
