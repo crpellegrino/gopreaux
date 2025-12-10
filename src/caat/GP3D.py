@@ -490,7 +490,7 @@ class GP3D(GP):
             # (I don't know why this isn't caught above)
             if len(phases) > 0 and not np.isnan(sn.info.get("z", 0)):
                 if plot:
-                    _, ax = plt.subplots()
+                    _, ax = plt.subplots(figsize=(6,4))
                 for i, phase in enumerate(phases):
                     ### Get index of current phase in phase grid
                     ### The phase corresponding to phase_ind is no more than the phase grid spacing away from the true phase being measured
@@ -520,18 +520,19 @@ class GP3D(GP):
 
                     if plot:
                         plt.errorbar(
-                            phase,
+                            np.exp(phase)-self.log_transform,
                             mags[i] - mag_grid[phase_ind, wl_ind],
                             yerr=np.sqrt(errs[i] ** 2 + err_grid[phase_ind, wl_ind] ** 2),
                             marker="o",
                             color="k",
                         )
                         plt.errorbar(
-                            phase,
+                            np.exp(phase)-self.log_transform,
                             mags[i],
                             yerr=errs[i],
                             fmt="o",
                             color=colors.get(filt, "k"),
+                            mec='k',
                         )
             
                 if plot:
@@ -539,12 +540,14 @@ class GP3D(GP):
                     # therefore this is representation is not fully accurate
                     Plot().plot_subtract_data_from_grid(
                         sn_class=sn,
-                        phase_grid=phase_grid,
+                        phase_grid=np.exp(phase_grid)-self.log_transform,
                         mag_grid=mag_grid,
                         wl_ind=wl_ind,
                         filt=filt,
                         ax=ax,
                     )
+                    # if sn.name == "SN2016gkg" and filt == "V":
+                    #     plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/residuals_v2.pdf")
                     plt.show()
 
         return pd.DataFrame(residuals)
@@ -926,8 +929,9 @@ class GP3D(GP):
         for i, col in enumerate(model_array):
             if window_size % 2 == 0:
                 window_size += 1 # Must be odd
+            model_array_smoothed[i,:] = medfilt(col, kernel_size=window_size)
             # Use astropy convolve function to handle NaNs
-            model_array_smoothed[i,:] = convolve(col, np.ones(window_size)/window_size, boundary='extend') # Boxcar smoothing
+            # model_array_smoothed[i,:] = convolve(col, np.ones(window_size)/window_size, boundary='extend') # Boxcar smoothing
 
         if transpose:
             model_array_smoothed = model_array_smoothed.T
@@ -991,6 +995,7 @@ class GP3D(GP):
                 mag_grid,
                 err_grid,
                 plot=False,  # TODO: are we sure we want to hard-code False for grid subtraction?
+                # plot=True if sn.name=="SN2016gkg" else False,
             )
 
             if len(residuals) == 0:
@@ -1013,7 +1018,17 @@ class GP3D(GP):
                 gaussian_process.fit(x, y)
 
                 if plot:
-                    _, ax = Plot().create_empty_subplot()
+                    # _, ax = Plot().create_empty_subplot()
+                    _, ax = plt.subplots(figsize=(6, 7))
+                    min_inset = min(phase_residuals_linear)
+                    max_inset = min_inset + 5
+                    axins = ax.inset_axes(
+                        [0.65, 0.1, 0.35, 0.8],
+                        xlim=(min_inset, max_inset),
+                        ylim=(-5, 2),
+                        # xticklabels=[],
+                        # yticklabels=[],
+                    )
 
                 filts_fitted = []
 
@@ -1071,6 +1086,7 @@ class GP3D(GP):
                                     log_transform=self.log_transform,
                                     filt=filt,
                                     sn=sn,
+                                    axins=axins,
                                 )
 
                         if run_diagnostics:
@@ -1096,6 +1112,12 @@ class GP3D(GP):
 
                         if interactive:
                             use_for_template = input("Use this fit to construct a template? y/n")
+                                
+                ax.set_xlim(-20, 75)
+                ax.indicate_inset_zoom(axins, edgecolor='k')
+                if "2016gkg" in sn.name:
+                    plt.tight_layout()
+                    # plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/SN2016gkg_light_curve_fits.pdf")
                 
                 x, y, wl_inds_fitted, phase_inds_fitted, phase_offset = self._build_test_wavelength_phase_grid_from_photometry(
                     residuals["Wavelength"].values, residuals["Phase"].values, wl_grid, phase_grid
@@ -1178,11 +1200,12 @@ class GP3D(GP):
                         gp_grid_std[current_wl_grid_ind, current_phase_grid_ind] = col[j]
                 if plot:
                     Plot().plot_run_gp_surface(
-                        gp_class=self,
+                        sn=sn,
                         x=np.exp(x) + phase_offset - 0.1,
                         y=10**(y),
                         # test_prediction_reshaped=test_prediction_reshaped,
                         test_prediction_reshaped=test_prediction_smoothed,
+                        std_prediction=std_prediction_smoothed,
                     )
                     if run_diagnostics:
                         d = Diagnostic()

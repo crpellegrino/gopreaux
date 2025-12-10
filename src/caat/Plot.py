@@ -138,20 +138,22 @@ class Plot:
     def plot_shift_to_max(self, sn_class, mjds, mags, errs, nondets, filt):
         sn = sn_class
 
-        plt.errorbar(
-            mjds[np.where((nondets == False))[0]],
-            mags[np.where((nondets == False))[0]],
-            yerr=errs[np.where((nondets == False))[0]],
-            fmt="o",
-            mec="black",
-            color=colors.get(filt, "k"),
-            label=filt + "-band",
-        )
+        # plt.errorbar(
+        #     mjds[np.where((nondets == False))[0]],
+        #     mags[np.where((nondets == False))[0]],
+        #     yerr=errs[np.where((nondets == False))[0]],
+        #     fmt="o",
+        #     mec="black",
+        #     color=colors.get(filt, "k"),
+        #     label=filt + "-band",
+        # )
         plt.scatter(mjds[np.where((nondets == True))[0]], mags[np.where((nondets == True))[0]], marker="v", color=colors.get(filt, "k"), alpha=0.2)
 
-        plt.xlabel("Shifted Time [days]")
-        plt.ylabel("Shifted Magnitude")
-        plt.title(sn.name + "-Shifted Data")
+        # plt.xlabel("Shifted Time [days]")
+        plt.xlabel("MJD")
+        # plt.ylabel("Shifted Magnitude")
+        plt.ylabel("Magnitude")
+        # plt.title(sn.name + "-Shifted Data")
         plt.gca().invert_yaxis()
         plt.legend()
         plt.show()
@@ -284,26 +286,32 @@ class Plot:
         filt,
         ax = None,
     ):
+        from matplotlib import rc
+        import matplotlib
+
+        matplotlib.rcParams['axes.unicode_minus'] = False
+        rc('font', **{'family': 'serif', 'serif': ['cmr10']})
         sn = sn_class
 
         if not ax:
             fig, ax = plt.subplots()
-        ax.plot(phase_grid, mag_grid[:, wl_ind], color=colors.get(filt, "k"), label="template")
+        ax.plot(phase_grid, mag_grid[:, wl_ind], color=colors.get(filt, "k"), label=f"Template ({filt})")
 
         plt.axhline(y=0, linestyle="--", color="gray")
-        ax.errorbar([], [], yerr=[], marker="o", color="k", label="residuals", alpha=0.2)
         ax.errorbar(
             [],
             [],
             yerr=[],
             fmt="o",
             color=colors.get(filt, "k"),
-            label="data",
+            label=f"Data ({filt})",
             alpha=0.5,
         )
-        ax.set_xlabel("Log(Time)")
-        ax.set_ylabel("Flux relative to peak")
-        ax.set_title("Template Subtraction for {} in {}-band".format(sn.name, filt))
+        ax.errorbar([], [], yerr=[], fmt="o", color="k", label="Residuals", alpha=0.2)
+
+        ax.set_xlabel("Phase [days]")
+        ax.set_ylabel("Log(Flux) Relative to Peak")
+        # ax.set_title("Template Subtraction for {} in {}-band".format(sn.name, filt))
         plt.legend()
         # plt.show()
 
@@ -318,7 +326,13 @@ class Plot:
         log_transform,
         filt,
         sn=None,
+        axins=None,
     ):
+        from matplotlib import rc
+        import matplotlib
+
+        matplotlib.rcParams['axes.unicode_minus'] = False
+        rc('font', **{'family': 'serif', 'serif': ['cmr10']})
         if sn is not None:
             # Convert between log fluxes to shifted magnitudes
             log_fluxes = test_prediction + template_mags
@@ -365,19 +379,72 @@ class Plot:
             color=colors.get(filt, "k"),
             mec="k",
         )
-        
-        ax.set_xlabel("Normalized Time [days]")
-        ax.set_ylabel("Flux Relative to Peak")
-        if sn is not None:
-            plt.title(sn.name)
-        plt.legend()
+        if axins:
+            # Convert between log fluxes to shifted magnitudes
+            log_fluxes = test_prediction + template_mags
+            shifted_mags = convert_shifted_fluxes_to_shifted_mags(log_fluxes, sn, sn.zps[filt])
+            shifted_mags_lower_unc = convert_shifted_fluxes_to_shifted_mags(log_fluxes - 1.96 * std_prediction, sn, sn.zps[filt])
+            shifted_mags_upper_unc = convert_shifted_fluxes_to_shifted_mags(log_fluxes + 1.96 * std_prediction, sn, sn.zps[filt])
 
-    def plot_run_gp_surface(self, gp_class, x, y, test_prediction_reshaped):
+            axins.plot(
+                test_times,
+                shifted_mags,
+                label=filt,
+                color=colors.get(filt, "k"),
+            )
+            axins.fill_between(
+                test_times,
+                shifted_mags_lower_unc,
+                shifted_mags_upper_unc,
+                alpha=0.2,
+                color=colors.get(filt, "k"),
+            )
+            axins.errorbar(
+                np.exp(
+                    residuals["Phase"].values
+                )
+                - log_transform,
+                residuals["Mag"].values,
+                yerr=residuals["MagErr"].values,
+                fmt="o",
+                color=colors.get(filt, "k"),
+                mec="k",
+            )
+        
+        ax.set_xlabel("Phase [days]")
+        ax.set_ylabel("Log(Flux) Relative to Peak")
+        # if sn is not None:
+        #     plt.title(sn.name)
+        plt.legend(loc="lower left")
+
+    def plot_run_gp_surface(self, sn, x, y, test_prediction_reshaped, std_prediction):
+        from matplotlib import rc
+        import matplotlib
+
+        matplotlib.rcParams['axes.unicode_minus'] = False
+        rc('font', **{'family': 'serif', 'serif': ['cmr10']})
         fig = plt.figure()
         ax = fig.add_subplot(111, projection="3d")
-        ax.plot_surface(x, y, test_prediction_reshaped)
-        ax.set_xlabel("Phase Grid")
-        ax.set_ylabel("Wavelengths")
-        ax.set_zlabel("Fluxes")
+        ax.plot_surface(x, y, test_prediction_reshaped, color='blue')
+        ax.plot_surface(
+            x,
+            y,
+            test_prediction_reshaped - 1.96 * std_prediction,
+            color='blue',
+            alpha=0.2,
+        )
+        ax.plot_surface(
+            x,
+            y,
+            test_prediction_reshaped + 1.96 * std_prediction,
+            color='blue',
+            alpha=0.2,
+        )
+
+        ax.set_xlabel("Phase [days]")
+        ax.set_ylabel("Wavelength [Angstroms]")
+        ax.set_zlabel("Log(Flux) Relative to Peak")
         plt.tight_layout()
+        # if "2016gkg" in sn.name:
+        #     plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/SN2016gkg_sed_surface.pdf")
         plt.show()

@@ -202,8 +202,9 @@ class DataCube:
         ax.set_ylabel("Wavelengths")
         ax.set_zlabel("Fluxes")
 
-        plt.tight_layout()
-        plt.show()
+        # plt.tight_layout()
+        # plt.show()
+        return ax
 
     def measure_flux_in_filter(
             self, 
