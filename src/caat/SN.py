@@ -39,26 +39,26 @@ class SN:
 
     ### All ZPs for AB mags, in 1e-11 erg/s/cm**2/A
     zps = {}
-    
-    # zps = {
-    #     "UVW2": 2502.2,#744.84,
-    #     "UVM2": 2158.3,#785.58,
-    #     "UVW1": 1510.9,#940.99,
-    #     "U": 847.1,#1460.59,
-    #     "B": 569.7,#4088.50,
-    #     "V": 362.8,#3657.87,
-    #     "g": 487.6,
-    #     "r": 282.9,
-    #     "i": 184.9,
-    #     "o": 238.9,
-    #     "c": 389.3,
-    # }
 
     wle = WLE
 
-    def __init__(self, name: str = None, data: dict = None):
+    def __init__(self, name: str = None, data: dict = None, *args, **kwargs):
 
-        if isinstance(name, str):
+        if data is not None:
+            # Construct a SN object from inputted data and kwargs
+            self.name = name
+            self.classification = kwargs.get("type", "")
+            self.subtype = kwargs.get("subtype", "")
+            self.data = data
+            self.info = {
+                "z": kwargs.get("redshift", ""),
+                "ra": kwargs.get("ra", ""),
+                "dec": kwargs.get("dec", ""),
+            }
+            self.shifted_data = {}
+
+        elif name is not None:
+            # Construct a SN object from saved data and info
             self.name = name
             self.data = {}
 
@@ -79,14 +79,6 @@ class SN:
             self.read_info_from_caat_file()
             self.load_shifted_data()
 
-        if isinstance(data, dict):
-            self.name = ""
-            self.classification = ""
-            self.subtype = ""
-            self.data = data
-            self.info = {}
-            self.shifted_data = {}
-
         for filt, wl in self.wle.items():
             self.zps[filt] = (10**-23 * 3e18 / wl) * 1e11
 
@@ -98,11 +90,37 @@ class SN:
         caat = CAAT().caat
         row = caat[caat["Name"] == self.name]
 
-        row["Tmax"] = self.info.get("peak_mjd", np.nan)
-        row["Magmax"] = self.info.get("peak_mag", np.nan)
-        row["Filtmax"] = self.info.get("peak_filt", "")
+        if len(row):
+            # Row already exists, so edit it
+            row["Tmax"] = self.info.get("peak_mjd", np.nan)
+            row["Magmax"] = self.info.get("peak_mag", np.nan)
+            row["Filtmax"] = self.info.get("peak_filt", "")
 
-        caat[caat["Name"] == self.name] = row
+            caat[caat["Name"] == self.name] = row
+
+        else:
+            caat = pd.concat(
+                [
+                    caat,
+                    pd.DataFrame(
+                        [
+                            [
+                                self.name,
+                                self.classification,
+                                self.subtype,
+                                self.info.get("z", ""),
+                                self.info.get("ra", ""),
+                                self.info.get("dec", ""),
+                                self.info.get("peak_mjd", ""),
+                                self.info.get("peak_mag", ""),
+                                self.info.get("peak_filt", ""),
+                            ]
+                        ],
+                        columns=caat.columns,
+                    ),
+                ],
+                ignore_index=True
+            )
 
         ### Save back to the csv file
         CAAT().save_db_file(os.path.join(ROOT_DIR, "data/", "caat.csv"), caat, force=force)
@@ -222,6 +240,9 @@ class SN:
                     )
 
     def write_shifted_data(self):
+
+        if len(self.shifted_data) == 0:
+            logger.warning("No shifted data to write to file. Please run `shift_to_max() first.")
 
         with open(
             os.path.join(
