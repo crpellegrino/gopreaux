@@ -12,7 +12,7 @@ from .DataCube import DataCube
 from .Plot import Plot
 from .SN import SN
 from .SNCollection import SNCollection, SNType
-from caat.utils import ROOT_DIR, WLE, colors
+from caat.utils import ROOT_DIR, WLE, colors, convert_shifted_fluxes_to_shifted_mags
 
 import logging
 
@@ -386,7 +386,7 @@ class SNModel:
             mags = photometry.loc[photometry['Filter']==filt]['Mag'].values
             errs = photometry.loc[photometry['Filter']==filt]['MagErr'].values
             phases = photometry.loc[photometry['Filter']==filt]['Phase'].values
-            current_wls = np.ones(len(phases)) * WLE[filt] # TODO: Account for redshift here?
+            current_wls = np.ones(len(phases)) * WLE[filt]
 
             if len(phases) > 0:
                 for i, phase in enumerate(phases):
@@ -417,7 +417,7 @@ class SNModel:
         y = residuals["MagResidual"].values
         err = residuals["MagErr"].values
 
-        gp = GaussianProcessRegressor(kernel=self.kernel, alpha=err, n_restarts_optimizer=10)
+        gp = GaussianProcessRegressor(kernel=self.kernel, alpha=err, optimizer=None)
         gp.fit(x, y)
 
         ### Predict lightcurves given the GP fit
@@ -434,16 +434,13 @@ class SNModel:
                 1.0 / 24
             ) 
             test_times = np.log(test_times_linear - phase_min + 0.1)
+            test_waves = np.ones(len(test_times)) * np.log10(WLE[filt])
 
-            test_waves = np.ones(len(test_times)) * np.log10(WLE[filt]) # TODO: SN z here?
-
-            ### Trying to convert back to normalized magnitudes here
-            wl_ind = np.argmin(abs(self.wl_grid - WLE[filt])) # TODO: SN z here?
+            wl_ind = np.argmin(abs(self.wl_grid - WLE[filt]))
             template_mags = []
             for i in range(len(test_times_linear)):
                 j = np.argmin(abs(self.phase_grid - test_times_linear[i]))
                 template_mags.append(self.template[j, wl_ind])
-
             template_mags = np.asarray(template_mags)
 
             if nsamples == 1:
@@ -451,11 +448,14 @@ class SNModel:
             elif nsamples > 1:
                 samples = gp.sample_y(np.vstack((test_times, test_waves)).T, n_samples=nsamples)
 
-            # TODO: Convert from log flux to shifted mags here?
-            
             test_times = np.exp(test_times) + phase_min - 0.1
             residuals_for_filt = residuals[residuals["Filter"] == filt]
 
+            ### To convert to normalized magnitudes, pass in a fake SN object
+            ### with bogus peak info (the peak info doesn't matter, we just need it to convert)
+            sn = SN(data={})
+            sn.info = {"peak_filt": "V", "peak_mag": 17}
+            
             if nsamples == 1:
                 residuals_for_filt["Phase"] = np.log(residuals_for_filt["Phase"].values + self.log_transform)
 
@@ -468,10 +468,14 @@ class SNModel:
                     residuals=residuals_for_filt,
                     log_transform=self.log_transform,
                     filt=filt,
+                    sn=sn,
                 )
             else:
                 for sample in samples.T:
-                    ax.plot(test_times, sample + template_mags, color=colors.get(filt, "k"), alpha=0.2)
+                    log_fluxes = sample + template_mags
+                    shifted_mags = convert_shifted_fluxes_to_shifted_mags(log_fluxes, sn, sn.zps[filt])
+                    
+                    ax.plot(test_times, shifted_mags, color=colors.get(filt, "k"), alpha=0.2)
                     ax.errorbar(
                         residuals_for_filt["Phase"].values,
                         residuals_for_filt["Mag"].values,
