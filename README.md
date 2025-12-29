@@ -1,5 +1,5 @@
 <big><center><b>GOPREAUX</b></center>
-<center><i>Gaussian-process Optimized Photometric templates of REcent, Archival, and Unclassified eXplosive transients</i></center></big>
+<center><i>Gaussian process Optimized Photometric Regression of Extragalactic Archival Ultraviolet-infrared eXplosions</i></center></big>
 <br>
 A package for multi-dimensional Gaussian Process Regression of extragalactic astronomical transient light curves, enabling a full characterization of their spectral energy distribution evolution with time. 
 
