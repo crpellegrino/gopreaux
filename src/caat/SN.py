@@ -1,25 +1,21 @@
-import os
 import json
+import logging
+import os
 import warnings
-from typing import Union, Optional
 from statistics import mean, stdev
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF, WhiteKernel, Matern
-from sklearn.model_selection import train_test_split
-from scipy.signal import savgol_filter
-from scipy.interpolate import interp1d
-from extinction import fm07 as fm
-from astropy.coordinates import SkyCoord
+
 import astropy.units as u
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from astropy.coordinates import SkyCoord
 from dustmaps.sfd import SFDQuery
+from extinction import fm07 as fm
+
+from caat.utils import ROOT_DIR, WLE, colors
 
 from .CAAT import CAAT
 from .Plot import Plot
-from caat.utils import ROOT_DIR, WLE, colors
-import logging
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -32,14 +28,14 @@ class SN:
     A Supernova object, taking a classification (i.e. SN II, SESNe, FBOT, etc.),
     a subtype (i.e., SN IIP, SN IIb, SN Ibn, etc.), and a name (i.e. SN2022acko).
     Provides routines for the extraction and transformation of photometric data
-    that are uniformly run and saved within the `DataCube` class. 
+    that are uniformly run and saved within the `DataCube` class.
     """
 
     base_path = os.path.join(ROOT_DIR, "data/")
 
     ### All ZPs for AB mags, in 1e-11 erg/s/cm**2/A
     zps = {}
-    
+
     # zps = {
     #     "UVW2": 2502.2,#744.84,
     #     "UVM2": 2158.3,#785.58,
@@ -57,7 +53,6 @@ class SN:
     wle = WLE
 
     def __init__(self, name: str = None, data: dict = None):
-
         if isinstance(name, str):
             self.name = name
             self.data = {}
@@ -67,7 +62,9 @@ class SN:
                 if os.path.isdir(os.path.join(self.base_path, typ)):
                     for subtyp in os.listdir(os.path.join(self.base_path, typ)):
                         if os.path.isdir(os.path.join(self.base_path, typ, subtyp)):
-                            for snname in os.listdir(os.path.join(self.base_path, typ, subtyp)):
+                            for snname in os.listdir(
+                                os.path.join(self.base_path, typ, subtyp)
+                            ):
                                 if name == snname:
                                     self.classification = typ
                                     self.subtype = subtyp
@@ -94,7 +91,6 @@ class SN:
         return self.name
 
     def write_info_to_caat_file(self, force=False):
-
         caat = CAAT().caat
         row = caat[caat["Name"] == self.name]
 
@@ -105,13 +101,18 @@ class SN:
         caat[caat["Name"] == self.name] = row
 
         ### Save back to the csv file
-        CAAT().save_db_file(os.path.join(ROOT_DIR, "data/", "caat.csv"), caat, force=force)
+        CAAT().save_db_file(
+            os.path.join(ROOT_DIR, "data/", "caat.csv"), caat, force=force
+        )
 
     def read_info_from_caat_file(self):
-
         caat = CAAT().caat
         row = caat[caat["Name"] == self.name]
-        if np.isnan(row["Tmax"].values) or np.isnan(row["Magmax"].values) or not row["Filtmax"].values:
+        if (
+            np.isnan(row["Tmax"].values)
+            or np.isnan(row["Magmax"].values)
+            or not row["Filtmax"].values
+        ):
             self.info = {}
 
         else:
@@ -142,14 +143,14 @@ class SN:
 
         ### Magnitudes in the SOUSA output file are in Vega mags
         ### We need to convert them to AB mags
-        ### From here: https://swift.gsfc.nasa.gov/analysis/uvot_digest/zeropts.html 
+        ### From here: https://swift.gsfc.nasa.gov/analysis/uvot_digest/zeropts.html
         ab_minus_vega = {
-            'V': -0.01,
-            'B': -0.13,
-            'U': 1.02,
-            'UVW1': 1.51,
-            'UVM2': 1.69,
-            'UVW2': 1.73
+            "V": -0.01,
+            "B": -0.13,
+            "U": 1.02,
+            "UVW1": 1.51,
+            "UVM2": 1.69,
+            "UVW2": 1.73,
         }
 
         df = pd.read_csv(
@@ -182,9 +183,9 @@ class SN:
             if not np.isnan(row["Mag"]):
                 self.data.setdefault(row["Filter"], []).append(
                     {
-                        "mag": row["Mag"] + ab_minus_vega[row["Filter"]], 
-                        "err": row["MagErr"], 
-                        "mjd": row["MJD"]
+                        "mag": row["Mag"] + ab_minus_vega[row["Filter"]],
+                        "err": row["MagErr"],
+                        "mjd": row["MJD"],
                     }
                 )
             else:
@@ -198,31 +199,41 @@ class SN:
                 )
 
     def load_json_data(self):
-
         ### Load data saved as a JSON file (ZTF, ATLAS, OpenSN, ASASSN)
-        if not os.path.exists(os.path.join(self.base_path, self.classification, self.subtype, self.name)):
+        if not os.path.exists(
+            os.path.join(self.base_path, self.classification, self.subtype, self.name)
+        ):
             logger.info(f"No additional data files for {self.name}")
             return
 
-        dirfiles = os.listdir(os.path.join(self.base_path, self.classification, self.subtype, self.name))
+        dirfiles = os.listdir(
+            os.path.join(self.base_path, self.classification, self.subtype, self.name)
+        )
 
         for f in dirfiles:
             ### Trying to filter out info file and shifted data file, should do this better
             if ".json" in f and "_info.json" not in f and "_shifted_data.json" not in f:
                 with open(
-                    os.path.join(self.base_path, self.classification, self.subtype, self.name, f),
+                    os.path.join(
+                        self.base_path, self.classification, self.subtype, self.name, f
+                    ),
                     "r",
                 ) as jsonf:
                     d = json.load(jsonf)
 
                 for filt, mag_list in d.items():
-                    self.data.setdefault(filt, []).extend([mag for mag in mag_list if mag["err"] < 9999])
                     self.data.setdefault(filt, []).extend(
-                        [mag | {"err": 0.1, "nondetection": True} for mag in mag_list if mag["err"] == 9999 and not np.isnan(mag["mag"])]
+                        [mag for mag in mag_list if mag["err"] < 9999]
+                    )
+                    self.data.setdefault(filt, []).extend(
+                        [
+                            mag | {"err": 0.1, "nondetection": True}
+                            for mag in mag_list
+                            if mag["err"] == 9999 and not np.isnan(mag["mag"])
+                        ]
                     )
 
     def write_shifted_data(self):
-
         with open(
             os.path.join(
                 self.base_path,
@@ -236,7 +247,6 @@ class SN:
             json.dump(self.shifted_data, f, indent=4)
 
     def load_shifted_data(self):
-
         ### Load shifted data that has been saved to a file
 
         if not os.path.exists(
@@ -251,7 +261,6 @@ class SN:
             self.shifted_data = {}
 
         else:
-
             with open(
                 os.path.join(
                     self.base_path,
@@ -267,12 +276,14 @@ class SN:
             self.shifted_data = shifted_data
 
     def convert_all_mags_to_fluxes(self):
-        #for data in [self.data, self.shifted_data]:
+        # for data in [self.data, self.shifted_data]:
         for filt in list(self.data.keys()):
             new_phot = []
             if filt in self.zps.keys():
                 for phot in self.data[filt]:
-                    phot["flux"] = self.zps[filt] * 1e-11 * 10 ** (-0.4 * phot["mag"])  # * 1e15
+                    phot["flux"] = (
+                        self.zps[filt] * 1e-11 * 10 ** (-0.4 * phot["mag"])
+                    )  # * 1e15
                     phot["fluxerr"] = phot["err"]  # 1.086 * phot['err'] * phot['flux']
                     new_phot.append(phot)
                 self.data[filt] = new_phot
@@ -286,8 +297,12 @@ class SN:
             if filt in self.zps.keys():
                 for phot in self.shifted_data[filt]:
                     unshifted_mag = phot["mag"] + self.info["peak_mag"]
-                    shifted_flux = np.log10(self.zps[filt] * 1e-11 * 10 ** (-0.4 * unshifted_mag)) - np.log10(
-                        self.zps[self.info["peak_filt"]] * 1e-11 * 10 ** (-0.4 * self.info["peak_mag"])
+                    shifted_flux = np.log10(
+                        self.zps[filt] * 1e-11 * 10 ** (-0.4 * unshifted_mag)
+                    ) - np.log10(
+                        self.zps[self.info["peak_filt"]]
+                        * 1e-11
+                        * 10 ** (-0.4 * self.info["peak_mag"])
                     )  # * 1e15
                     phot["flux"] = shifted_flux
                     phot["shiftedmag"] = -1 * phot["mag"]
@@ -299,7 +314,6 @@ class SN:
                 # raise Exception(f"No zeropoint information found for filter {filt}")
                 logger.warning(f"No zeropoint information found for filter {filt}")
                 del self.shifted_data[filt]
-            
 
     def correct_for_galactic_extinction(self):
         """
@@ -310,7 +324,9 @@ class SN:
         sfd = SFDQuery()
 
         if not self.info.get("ra", "") or not self.info.get("dec", ""):
-            logger.warning(f"No info for {self.name}, either no coordinates or no peak info")
+            logger.warning(
+                f"No info for {self.name}, either no coordinates or no peak info"
+            )
             return
 
         coord = SkyCoord(ra=self.info["ra"] * u.deg, dec=self.info["dec"] * u.deg)
@@ -318,14 +334,18 @@ class SN:
         for filt in self.data.keys():
             if filt in self.wle.keys():
                 try:
-                    exts[filt] = fm(self.wle[filt] * (1 + self.info.get("z", 0)), sfd(coord))
+                    exts[filt] = fm(
+                        self.wle[filt] * (1 + self.info.get("z", 0)), sfd(coord)
+                    )
                 except:
                     ### First input needs to be an array
-                    exts[filt] = fm(np.asarray([self.wle[filt] * (1 + self.info.get("z", 0))]), sfd(coord))
+                    exts[filt] = fm(
+                        np.asarray([self.wle[filt] * (1 + self.info.get("z", 0))]),
+                        sfd(coord),
+                    )
 
         for filt in self.data.keys():
             if filt in self.wle.keys():
-
                 new_phot = []
                 for phot in self.data[filt]:
                     if not phot.get("ext_corrected", False):
@@ -341,7 +361,6 @@ class SN:
         if self.shifted_data:
             for filt in self.shifted_data:
                 if filt in self.wle.keys():
-
                     new_phot = []
                     for phot in self.shifted_data[filt]:
                         if not phot.get("ext_corrected", False):
@@ -362,11 +381,14 @@ class SN:
         offset=0,
         plot_fluxes=False,
     ):
-        
-        if filts_to_plot[0] == "all":  # if individual filters not specified, plot all by default
+        if (
+            filts_to_plot[0] == "all"
+        ):  # if individual filters not specified, plot all by default
             filts_to_plot = colors.keys()
-        
-        if not self.data:  # check if data/SN has not been previously read in/initialized
+
+        if (
+            not self.data
+        ):  # check if data/SN has not been previously read in/initialized
             self.load_swift_data()
             self.load_json_data()
 
@@ -392,25 +414,46 @@ class SN:
             plot_fluxes=plot_fluxes,
         )
 
-    def fit_for_max(self, filt, shift_array=[-3, -2, -1, 0, 1, 2, 3], plot=False, offset=0):
+    def fit_for_max(
+        self, filt, shift_array=[-3, -2, -1, 0, 1, 2, 3], plot=False, offset=0
+    ):
         """
         Takes as input arrays for MJD, mag, and err for a filter
         as well as the guess for the MJD of maximum and an array
         to shift the lightcurve over,
         and returns estimates of the peak MJD and mag at peak
         """
-        mjd_array = np.asarray([phot["mjd"] for phot in self.data[filt] if not phot.get("nondetection", False)])
-        mag_array = np.asarray([phot["mag"] for phot in self.data[filt] if not phot.get("nondetection", False)])
-        err_array = np.asarray([phot["err"] for phot in self.data[filt] if not phot.get("nondetection", False)])
+        mjd_array = np.asarray(
+            [
+                phot["mjd"]
+                for phot in self.data[filt]
+                if not phot.get("nondetection", False)
+            ]
+        )
+        mag_array = np.asarray(
+            [
+                phot["mag"]
+                for phot in self.data[filt]
+                if not phot.get("nondetection", False)
+            ]
+        )
+        err_array = np.asarray(
+            [
+                phot["err"]
+                for phot in self.data[filt]
+                if not phot.get("nondetection", False)
+            ]
+        )
 
         if len(mag_array) < 4:  # == 0:
             return None, None
 
-        initial_guess_mjd_max = mjd_array[np.where((mag_array == min(mag_array)))[0]][0] + offset
+        initial_guess_mjd_max = (
+            mjd_array[np.where((mag_array == min(mag_array)))[0]][0] + offset
+        )
 
         fit_inds = np.where((abs(mjd_array - initial_guess_mjd_max) < 30))[0]
         if len(fit_inds) < 4:
-
             return None, None
 
         fit_coeffs = np.polyfit(mjd_array[fit_inds], mag_array[fit_inds], 3)
@@ -421,10 +464,14 @@ class SN:
         if len(guess_best_fit) == 0:
             return None, None
 
-        guess_mjd_max = guess_phases[np.where((guess_best_fit == min(guess_best_fit)))[0]][0]
+        guess_mjd_max = guess_phases[
+            np.where((guess_best_fit == min(guess_best_fit)))[0]
+        ][0]
 
         ### Do this because the array might not be ordered
-        inds_to_fit = np.where((mjd_array > guess_mjd_max - 10) & (mjd_array < guess_mjd_max + 10))
+        inds_to_fit = np.where(
+            (mjd_array > guess_mjd_max - 10) & (mjd_array < guess_mjd_max + 10)
+        )
         if len(inds_to_fit[0]) < 4:
             # print('Select a wider date range')
             return None, None
@@ -456,9 +503,11 @@ class SN:
             ### Shift by a certain number of days to randomly sample the light curve
             sim_shift = np.random.choice(shift_array)
 
-            inds_to_fit = np.where((mjd_array > guess_mjd_max - 5 + sim_shift) & (mjd_array < guess_mjd_max + 5 + sim_shift))[0]
+            inds_to_fit = np.where(
+                (mjd_array > guess_mjd_max - 5 + sim_shift)
+                & (mjd_array < guess_mjd_max + 5 + sim_shift)
+            )[0]
             if len(inds_to_fit) > 0:
-
                 fit_mjds = mjd_array[inds_to_fit]
                 fit_mags = mag_array[inds_to_fit]
                 fit_errs = err_array[inds_to_fit]
@@ -504,9 +553,8 @@ class SN:
         offset=0,
         shift_fluxes=False,
         try_other_filts=True,
-        return_wls=False
+        return_wls=False,
     ):
-
         if not self.data:
             self.load_swift_data()
             self.load_json_data()
@@ -522,13 +570,17 @@ class SN:
             if not self.info.get("peak_mjd", 0) > 0 and try_other_filts:
                 for newfilt in ["V", "g", "c", "B", "r", "o", "U", "i", "UVW1"]:
                     if newfilt in self.data.keys() and newfilt != filt:
-                        self.fit_for_max(newfilt, shift_array=shift_array, plot=plot, offset=offset)
+                        self.fit_for_max(
+                            newfilt, shift_array=shift_array, plot=plot, offset=offset
+                        )
 
                         if self.info.get("peak_mjd", 0) > 0:
                             break
 
                 if newfilt == "UVW1" and not self.info.get("peak_mjd", 0) > 0:
-                    logger.debug(f"Reached last filter and could not fit for peak for {self.name}")
+                    logger.debug(
+                        f"Reached last filter and could not fit for peak for {self.name}"
+                    )
                     self.info["searched"] = True
 
         if not self.info.get("peak_mag", 0) > 0:
@@ -536,14 +588,34 @@ class SN:
                 return [], [], [], [], []
             return [], [], [], []
 
-        mjds = np.asarray([phot["mjd"] for phot in self.data[filt]]) - self.info["peak_mjd"]
-        mags = np.asarray([phot["mag"] for phot in self.data[filt]]) - self.info["peak_mag"]
+        mjds = (
+            np.asarray([phot["mjd"] for phot in self.data[filt]])
+            - self.info["peak_mjd"]
+        )
+        mags = (
+            np.asarray([phot["mag"] for phot in self.data[filt]])
+            - self.info["peak_mag"]
+        )
         errs = np.asarray([phot["err"] for phot in self.data[filt]])
-        nondets = np.asarray([phot.get("nondetection", False) for phot in self.data[filt]])
-        wls = np.asarray([phot.get("wle", self.wle[filt] * (1 + self.info.get("z", 0.0))) for phot in self.data[filt]])
+        nondets = np.asarray(
+            [phot.get("nondetection", False) for phot in self.data[filt]]
+        )
+        wls = np.asarray(
+            [
+                phot.get("wle", self.wle[filt] * (1 + self.info.get("z", 0.0)))
+                for phot in self.data[filt]
+            ]
+        )
 
         if plot:
-            Plot().plot_shift_to_max(sn_class=self, mjds=mjds, mags=mags, errs=errs, nondets=nondets, filt=filt)
+            Plot().plot_shift_to_max(
+                sn_class=self,
+                mjds=mjds,
+                mags=mags,
+                errs=errs,
+                nondets=nondets,
+                filt=filt,
+            )
 
         self.shifted_data.setdefault(filt, []).extend(
             [
@@ -552,7 +624,7 @@ class SN:
                     "mag": mags[i],
                     "err": errs[i],
                     "nondetection": nondets[i],
-                    "wle": wls[i]
+                    "wle": wls[i],
                 }
                 for i in range(len(mjds))
             ]
@@ -561,15 +633,25 @@ class SN:
         if shift_fluxes:
             self.convert_all_mags_to_fluxes()
             shifted_mjd = np.asarray([phot["mjd"] for phot in self.shifted_data[filt]])
-            shifted_flux = np.asarray([phot["shiftedmag"] for phot in self.shifted_data[filt]])
-            shifted_err = np.asarray([phot["fluxerr"] for phot in self.shifted_data[filt]])
-            nondets = np.asarray([phot.get("nondetection", False) for phot in self.shifted_data[filt]])
-            wls = np.asarray([phot.get("wle", self.wle[filt] * (1 + self.info.get("z", 0.0))) for phot in self.shifted_data[filt]])
+            shifted_flux = np.asarray(
+                [phot["shiftedmag"] for phot in self.shifted_data[filt]]
+            )
+            shifted_err = np.asarray(
+                [phot["fluxerr"] for phot in self.shifted_data[filt]]
+            )
+            nondets = np.asarray(
+                [phot.get("nondetection", False) for phot in self.shifted_data[filt]]
+            )
+            wls = np.asarray(
+                [
+                    phot.get("wle", self.wle[filt] * (1 + self.info.get("z", 0.0)))
+                    for phot in self.shifted_data[filt]
+                ]
+            )
 
             if return_wls:
                 return shifted_mjd, shifted_flux, shifted_err, nondets, wls
             return shifted_mjd, shifted_flux, shifted_err, nondets
-
 
         if return_wls:
             return mjds, mags, errs, nondets, wls
@@ -584,7 +666,6 @@ class SN:
         save_to_caat=False,
         force=False,
     ):
-
         self.load_json_data()
         self.load_swift_data()
         self.shifted_data = {}
@@ -593,11 +674,15 @@ class SN:
             self.plot_data()
             logger.info("Data in filters {}\n".format(list(self.data.keys())))
 
-            filt = input('Which filter would you like to use to fit for max? To skip, type "skip"\n')
+            filt = input(
+                'Which filter would you like to use to fit for max? To skip, type "skip"\n'
+            )
             if filt == "skip":
                 return
 
-        mjds, _, _, _ = self.shift_to_max(filt, shift_array=shift_array, plot=plot, offset=offset)
+        mjds, _, _, _ = self.shift_to_max(
+            filt, shift_array=shift_array, plot=plot, offset=offset
+        )
 
         if len(mjds) == 0:
             refit = input("No photometry found for this filter. Try to refit? y/n \n")
@@ -614,7 +699,9 @@ class SN:
 
         elif refit == "y":
             self.info = {}
-            newfilt = input("Try fitting a new filter? If so, enter the filter here. If not, leave blank to pick new offset\n")
+            newfilt = input(
+                "Try fitting a new filter? If so, enter the filter here. If not, leave blank to pick new offset\n"
+            )
 
             if newfilt:
                 self.interactively_fit_for_max(
@@ -640,5 +727,4 @@ class SN:
                     )
 
     def log_transform_time(self, phases, phase_start=30):
-
         return np.log(phases + phase_start)
