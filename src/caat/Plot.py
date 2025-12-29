@@ -1,21 +1,9 @@
-import os
-import json
-import warnings
-from typing import Union, Optional
-from statistics import mean, stdev
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF, WhiteKernel, Matern
-from sklearn.model_selection import train_test_split
-from scipy.signal import savgol_filter
-from scipy.interpolate import interp1d
-from extinction import fm07 as fm
-from astropy.coordinates import SkyCoord
-import astropy.units as u
-from dustmaps.sfd import SFDQuery
 import logging
+import warnings
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 from caat.utils import colors, convert_shifted_fluxes_to_shifted_mags
 
 logger = logging.getLogger(__name__)
@@ -47,9 +35,27 @@ class Plot:
             for filt, mag_list in data_to_plot.items():
                 if f and f == filt:
                     if plot_fluxes:
-                        mjds = np.asarray([phot["mjd"] for phot in mag_list if not phot.get("nondetection", False)])
-                        fluxes = np.asarray([phot["flux"] for phot in mag_list if not phot.get("nondetection", False)])
-                        errs = np.asarray([phot["fluxerr"] for phot in mag_list if not phot.get("nondetection", False)])
+                        mjds = np.asarray(
+                            [
+                                phot["mjd"]
+                                for phot in mag_list
+                                if not phot.get("nondetection", False)
+                            ]
+                        )
+                        fluxes = np.asarray(
+                            [
+                                phot["flux"]
+                                for phot in mag_list
+                                if not phot.get("nondetection", False)
+                            ]
+                        )
+                        errs = np.asarray(
+                            [
+                                phot["fluxerr"]
+                                for phot in mag_list
+                                if not phot.get("nondetection", False)
+                            ]
+                        )
                         ax.errorbar(
                             mjds,
                             fluxes,
@@ -60,9 +66,27 @@ class Plot:
                             label=filt,
                         )
 
-                        nondet_mjds = np.asarray([phot["mjd"] for phot in mag_list if phot.get("nondetection", False)])
-                        nondet_fluxes = np.asarray([phot["flux"] for phot in mag_list if phot.get("nondetection", False)])
-                        nondet_errs = np.asarray([phot["fluxerr"] for phot in mag_list if phot.get("nondetection", False)])
+                        nondet_mjds = np.asarray(
+                            [
+                                phot["mjd"]
+                                for phot in mag_list
+                                if phot.get("nondetection", False)
+                            ]
+                        )
+                        nondet_fluxes = np.asarray(
+                            [
+                                phot["flux"]
+                                for phot in mag_list
+                                if phot.get("nondetection", False)
+                            ]
+                        )
+                        nondet_errs = np.asarray(
+                            [
+                                phot["fluxerr"]
+                                for phot in mag_list
+                                if phot.get("nondetection", False)
+                            ]
+                        )
                         ax.errorbar(
                             nondet_mjds,
                             nondet_fluxes,
@@ -72,9 +96,27 @@ class Plot:
                             color=colors.get(filt, "k"),
                         )
                     else:
-                        mjds = np.asarray([phot["mjd"] for phot in mag_list if not phot.get("nondetection", False)])
-                        mags = np.asarray([phot["mag"] for phot in mag_list if not phot.get("nondetection", False)])
-                        errs = np.asarray([phot["err"] for phot in mag_list if not phot.get("nondetection", False)])
+                        mjds = np.asarray(
+                            [
+                                phot["mjd"]
+                                for phot in mag_list
+                                if not phot.get("nondetection", False)
+                            ]
+                        )
+                        mags = np.asarray(
+                            [
+                                phot["mag"]
+                                for phot in mag_list
+                                if not phot.get("nondetection", False)
+                            ]
+                        )
+                        errs = np.asarray(
+                            [
+                                phot["err"]
+                                for phot in mag_list
+                                if not phot.get("nondetection", False)
+                            ]
+                        )
 
                         ax.errorbar(
                             mjds,
@@ -126,7 +168,9 @@ class Plot:
             label="Used in Fitting",
         )
         if len(mjd_array[inds_to_fit]) > 0:
-            plt.ylim(min(mag_array[inds_to_fit]) - 0.5, max(mag_array[inds_to_fit]) + 0.5)
+            plt.ylim(
+                min(mag_array[inds_to_fit]) - 0.5, max(mag_array[inds_to_fit]) + 0.5
+            )
         plt.xlabel("MJD")
         plt.ylabel("Apparent Magnitude")
         plt.title(sn_class.name)
@@ -147,7 +191,13 @@ class Plot:
             color=colors.get(filt, "k"),
             label=filt + "-band",
         )
-        plt.scatter(mjds[np.where((nondets == True))[0]], mags[np.where((nondets == True))[0]], marker="v", color=colors.get(filt, "k"), alpha=0.2)
+        plt.scatter(
+            mjds[np.where((nondets == True))[0]],
+            mags[np.where((nondets == True))[0]],
+            marker="v",
+            color=colors.get(filt, "k"),
+            alpha=0.2,
+        )
 
         plt.xlabel("Shifted Time [days]")
         plt.ylabel("Shifted Magnitude")
@@ -156,7 +206,15 @@ class Plot:
         plt.legend()
         plt.show()
 
-    def plot_all_lcs(self, sn_class, filts=["all"], log_transform=False, plot_fluxes=False, ax=None, show=True):
+    def plot_all_lcs(
+        self,
+        sn_class,
+        filts=["all"],
+        log_transform=False,
+        plot_fluxes=False,
+        ax=None,
+        show=True,
+    ):
         """plot all light curves of given subtype/collection
         can plot single, multiple or all bands"""
         sne = sn_class.sne
@@ -177,19 +235,38 @@ class Plot:
                         mjds = sn.log_transform_time(mjds, phase_start=log_transform)
 
                     if plot_fluxes:
-
                         nondet_inds = np.where((nondets == False))[0]
                         det_inds = np.where((nondets == True))[0]
                         ax.errorbar(
-                            mjds[nondet_inds], mags[nondet_inds], yerr=errs[nondet_inds], fmt="o", mec="black", color=colors.get(f, "k")
+                            mjds[nondet_inds],
+                            mags[nondet_inds],
+                            yerr=errs[nondet_inds],
+                            fmt="o",
+                            mec="black",
+                            color=colors.get(f, "k"),
                         )
-                        ax.scatter(mjds[det_inds], mags[det_inds], marker="v", alpha=0.2, color=colors.get(f, "k"))
+                        ax.scatter(
+                            mjds[det_inds],
+                            mags[det_inds],
+                            marker="v",
+                            alpha=0.2,
+                            color=colors.get(f, "k"),
+                        )
                     else:
-                        ax.errorbar(mjds, mags, yerr=errs, fmt="o", mec="black", color=colors.get(f, "k"))
+                        ax.errorbar(
+                            mjds,
+                            mags,
+                            yerr=errs,
+                            fmt="o",
+                            mec="black",
+                            color=colors.get(f, "k"),
+                        )
             ax.errorbar([], [], color=colors.get(f, "k"), label=f)
             if show:
                 filtText = f + "\n"
-                plt.figtext(0.95, 0.75 - (0.05 * i), filtText, fontsize=14, color=colors.get(f))
+                plt.figtext(
+                    0.95, 0.75 - (0.05 * i), filtText, fontsize=14, color=colors.get(f)
+                )
 
         if log_transform is False:
             ax.set_xlabel("Shifted Time [days]")
@@ -202,13 +279,35 @@ class Plot:
             ax.set_ylabel("Shifted Magnitudes")
             plt.gca().invert_yaxis()
         if show:
-            plt.title("Lightcurves for collection of {} objects\nType:{}, Subtype:{}".format(len(sne), sn_class.type, sn_class.subtype))
+            plt.title(
+                "Lightcurves for collection of {} objects\nType:{}, Subtype:{}".format(
+                    len(sne), sn_class.type, sn_class.subtype
+                )
+            )
             plt.show()
 
-    def plot_gp_predict_gp(self, phases, mean_prediction, std_prediction, mags, errs, filt, use_fluxes=False):
+    def plot_gp_predict_gp(
+        self,
+        phases,
+        mean_prediction,
+        std_prediction,
+        mags,
+        errs,
+        filt,
+        use_fluxes=False,
+    ):
         fig, ax = plt.subplots()
         ax.plot(sorted(phases), mean_prediction, color="k", label="GP fit", zorder=10)
-        ax.errorbar(phases, mags.reshape(-1), errs.reshape(-1), fmt="o", color=colors.get(filt, "k"), alpha=0.2, label=filt, zorder=0)
+        ax.errorbar(
+            phases,
+            mags.reshape(-1),
+            errs.reshape(-1),
+            fmt="o",
+            color=colors.get(filt, "k"),
+            alpha=0.2,
+            label=filt,
+            zorder=0,
+        )
         ax.fill_between(
             sorted(phases.ravel()),
             mean_prediction - 1.96 * std_prediction,
@@ -249,16 +348,15 @@ class Plot:
         """
         :input grid_type: takes str object 'median' or 'poly', default=None
         """
-        gpc = gp_class
         if ax is None:
             fig = plt.figure()
             ax = fig.add_subplot(111, projection="3d")
         ax.plot_surface(X, Y, Z)
 
         if Z_lower is not None:
-            ax.plot_surface(X, Y, Z_lower, color='blue', alpha=0.2)
+            ax.plot_surface(X, Y, Z_lower, color="blue", alpha=0.2)
         if Z_upper is not None:
-            ax.plot_surface(X, Y, Z_upper, color='blue', alpha=0.2)
+            ax.plot_surface(X, Y, Z_upper, color="blue", alpha=0.2)
         ax.set_xlabel("Phase Grid")
         ax.set_ylabel("Wavelengths [Angstroms]")
 
@@ -282,16 +380,23 @@ class Plot:
         mag_grid,
         wl_ind,
         filt,
-        ax = None,
+        ax=None,
     ):
         sn = sn_class
 
         if not ax:
             fig, ax = plt.subplots()
-        ax.plot(phase_grid, mag_grid[:, wl_ind], color=colors.get(filt, "k"), label="template")
+        ax.plot(
+            phase_grid,
+            mag_grid[:, wl_ind],
+            color=colors.get(filt, "k"),
+            label="template",
+        )
 
         plt.axhline(y=0, linestyle="--", color="gray")
-        ax.errorbar([], [], yerr=[], marker="o", color="k", label="residuals", alpha=0.2)
+        ax.errorbar(
+            [], [], yerr=[], marker="o", color="k", label="residuals", alpha=0.2
+        )
         ax.errorbar(
             [],
             [],
@@ -322,9 +427,15 @@ class Plot:
         if sn is not None:
             # Convert between log fluxes to shifted magnitudes
             log_fluxes = test_prediction + template_mags
-            shifted_mags = convert_shifted_fluxes_to_shifted_mags(log_fluxes, sn, sn.zps[filt])
-            shifted_mags_lower_unc = convert_shifted_fluxes_to_shifted_mags(log_fluxes - 1.96 * std_prediction, sn, sn.zps[filt])
-            shifted_mags_upper_unc = convert_shifted_fluxes_to_shifted_mags(log_fluxes + 1.96 * std_prediction, sn, sn.zps[filt])
+            shifted_mags = convert_shifted_fluxes_to_shifted_mags(
+                log_fluxes, sn, sn.zps[filt]
+            )
+            shifted_mags_lower_unc = convert_shifted_fluxes_to_shifted_mags(
+                log_fluxes - 1.96 * std_prediction, sn, sn.zps[filt]
+            )
+            shifted_mags_upper_unc = convert_shifted_fluxes_to_shifted_mags(
+                log_fluxes + 1.96 * std_prediction, sn, sn.zps[filt]
+            )
 
             ax.plot(
                 test_times,
@@ -352,20 +463,17 @@ class Plot:
                 test_prediction + 1.96 * std_prediction + template_mags,
                 alpha=0.2,
                 color=colors.get(filt, "k"),
-            )          
+            )
 
         ax.errorbar(
-            np.exp(
-                residuals["Phase"].values
-            )
-            - log_transform,
+            np.exp(residuals["Phase"].values) - log_transform,
             residuals["Mag"].values,
             yerr=residuals["MagErr"].values,
             fmt="o",
             color=colors.get(filt, "k"),
             mec="k",
         )
-        
+
         ax.set_xlabel("Normalized Time [days]")
         ax.set_ylabel("Flux Relative to Peak")
         if sn is not None:

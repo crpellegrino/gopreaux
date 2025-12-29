@@ -1,21 +1,10 @@
-import os
-import json
-import warnings
-from typing import Union, Optional
-from statistics import mean, stdev
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF, WhiteKernel, Matern
-from sklearn.model_selection import train_test_split
-from scipy.signal import savgol_filter
-from scipy.interpolate import interp1d
-from extinction import fm07 as fm
-from astropy.coordinates import SkyCoord
-import astropy.units as u
-from dustmaps.sfd import SFDQuery
 import logging
+import os
+import warnings
+
+import numpy as np
+import pandas as pd
+
 from caat.utils import ROOT_DIR
 
 logger = logging.getLogger(__name__)
@@ -25,7 +14,6 @@ warnings.filterwarnings("ignore")
 
 
 class CAAT:
-
     def __init__(self):
         # This might need to be replaced long term with some configuration parameters/config file
         base_path = os.path.join(ROOT_DIR, "data/")
@@ -40,7 +28,9 @@ class CAAT:
 
     def get_sne_by_type(self, sntype, snsubtype=None):
         if snsubtype is not None:
-            sne_list = (self.caat["Type"] == sntype) & (self.caat["Subtype"] == snsubtype)
+            sne_list = (self.caat["Type"] == sntype) & (
+                self.caat["Subtype"] == snsubtype
+            )
         else:
             sne_list = self.caat["Type"] == sntype
         return self.caat[sne_list].Name.values
@@ -48,7 +38,9 @@ class CAAT:
     @staticmethod
     def save_db_file(db_loc, sndb, force=False):
         if not force and os.path.exists(db_loc):
-            logger.warning("WARNING: CAAT file with this name already exists. To overwrite, use force=True")
+            logger.warning(
+                "WARNING: CAAT file with this name already exists. To overwrite, use force=True"
+            )
 
         else:
             sndb.to_csv(db_loc, index=False)
@@ -83,7 +75,9 @@ class CAAT:
         return tns_values
 
     @classmethod
-    def create_db_file(cls, CAAT, type_list=None, base_db_name="caat.csv", tns_file="", force=False):
+    def create_db_file(
+        cls, CAAT, type_list=None, base_db_name="caat.csv", tns_file="", force=False
+    ):
         # This might need to be replaced long term with some configuration parameters/config file
         base_path = os.path.join(ROOT_DIR, "data/")
         db_loc = base_path + base_db_name
@@ -118,7 +112,9 @@ class CAAT:
                 sndb_subtype.extend([snsubtype] * len(sn_names))
 
                 if tns_file:
-                    tns_info = CAAT.read_info_from_tns_file(tns_file, sn_names, ["redshift", "ra", "declination"])
+                    tns_info = CAAT.read_info_from_tns_file(
+                        tns_file, sn_names, ["redshift", "ra", "declination"]
+                    )
                     tns_z = tns_info["redshift"]
                     tns_ra = tns_info["ra"]
                     tns_dec = tns_info["declination"]
@@ -153,7 +149,6 @@ class CAAT:
 
     @classmethod
     def combine_db_files(CAAT, file1, file2, outfile):
-
         df1 = pd.read_csv(file1)
         df2 = pd.read_csv(file2)
         merged = df1.combine_first(df2)
@@ -168,6 +163,8 @@ class CAAT:
     def db(self):
         return self.caat
 
-    def get_list_of_sne(self, type=None, year=None):  # etc, other filter parameters - # of detections in filer/wavelength regime?
+    def get_list_of_sne(
+        self, type=None, year=None
+    ):  # etc, other filter parameters - # of detections in filer/wavelength regime?
         # parse the pandas db
         raise NotImplementedError
