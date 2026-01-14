@@ -9,3 +9,4 @@ diagnostics/*
 data/test*
 data/tns_public_objects.csv
 .coverage
+.env

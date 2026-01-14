@@ -362,8 +362,6 @@ class Plot:
         ax.set_xlabel("Phase Grid")
         ax.set_ylabel("Wavelengths [Angstroms]")
 
-        ax.set_zlabel("Flux")
-
         if grid_type == "polynomial":
             ax.set_title("Polynomial Grid / Templates")
         elif grid_type == "median":
@@ -372,7 +370,27 @@ class Plot:
             ax.set_title("Final Median GP Fit")
         else:
             ax.set_title("Grid")
+        
+        ax.set_zlabel("Magnitude Relative to Peak")
         plt.tight_layout()
+        # # To animate a figure: 
+        # from matplotlib import animation
+        # def update(frame):
+        #     # Rotate the view angle
+        #     surface = ax.view_init(elev=30, azim=frame)
+        #     return surface,
+
+        # frames = 360  # one frame per degree
+        # anim = animation.FuncAnimation(
+        #     fig,
+        #     update,
+        #     frames=frames,
+        #     interval=30,
+        #     blit=False
+        # )
+
+        # writer = animation.PillowWriter(fps=30)
+        # anim.save("/Users/craigpellegrino/work/presentations/aas247/SNIa_rotating_3d_surface.gif", writer=writer)
         # plt.show()
 
     def plot_subtract_data_from_grid(
@@ -558,5 +576,23 @@ class Plot:
         ax.set_zlabel("Log(Flux) Relative to Peak")
         plt.tight_layout()
         # if "2016gkg" in sn.name:
+            # # To animate a figure: 
+            # from matplotlib import animation
+            # def update(frame):
+            #     # Rotate the view angle
+            #     surface = ax.view_init(elev=30, azim=frame)
+            #     return surface,
+
+            # frames = 360  # one frame per degree
+            # anim = animation.FuncAnimation(
+            #     fig,
+            #     update,
+            #     frames=frames,
+            #     interval=30,
+            #     blit=False
+            # )
+
+            # writer = animation.PillowWriter(fps=30)
+            # anim.save("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/rotating_3d_plot.gif", writer=writer)
         #     plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/SN2016gkg_sed_surface.pdf")
         plt.show()

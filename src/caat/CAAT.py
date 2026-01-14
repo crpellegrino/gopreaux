@@ -163,8 +163,22 @@ class CAAT:
     def db(self):
         return self.caat
 
-    def get_list_of_sne(
-        self, type=None, year=None
-    ):  # etc, other filter parameters - # of detections in filer/wavelength regime?
-        # parse the pandas db
-        raise NotImplementedError
+    def get_list_of_sne(self, **kwargs):
+        """
+        Parse the CAAT pandas dataframe by filtering on any of the columns
+        (e.g. year, type, subtype, MJD of maximum, etc.)
+        Supports equality check through kwarg argument as well as query string
+        through "query" kwarg.
+        """
+        query = kwargs.get("query", None)
+        conditions = [query] if query else []
+        for col_name, value in kwargs.items():
+            if col_name != "query":
+                conditions.append(f"{col_name} == '{value}'")
+        
+        query_expr = " and ".join(conditions)
+
+        if not query_expr:
+            return self.caat
+                    
+        return self.caat.query(query_expr)
