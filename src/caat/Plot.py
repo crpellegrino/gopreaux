@@ -236,33 +236,25 @@ class Plot:
                     if log_transform is not False:
                         mjds = sn.log_transform_time(mjds, phase_start=log_transform)
 
-                    if plot_fluxes:
-                        nondet_inds = np.where((nondets == False))[0]
-                        det_inds = np.where((nondets == True))[0]
-                        ax.errorbar(
-                            mjds[nondet_inds],
-                            mags[nondet_inds],
-                            yerr=errs[nondet_inds],
-                            fmt="o",
-                            mec="black",
-                            color=colors.get(f, "k"),
-                        )
-                        ax.scatter(
-                            mjds[det_inds],
-                            mags[det_inds],
-                            marker="v",
-                            alpha=0.2,
-                            color=colors.get(f, "k"),
-                        )
-                    else:
-                        ax.errorbar(
-                            mjds,
-                            mags,
-                            yerr=errs,
-                            fmt="o",
-                            mec="black",
-                            color=colors.get(f, "k"),
-                        )
+                    nondet_inds = np.where((nondets == True))[0]
+                    det_inds = np.where((nondets == False))[0]
+
+                    ax.errorbar(
+                        mjds[det_inds],
+                        mags[det_inds],
+                        yerr=errs[det_inds],
+                        fmt="o",
+                        mec="black",
+                        color=colors.get(f, "k"),
+                    )
+                    ax.scatter(
+                        mjds[nondet_inds],
+                        mags[nondet_inds],
+                        marker="v",
+                        alpha=0.2,
+                        color=colors.get(f, "k"),
+                    )
+
             ax.errorbar([], [], color=colors.get(f, "k"), label=f)
             if show:
                 filtText = f + "\n"
@@ -287,6 +279,8 @@ class Plot:
                 )
             )
             plt.show()
+
+        return ax
 
     def plot_gp_predict_gp(
         self,

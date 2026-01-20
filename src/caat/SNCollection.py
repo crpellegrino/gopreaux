@@ -68,7 +68,7 @@ class SNCollection:
     ):
         """plot all light curves of given subtype/collection
         can plot single, multiple or all bands"""
-        Plot().plot_all_lcs(
+        ax = Plot().plot_all_lcs(
             sn_class=self,
             filts=filts,
             log_transform=log_transform,
@@ -76,6 +76,7 @@ class SNCollection:
             ax=ax,
             show=show,
         )
+        return ax
 
 
 class SNType(SNCollection):
