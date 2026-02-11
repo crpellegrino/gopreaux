@@ -409,13 +409,13 @@ class Plot:
             phase_grid,
             mag_grid[:, wl_ind],
             color=colors.get(filt, "k"),
-            label="template",
+            label=f"Template ({filt})",
         )
 
         plt.axhline(y=0, linestyle="--", color="gray")
-        ax.errorbar(
-            [], [], yerr=[], marker="o", color="k", label="residuals", alpha=0.2
-        )
+        # ax.errorbar(
+        #     [], [], yerr=[], marker="o", color="k", label="residuals", alpha=0.2
+        # )
         ax.errorbar(
             [],
             [],
@@ -569,7 +569,7 @@ class Plot:
         ax.set_ylabel("Wavelength [Angstroms]")
         ax.set_zlabel("Log(Flux) Relative to Peak")
         plt.tight_layout()
-        # if "2016gkg" in sn.name:
+        # if "2020vfu" in sn.name:
             # # To animate a figure: 
             # from matplotlib import animation
             # def update(frame):
@@ -588,5 +588,5 @@ class Plot:
 
             # writer = animation.PillowWriter(fps=30)
             # anim.save("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/rotating_3d_plot.gif", writer=writer)
-        #     plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/SN2016gkg_sed_surface.pdf")
+            # plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/sn2020vfu_sed_surface.pdf")
         plt.show()

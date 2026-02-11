@@ -1,0 +1,1537 @@
+SN2022qzr & SESNe & SNIIb & 0.019 & 59820.6 & 17.41 & g & 141 & g,c,r,o & -19.8 & 311.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ngb & SESNe & SNIIb & 0.009 & 59772.3 & 16.74 & g & 270 & B,g,c,V,r,o,i & -1494.8 & 367.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022hnt & SESNe & SNIIb & 0.0192 & 59707.2 & 17.91 & o & 37 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -23.8 & 381.1 & ATLAS, Swift & \\ 
+\hline
+SN2022eji & SESNe & SNIIb & 0.017 & 59662.1 & 17.16 & c & 222 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -1231.7 & 393.1 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2022crv & SESNe & SNIIb & 0.0080 & 59654.2 & 15.45 & o & 75 & UVW2,UVW1,c,o & -27.7 & 317.8 & ATLAS, Swift & \\ 
+\hline
+SN2021ybc & SESNe & SNIIb & 0.0292 & 59474.3 & 18.56 & g & 69 & U,B,g,c,r,o & -10.9 & 424.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021uqw & SESNe & SNIIb & 0.0280 & 59432.5 & 17.98 & r & 42 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,r,i} & -1142.1 & 25.8 & \shortstack{ASAS-SN, Swift \\ ZTF} & \\ 
+\hline
+SN2021sjt & SESNe & SNIIb & 0.0047 & 59409.1 & 18.26 & c & 116 & UVW1,U,B,g,c,r,o & -2292.2 & 135.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021pb & SESNe & SNIIb & 0.0331 & 59231.4 & 19.27 & g & 126 & g,c,r,o,i & -10.8 & 114.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020xlt & SESNe & SNIIb & 0.038 & 59142.0 & 19.78 & g & 28 & g,r & -0.6 & 22.6 & Swift, ZTF & \\ 
+\hline
+SN2020sbw & SESNe & SNIIb & 0.0230 & 59100.6 & 18.7 & g & 214 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -13.2 & 827.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020rsc & SESNe & SNIIb & 0.0313 & 59097.3 & 20.22 & r & 146 & g,c,r,o,i & -781.8 & 995.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020ikq & SESNe & SNIIb & 0.037 & 58970.5 & 18.31 & g & 99 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -3.1 & 1168.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020acat & SESNe & SNIIb & 0.0079 & 59205.5 & 15.28 & g & 309 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -12.9 & 345.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019tua & SESNe & SNIIb & 0.0104 & 58807.4 & 15.74 & V & 168 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,R,G,o} & -20.4 & 1039.6 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2019rn & SESNe & SNIIb & 0.013 & 58514.1 & 16.94 & g & 321 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o,i} & -21.1 & 982.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019hte & SESNe & SNIIb & 0.0852 & 58661.3 & 17.9 & r & 72 & U,B,g,c,r,o,i & -403.0 & 302.1 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2018gk & SESNe & SNIIb & 0.0268 & 58142.3 & 16.13 & V & 80 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -7.2 & 89.0 & OSC, Swift & \\ 
+\hline
+SN2016gkg & SESNe & SNIIb & 0.0049 & 57670.5 & 14.87 & V & 445 & \shortstack{UVW2,U,B,g,V,r,R,G \\ i,I,z,y} & -19.3 & 338.0 & ASAS-SN, OSC, Swift & \shortstack{1 2 3 \\ 4 5 6 }\\ 
+\hline
+SN2016bmd & SESNe & SNIIb & 0.0142 & 57505.3 & 16.06 & V & 64 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,w,r,z} & -10.1 & 197.2 & OSC, Swift & 7 \\ 
+\hline
+SN2011hs & SESNe & SNIIb & 0.0057 & 55887.9 & 15.81 & V & 225 & \shortstack{UVW2,UVM2,UVW1 \\ u',U,B,g',V,r',R,i',I,z'} & -10.4 & 211.5 & OSC, Swift & 2 8 \\ 
+\hline
+SN2011dh & SESNe & SNIIb & 0.0359 & 55733.3 & 12.57 & V & 998 & U,B,V,R & -19.5 & 288.6 & ASAS-SN, OSC, Swift & \shortstack{9 2 10 \\ 11 12 }\\ 
+\hline
+SN2009mk & SESNe & SNIIb & 0.0052 & 55191.2 & 16.4 & V & 37 & U,B,V & -9.0 & 25.6 & ASAS-SN, OSC, Swift & 13 \\ 
+\hline
+SN2009mg & SESNe & SNIIb & 0.004 & 55189.4 & 15.62 & V & 81 & UVW2,UVW1,U,B,V & -13.5 & 1105.4 & ASAS-SN, Swift & \\ 
+\hline
+SN2008cw & SESNe & SNIIb & 0.0324 & 54622.4 & 18.48 & V & 32 & B,V,r,i & -0.1 & 26.8 & CfA & \\ 
+\hline
+SN2008bo & SESNe & SNIIb & 0.0049 & 54568.6 & 16.13 & V & 156 & B,V,r',i' & -9.1 & 107.7 & \shortstack{ASAS-SN, CfA, OSC \\ Swift} & 2 14 \\ 
+\hline
+SN2006bf & SESNe & SNIIb & 0.024 & 53827.4 & 19.07 & V & 31 & B,V,r,i & -0.0 & 52.9 & CfA & \\ 
+\hline
+SN2006T & SESNe & SNIIb & 0.0080 & 53779.8 & 16.07 & g & 450 & \shortstack{UVW1,u,U,B,g,V,r,r' \\ i',i,Y,J,H} & -12.6 & 110.2 & \shortstack{ASAS-SN, CfA, OSC \\ Swift} & 15 14 \\ 
+\hline
+SN2023dtc & SESNe & SNIb & 0.006 & 60036.1 & 17.52 & g & 61 & g,c,r,o & -14.3 & 93.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ryd & SESNe & SNIb & 0.01 & 59824.3 & 17.92 & c & 65 & c,o & -17.1 & 214.1 & ATLAS, Swift & \\ 
+\hline
+SN2022nyo & SESNe & SNIb & 0.026 & 59778.6 & 16.75 & o & 42 & U,c,o & -22.2 & 359.2 & ATLAS, Swift & \\ 
+\hline
+SN2022hgk & SESNe & SNIb & 0.033 & 59719.5 & 18.5 & g & 505 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1514.1 & 420.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021uhk & SESNe & SNIb & 0.035 & 59437.3 & 18.81 & g & 156 & g,c,r,o,i & -19.8 & 105.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021niq & SESNe & SNIb & 0.0175 & 59368.4 & 19.36 & g & 155 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,V,r,o,i} & -1152.0 & 708.1 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020hvp & SESNe & SNIb & 0.0052 & 58976.1 & 15.62 & g & 270 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,V,r,G,o} & -15.6 & 608.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2019yvr & SESNe & SNIb & 0.005 & 58854.1 & 16.06 & g & 206 & UVW2,g,c,r,o,i & -3.6 & 1150.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019dgz & SESNe & SNIb & 0.0364 & 58591.3 & 19.2 & g & 174 & g,c,r,o,i & -376.0 & 1440.7 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019dge & SESNe & SNIb & 0.0213 & 58583.7 & 18.51 & g & 173 & UVW1,U,g,c,r,o,i & -222.5 & 1522.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018beh & SESNe & SNIb & 0.051 & 58250.9 & 17.77 & V & 128 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,o} & -55.7 & 1841.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018alc & SESNe & SNIb & 0.0181 & 58215.1 & 16.63 & o & 973 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,R,G,o,i} & -16.8 & 1938.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2017bgu & SESNe & SNIb & 0.008 & 57813.7 & 15.77 & V & 89 & UVW1,U,B,c,V,o & -7.0 & 2282.7 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2016bau & SESNe & SNIb & 0.0038 & 57484.0 & 15.93 & V & 86 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r,y} & -21.3 & 79.2 & ASAS-SN, OSC, Swift & \\ 
+\hline
+SN2011am & SESNe & SNIb & 0.0023 & 55634.9 & 16.73 & V & 28 & U,B,V & -5.5 & 17.1 & OSC, Swift & 16 \\ 
+\hline
+SN2010cn & SESNe & SNIb & 0.0063 & 55331.0 & 17.46 & V & 20 & UVW2,U,B,V & -7.9 & 4.6 & Swift & \\ 
+\hline
+SN2009jf & SESNe & SNIb & 0.0052 & 55121.2 & 15.07 & V & 366 & \shortstack{UVM2,UVW1,u',U \\ B,V,r',R,i',I,J,H} & -17.6 & 247.6 & \shortstack{ASAS-SN, CfA, OSC \\ Swift} & 17 14 13 \\ 
+\hline
+SN2009iz & SESNe & SNIb & 0.0141 & 55107.7 & 17.0 & V & 200 & u,B,V,r,i,J,H & -12.2 & 136.5 & CfA & \\ 
+\hline
+SN2009er & SESNe & SNIb & 0.035 & 54981.7 & 17.24 & V & 85 & B,V,r,i,J,H & -1.3 & 23.5 & CfA & \\ 
+\hline
+SN2008D & SESNe & SNIb & 0.0065 & 54494.3 & 17.36 & V & 220 & B,V,r,i,J,H & -19.1 & 120.8 & CfA & \\ 
+\hline
+SN2007uy & SESNe & SNIb & 0.0075 & 54480.3 & 15.75 & V & 370 & \shortstack{UVW2,UVW1,U,B,V \\ r',i',J,H} & -9.9 & 2686.9 & \shortstack{ASAS-SN, CfA, OSC \\ Swift} & 2 14 \\ 
+\hline
+SN2007kj & SESNe & SNIb & 0.0178 & 54381.1 & 17.64 & V & 67 & B,V,r,i & -3.9 & 76.0 & CfA & \\ 
+\hline
+SN2007ag & SESNe & SNIb & 0.0207 & 54169.8 & 18.41 & V & 37 & B,V,r,i & -0.5 & 40.5 & CfA & \\ 
+\hline
+SN2007C & SESNe & SNIb & 0.0056 & 54118.3 & 16.75 & g & 404 & \shortstack{UVW2,UVW1,u,U,B \\ g,V,r,r',R,i',i,Y,J,H} & -9.0 & 139.8 & CfA, OSC, Swift & \shortstack{18 15 2 \\ 14 }\\ 
+\hline
+SN2006lv & SESNe & SNIb & 0.0083 & 54044.4 & 18.41 & V & 86 & B,V,r,i & -0.9 & 73.1 & CfA & \\ 
+\hline
+SN2006ld & SESNe & SNIb & 0.0139 & 54044.4 & 17.12 & V & 148 & U,B,V,r,i,J,H & -8.1 & 70.7 & CfA & \\ 
+\hline
+SN2006lc & SESNe & SNIb & 0.0162 & 54045.1 & 17.68 & V & 48 & B,V,r,i & -2.0 & 41.0 & CfA & \\ 
+\hline
+SN2006gi & SESNe & SNIb & 0.0094 & 54007.5 & 16.74 & V & 122 & B,V,r,i & -0.0 & 161.8 & CfA & \\ 
+\hline
+SN2006fo & SESNe & SNIb & 0.0207 & 54007.0 & 17.52 & V & 163 & B,V,r,i,J,H & -1.7 & 131.1 & CfA & \\ 
+\hline
+SN2006ep & SESNe & SNIb & 0.0151 & 53988.5 & 17.42 & V & 90 & B,V,r,i & -8.2 & 106.6 & CfA & \\ 
+\hline
+SN2006el & SESNe & SNIb & 0.017 & 53985.0 & 17.57 & V & 107 & B,V,r,i & -0.5 & 110.1 & CfA & \\ 
+\hline
+SN2006F & SESNe & SNIb & 0.0139 & 53753.4 & 17.48 & V & 39 & U,B,V,r,i & -1.1 & 32.8 & CfA & \\ 
+\hline
+SN2005hg & SESNe & SNIb & 0.0213 & 53684.4 & 17.59 & V & 270 & U,B,V,r,i,J,H & -13.3 & 126.7 & CfA & \\ 
+\hline
+SN2005bf & SESNe & SNIb & 0.0189 & 53499.4 & 16.43 & V & 283 & U,B,V,r,i,J,H & -28.2 & 26.8 & CfA & \\ 
+\hline
+SN2004gq & SESNe & SNIb & 0.0064 & 53353.1 & 16.14 & B & 60 & U,B,V,r,i,J,H & -0.8 & 350.2 & CfA & \\ 
+\hline
+SN2004dk & SESNe & SNIb & 0.0052 & 53235.8 & 15.81 & B & 84 & B,V,R,I & -16.5 & 301.5 & ASAS-SN, OSC, Swift & 18 19 \\ 
+\hline
+SN2023jac & SESNe & SNIc & 0.0495 & 60096.7 & 18.79 & g & 86 & B,g,c,V,r,o & -965.5 & 58.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023dbc & SESNe & SNIc & 0.0023 & 60030.9 & 16.55 & o & 68 & g,c,r,o & -97.5 & 87.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023cpt & SESNe & SNIc & 0.0075 & 60017.0 & 15.52 & o & 129 & UVW1,U,g,c,r,o & -1443.7 & 138.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023cj & SESNe & SNIc & 0.0094 & 59956.6 & 16.44 & o & 66 & c,o & -3.5 & 186.2 & ATLAS, Swift & \\ 
+\hline
+SN2022epu & SESNe & SNIc & 0.031 & 59651.4 & 17.64 & o & 62 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,o} & -3.9 & 482.0 & ATLAS, Swift & \\ 
+\hline
+SN2021uyc & SESNe & SNIc & 0.0190 & 59443.8 & 17.48 & g & 358 & U,B,g,c,V,r,o,i & -1186.4 & 470.5 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021mxx & SESNe & SNIc & 0.0096 & 59363.5 & 16.47 & g & 219 & g,c,r,o,i & -1095.1 & 371.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021dwg & SESNe & SNIc & 0.026 & 59291.0 & 17.56 & o & 290 & \shortstack{UVM2,UVW1,U,B,g \\ c,r,o,i} & -18.6 & 141.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021do & SESNe & SNIc & 0.0093 & 59226.7 & 17.28 & g & 225 & g,c,r,o,i & -637.5 & 865.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020sgf & SESNe & SNIc & 0.0220 & 59121.0 & 18.77 & g & 705 & g,c,r,G,o & -750.5 & 898.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020scb & SESNe & SNIc & 0.0174 & 59097.7 & 17.38 & g & 226 & UVW1,U,B,g,c,V,r,o,i & -11.3 & 1031.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020oi & SESNe & SNIc & 0.0052 & 58864.6 & 14.08 & g & 502 & B,g,V,r,R,G,o,i & -1988.9 & 1220.6 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020lbh & SESNe & SNIc & 0.015 & 59015.2 & 18.22 & o & 48 & c,o & -20.8 & 1074.1 & ATLAS, Swift & \\ 
+\hline
+SN2020adow & SESNe & SNIc & 0.0075 & 59217.4 & 14.8 & g & 319 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -785.0 & 670.1 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019yz & SESNe & SNIc & 0.0063 & 58516.7 & 15.75 & o & 190 & \shortstack{UVW1,U,B,g,c,V,w,r \\ G,o} & -20.0 & 241.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019cad & SESNe & SNIc & 0.0275 & 58596.6 & 17.74 & g & 88 & g,c,r,o,i & -46.2 & 599.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2017ein & SESNe & SNIc & 0.0027 & 57909.1 & 14.97 & g & 361 & \shortstack{UVW2,UVW1,U,B,g \\ V,r,R,G,I} & -10.3 & 219.6 & OSC, Swift & 20 2 \\ 
+\hline
+SN2016iae & SESNe & SNIc & 0.004 & 57711.5 & 14.84 & o & 34 & c,G,o & -12.0 & 2080.7 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & \\ 
+\hline
+SN2009bb & SESNe & SNIc & 0.019 & 54921.2 & 16.6 & g & 408 & u,U,B,g,V,r,R,i,I,Y,J,H & -7.2 & 115.8 & ASAS-SN, OSC, Swift & 15 2 21 \\ 
+\hline
+SN2007ru & SESNe & SNIc & 0.0154 & 54439.1 & 15.95 & V & 70 & B,V,r,i & -0.0 & 52.0 & CfA & \\ 
+\hline
+SN2007gr & SESNe & SNIc & 0.0017 & 54346.5 & 13.19 & V & 360 & U,B,V,r,i,J,H & -0.0 & 174.7 & CfA & \\ 
+\hline
+SN2007cl & SESNe & SNIc & 0.0221 & 54250.6 & 17.85 & V & 80 & B,V,r,i & -6.3 & 62.7 & CfA & \\ 
+\hline
+SN2007ce & SESNe & SNIc & 0.046 & 54226.2 & 17.45 & V & 78 & B,V,r,i,J,H & -0.0 & 199.3 & CfA & \\ 
+\hline
+SN2007bg & SESNe & SNIc & 0.034 & 54209.5 & 18.42 & V & 57 & UVW1,B,V,r',R,i',I & -0.2 & 114.9 & \shortstack{ASAS-SN, CfA, OSC \\ Swift} & 22 2 14 \\ 
+\hline
+SN2006aj & SESNe & SNIc & 0.0330 & 53794.3 & 17.51 & V & 100 & U,B,V,r,i,J,H & -6.2 & 25.8 & CfA & \\ 
+\hline
+SN2005nb & SESNe & SNIc & 0.0237 & 53746.3 & 17.82 & V & 76 & U,B,V,r,i & -0.8 & 69.0 & CfA & \\ 
+\hline
+SN2005mf & SESNe & SNIc & 0.0267 & 53734.1 & 18.06 & V & 143 & U,B,V,r,i,J,H & -0.7 & 104.0 & CfA & \\ 
+\hline
+SN2005kz & SESNe & SNIc & 0.0270 & 53711.9 & 18.56 & V & 30 & B,V,r,i & -1.9 & 18.2 & CfA & \\ 
+\hline
+SN2005kl & SESNe & SNIc & 0.0034 & 53704.1 & 16.79 & V & 178 & B,V,r,i,J,H & -4.6 & 153.3 & CfA & \\ 
+\hline
+SN2005az & SESNe & SNIc & 0.0084 & 53474.4 & 15.99 & r & 100 & B,V,r,i,J,H & -9.1 & 86.7 & CfA & \\ 
+\hline
+SN2004gk & SESNe & SNIc & 0.0004 & 53338.5 & 13.96 & V & 191 & B,V,r,i,J,H & -0.0 & 207.6 & CfA & \\ 
+\hline
+SN2004fe & SESNe & SNIc & 0.018 & 53318.8 & 17.09 & V & 19 & B,V,r,i & -4.6 & 7.3 & CfA & \\ 
+\hline
+SN2004aw & SESNe & SNIc & 0.0163 & 53091.2 & 17.13 & V & 64 & U,B,V,R,I & -5.9 & 85.0 & CfA & \\ 
+\hline
+SN2003jd & SESNe & SNIc & 0.0188 & 52943.5 & 15.9 & V & 61 & B,V,R,I & -2.3 & 73.6 & CfA & \\ 
+\hline
+SN2023ijd & SNII & SNII & 0.0074 & 60083.8 & 15.89 & V & 77 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -4.5 & 68.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023hcp & SNII & SNII & 0.031 & 60067.3 & 17.82 & g & 85 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,r} & -1818.2 & 85.8 & Swift, ZTF & \\ 
+\hline
+SN2023gss & SNII & SNII & 0.0205 & 60071.3 & 17.92 & g & 82 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o} & -429.6 & 78.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023gjg & SNII & SNII & 0.0308 & 60061.8 & 18.64 & g & 49 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -1197.4 & 43.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2023gfo & SNII & SNII & 0.006 & 60086.1 & 15.94 & c & 34 & UVW1,U,c,o & -23.7 & 78.2 & ATLAS, Swift & \\ 
+\hline
+SN2023ftg & SNII & SNII & 0.02 & 60054.3 & 17.13 & c & 67 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -6.1 & 98.6 & ATLAS, Swift & \\ 
+\hline
+SN2023esp & SNII & SNII & 0.008 & 60051.0 & 15.83 & V & 45 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -1578.8 & 20.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023enr & SNII & SNII & 0.0090 & 60044.7 & 17.34 & V & 56 & \shortstack{UVM2,UVW1,U,B,c \\ V,o} & -10.3 & 107.1 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2023cr & SNII & SNII & 0.0136 & 59960.6 & 15.88 & o & 81 & UVW1,U,g,c,r,o & -9.1 & 191.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023bvj & SNII & SNII & 0.0051 & 59996.9 & 17.24 & c & 130 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -1412.9 & 119.1 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2023bvh & SNII & SNII & 0.019 & 60014.8 & 16.43 & g & 98 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -1106.4 & 89.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023bmd & SNII & SNII & 0.0196 & 59994.7 & 18.29 & g & 142 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -1821.0 & 114.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023axu & SNII & SNII & 0.0028 & 59978.8 & 15.41 & B & 122 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -14.6 & 98.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023aub & SNII & SNII & 0.0121 & 59978.7 & 16.24 & V & 91 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -9.3 & 171.1 & ATLAS, Swift & \\ 
+\hline
+SN2022yqm & SNII & SNII & 0.051 & 59894.0 & 17.52 & o & 81 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o} & -22.7 & 63.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022yjl & SNII & SNII & 0.08 & 59877.9 & 17.16 & g & 92 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -768.3 & 57.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022wol & SNII & SNII & 0.0177 & 59859.2 & 18.8 & g & 184 & UVW1,U,g,c,r,o & -1108.7 & 111.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022vpm & SNII & SNII & 0.0217 & 59851.1 & 17.34 & g & 139 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -1542.8 & 299.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022sje & SNII & SNII & 0.0155 & 59825.7 & 17.79 & g & 141 & UVW2,UVM2,g,c,r,o & -1039.4 & 323.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022sio & SNII & SNII & 0.026 & 59831.6 & 17.98 & o & 38 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -14.2 & 75.7 & ATLAS, Swift & \\ 
+\hline
+SN2022sat & SNII & SNII & 0.017 & 59831.8 & 17.63 & o & 101 & UVM2,c,o & -18.1 & 140.5 & ATLAS, Swift & \\ 
+\hline
+SN2022prv & SNII & SNII & 0.0151 & 59805.0 & 15.96 & g & 105 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -83.3 & 64.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ovb & SNII & SNII & 0.0183 & 59784.6 & 16.9 & g & 310 & g,c,r,o,i & -985.4 & 369.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ncc & SNII & SNII & 0.0542 & 59756.8 & 17.99 & c & 155 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -6.3 & 381.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022mxv & SNII & SNII & 0.0140 & 59764.3 & 16.06 & g & 391 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1061.2 & 380.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022mji & SNII & SNII & 0.004 & 59752.3 & 17.63 & c & 206 & U,g,c,r,o,i & -1551.3 & 314.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022jzc & SNII & SNII & 0.0029 & 59722.7 & 17.64 & g & 157 & U,g,c,r,o,i & -1384.2 & 249.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022jux & SNII & SNII & 0.0263 & 59716.0 & 18.32 & B & 116 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -165.8 & 191.5 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2022jox & SNII & SNII & 0.0088 & 59715.9 & 16.44 & V & 166 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -7.5 & 310.9 & ATLAS, Swift & \\ 
+\hline
+SN2022irp & SNII & SNII & 0.0330 & 59703.9 & 18.63 & g & 116 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -1270.8 & 50.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022inn & SNII & SNII & 0.0108 & 59699.6 & 18.88 & g & 86 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -1186.2 & 210.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2022ibv & SNII & SNII & 0.0143 & 59694.1 & 16.49 & B & 106 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -3.6 & 435.9 & ATLAS, Swift & \\ 
+\hline
+SN2022hql & SNII & SNII & 0.023 & 59689.9 & 18.27 & g & 217 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -854.6 & 344.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022frq & SNII & SNII & 0.0225 & 59680.0 & 18.04 & g & 214 & UVW1,U,g,c,r,o,i & -739.5 & 383.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ffg & SNII & SNII & 0.012 & 59687.2 & 15.67 & V & 426 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -426.9 & 422.4 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2022fae & SNII & SNII & 0.042 & 59672.5 & 18.54 & r & 65 & B,g,c,V,r,o & -14.4 & 261.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022eyu & SNII & SNII & 0.036 & 59668.8 & 18.23 & o & 107 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -10.6 & 75.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022dml & SNII & SNII & 0.03 & 59654.0 & 17.55 & o & 388 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -16.6 & 368.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022acmt & SNII & SNII & 0.045 & 59930.8 & 18.18 & o & 81 & g,c,r,o & -7.3 & 208.6 & ATLAS, ZTF & \\ 
+\hline
+SN2022acko & SNII & SNII & 0.0052 & 59935.1 & 16.07 & r & 156 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o} & -15.8 & 216.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022aagp & SNII & SNII & 0.0049 & 59906.0 & 15.05 & g & 103 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -1659.2 & 176.3 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021zj & SNII & SNII & 0.046 & 59231.0 & 17.94 & c & 296 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,R,G,o,i} & -739.8 & 309.3 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021zgm & SNII & SNII & 0.0133 & 59492.0 & 18.71 & o & 104 & UVW1,U,g,c,r,o & -790.9 & 327.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021yky & SNII & SNII & 0.076 & 59479.9 & 18.07 & g & 194 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1175.8 & 620.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021wvd & SNII & SNII & 0.045 & 59454.7 & 17.54 & B & 163 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1208.2 & 629.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021vaz & SNII & SNII & 0.0131 & 59442.5 & 17.11 & g & 299 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -1058.0 & 253.7 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021uoy & SNII & SNII & 0.0334 & 59435.7 & 18.33 & g & 79 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o} & -1035.5 & 667.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021ucg & SNII & SNII & 0.0171 & 59427.4 & 17.31 & g & 393 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -6.8 & 478.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021tyw & SNII & SNII & 0.013 & 59430.2 & 16.49 & g & 260 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -1087.0 & 695.2 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021tcv & SNII & SNII & 0.017 & 59410.7 & 18.28 & g & 82 & g,c,r,o,i & -835.7 & 489.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021skn & SNII & SNII & 0.0297 & 59404.4 & 17.66 & g & 155 & g,c,r,o,i & -5.1 & 745.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021rhk & SNII & SNII & 0.0225 & 59404.1 & 17.5 & g & 153 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -6.9 & 67.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021qvw & SNII & SNII & 0.0253 & 59454.7 & 18.9 & g & 98 & U,g,c,r,o & -34.0 & 593.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021qvr & SNII & SNII & 0.0116 & 59409.5 & 15.61 & o & 85 & \shortstack{UVW2,UVM2,UVW1 \\ U,c,G,o} & -3.5 & 507.3 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2021ont & SNII & SNII & 0.0283 & 59375.3 & 16.89 & g & 543 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1157.8 & 774.1 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021ok & SNII & SNII & 0.0326 & 59224.8 & 18.85 & g & 104 & g,c,r,o & -393.6 & 679.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021nyu & SNII & SNII & 0.0359 & 59372.8 & 18.82 & g & 288 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -1123.2 & 464.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021nx & SNII & SNII & 0.058 & 59228.5 & 18.72 & g & 49 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o} & -10.8 & 666.4 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021njo & SNII & SNII & 0.0379 & 59492.3 & 17.47 & g & 410 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -1081.3 & 788.7 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021msa & SNII & SNII & 0.0109 & 59374.1 & 16.09 & o & 335 & UVW2,B,g,c,V,r,G,o,i & -853.4 & 706.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021mqh & SNII & SNII & 0.0233 & 59360.1 & 16.79 & V & 102 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -7.6 & 278.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021mnj & SNII & SNII & 0.0152 & 59354.5 & 18.62 & g & 280 & UVW2,g,r,G,i & -401.1 & 339.7 & OSC, Swift, ZTF & \\ 
+\hline
+SN2021jtt & SNII & SNII & 0.0233 & 59323.2 & 17.19 & B & 276 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -1065.6 & 769.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021ibn & SNII & SNII & 0.044 & 59314.5 & 17.99 & g & 204 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -878.1 & 382.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021gvm & SNII & SNII & 0.0246 & 59304.3 & 17.27 & g & 194 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -10.2 & 150.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021gmj & SNII & SNII & 0.0034 & 59300.1 & 15.7 & g & 440 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -11.3 & 810.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021enz & SNII & SNII & 0.024 & 59289.0 & 18.73 & g & 316 & UVW1,U,g,c,r,G,o,i & -1064.7 & 442.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021cgu & SNII & SNII & 0.026 & 59266.5 & 17.3 & g & 225 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -11.8 & 438.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021can & SNII & SNII & 0.0207 & 59259.0 & 16.89 & g & 465 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -618.8 & 763.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021bug & SNII & SNII & 0.0058 & 59256.6 & 18.43 & c & 216 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -1046.3 & 451.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021ass & SNII & SNII & 0.0117 & 59232.6 & 18.05 & g & 292 & UVW1,U,g,c,r,G,o,i & -801.7 & 402.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021apg & SNII & SNII & 0.0268 & 59233.4 & 18.15 & B & 319 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -962.1 & 400.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021agbn & SNII & SNII & 0.0147 & 59555.1 & 17.97 & B & 73 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -3.7 & 370.1 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2021aek & SNII & SNII & 0.022 & 59232.8 & 17.44 & V & 124 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -5.4 & 823.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021adlw & SNII & SNII & 0.0048 & 59560.3 & 16.17 & o & 175 & U,B,g,c,V,r,o,i & -126.9 & 548.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021abze & SNII & SNII & 0.0148 & 59514.3 & 16.36 & V & 237 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1203.6 & 641.4 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021aaqn & SNII & SNII & 0.028 & 59501.2 & 18.35 & g & 98 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -8.3 & 104.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021aaev & SNII & SNII & 0.156 & 59520.4 & 17.86 & g & 213 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -1168.9 & 374.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020zoq & SNII & SNII & 0.01 & 59172.4 & 17.29 & V & 78 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -1.6 & 862.5 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020znl & SNII & SNII & 0.043 & 59173.0 & 17.18 & g & 210 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -9.7 & 125.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020xva & SNII & SNII & 0.017 & 59148.5 & 18.64 & B & 464 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,G,o,i} & -535.2 & 597.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020xua & SNII & SNII & 0.022 & 59148.3 & 17.52 & B & 75 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -5.0 & 182.8 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020xhs & SNII & SNII & 0.0243 & 59147.3 & 18.57 & g & 173 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,G,o} & -7.0 & 324.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020vg & SNII & SNII & 0.0087 & 58866.3 & 16.64 & V & 146 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -649.1 & 884.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020uzq & SNII & SNII & 0.0117 & 59222.2 & 17.7 & c & 29 & UVW1,U,c,o & -96.5 & 705.1 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2020uim & SNII & SNII & 0.0184 & 59126.9 & 17.96 & g & 539 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -438.8 & 166.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020ufx & SNII & SNII & 0.05 & 59123.0 & 18.28 & g & 433 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -808.6 & 1029.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020sjv & SNII & SNII & 0.028 & 59106.0 & 18.52 & g & 435 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -887.5 & 693.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020sic & SNII & SNII & 0.0332 & 59097.6 & 18.29 & B & 166 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,G,o,i} & -3.3 & 925.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020qvw & SNII & SNII & 0.05 & 59069.2 & 18.59 & g & 137 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -3.1 & 819.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020qmp & SNII & SNII & 0.003 & 59063.3 & 14.98 & V & 769 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -101.6 & 519.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020pqv & SNII & SNII & 0.0338 & 59057.5 & 18.16 & g & 152 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,G,o,i} & -9.5 & 295.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020pni & SNII & SNII & 0.0168 & 59056.4 & 16.28 & g & 376 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,R,G,o,i} & -829.2 & 704.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020nyb & SNII & SNII & 0.0155 & 59041.9 & 17.94 & g & 240 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -15.1 & 787.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020nvw & SNII & SNII & 0.03 & 59037.7 & 17.36 & g & 224 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -788.3 & 994.0 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020nif & SNII & SNII & 0.0103 & 59033.2 & 15.04 & V & 194 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -4524.1 & 675.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020mst & SNII & SNII & 0.059 & 59023.2 & 19.26 & g & 165 & g,c,r,o & -10.3 & 1074.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020mjm & SNII & SNII & 0.0051 & 59018.8 & 16.0 & g & 392 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -4.7 & 407.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020lrr & SNII & SNII & 0.0275 & 59014.0 & 17.44 & r & 307 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -796.7 & 1137.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020llx & SNII & SNII & 0.0099 & 59005.7 & 14.96 & V & 77 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -0.0 & 30.5 & ASAS-SN, Swift & \\ 
+\hline
+SN2020lfn & SNII & SNII & 0.044 & 59003.9 & 17.78 & g & 274 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -11.0 & 195.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020jfo & SNII & SNII & 0.0050 & 58982.0 & 14.5 & g & 402 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o,i} & -6.4 & 1066.6 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020iez & SNII & SNII & 0.0326 & 58976.4 & 17.93 & g & 190 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o} & -14.2 & 887.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020iak & SNII & SNII & 0.0613 & 58973.8 & 18.5 & g & 183 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -11.5 & 823.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020hgw & SNII & SNII & 0.043 & 58962.0 & 17.49 & g & 423 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -679.8 & 1189.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020fqv & SNII & SNII & 0.0075 & 58956.1 & 16.49 & g & 372 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -16.8 & 1065.2 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020ekk & SNII & SNII & 0.011 & 58929.0 & 16.44 & V & 460 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -15.8 & 1078.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020dyu & SNII & SNII & 0.05 & 58915.3 & 18.49 & g & 219 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -327.0 & 380.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020cxd & SNII & SNII & 0.0038 & 58898.7 & 17.59 & g & 304 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -0.2 & 920.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020aqe & SNII & SNII & 0.0122 & 58885.4 & 17.31 & g & 95 & g,c,r,G,o & -627.3 & 695.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020amv & SNII & SNII & 0.0452 & 58880.9 & 17.43 & g & 595 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,G,o,i} & -108.3 & 738.6 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020acbm & SNII & SNII & 0.021 & 59203.5 & 17.16 & g & 238 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -880.4 & 735.3 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020abue & SNII & SNII & 0.0280 & 59199.1 & 18.15 & g & 753 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -814.6 & 871.2 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020abtf & SNII & SNII & 0.014 & 59193.6 & 16.98 & g & 449 & g,c,r,o,i & -343.4 & 151.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020abjq & SNII & SNII & 0.0184 & 59196.2 & 16.19 & V & 106 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -11.8 & 317.3 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020abdr & SNII & SNII & 0.03 & 59192.5 & 17.95 & g & 185 & U,B,g,c,r,G,o,i & -107.1 & 703.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020aasd & SNII & SNII & 0.025 & 59183.1 & 16.9 & g & 296 & U,g,c,r,o,i & -658.5 & 460.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019xtw & SNII & SNII & 0.0159 & 58850.0 & 16.42 & V & 98 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -11.2 & 1094.6 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2019xdf & SNII & SNII & 0.0130 & 58846.7 & 16.78 & V & 88 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -10.4 & 145.3 & ATLAS, Swift & \\ 
+\hline
+SN2019wzx & SNII & SNII & 0.0275 & 58841.1 & 17.5 & V & 228 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -497.9 & 952.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019vxm & SNII & SNII & 0.019 & 58839.2 & 14.7 & V & 287 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -31.2 & 1249.1 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & \\ 
+\hline
+SN2019vsr & SNII & SNII & 0.027 & 58820.1 & 16.86 & g & 147 & g,c,r,G,o & -50.6 & 1063.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019ust & SNII & SNII & 0.0220 & 58812.6 & 16.98 & V & 166 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -15.5 & 999.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019tjt & SNII & SNII & 0.0476 & 58790.9 & 17.96 & g & 465 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -416.7 & 1356.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019rwd & SNII & SNII & 0.017 & 58762.2 & 18.16 & g & 209 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1.1 & 135.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019qch & SNII & SNII & 0.024 & 58751.4 & 17.15 & g & 154 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -502.3 & 330.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019pjs & SNII & SNII & 0.0074 & 58737.1 & 16.78 & g & 347 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -6.3 & 922.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019oxn & SNII & SNII & 0.02 & 58732.0 & 18.74 & g & 422 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -13.6 & 1650.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019ovr & SNII & SNII & 0.0130 & 58787.9 & 18.51 & c & 741 & g,c,r,G,o & -394.3 & 1137.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019omp & SNII & SNII & 0.045 & 58726.0 & 19.14 & g & 208 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,r,i} & -527.6 & 656.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019odf & SNII & SNII & 0.0320 & 58729.4 & 17.83 & g & 578 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,R,G,o,i} & -63.3 & 1117.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019nvm & SNII & SNII & 0.0181 & 58724.3 & 17.2 & V & 836 & B,g,c,V,r,o,i & -477.5 & 1073.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019lkw & SNII & SNII & 0.07 & 58691.5 & 17.57 & g & 890 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -14.1 & 1372.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019jyw & SNII & SNII & 0.0116 & 58667.3 & 16.05 & V & 235 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -4.8 & 413.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019gmh & SNII & SNII & 0.0306 & 58641.0 & 18.36 & g & 1167 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -442.5 & 880.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019eoh & SNII & SNII & 0.0500 & 58615.4 & 18.51 & g & 188 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,w,r,G,o,i} & -394.5 & 1061.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019edo & SNII & SNII & 0.0085 & 58605.0 & 16.46 & V & 78 & \shortstack{UVW1,U,B,g,c,V,r,R \\ G,o} & -1.0 & 280.7 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2019dzk & SNII & SNII & 0.024 & 58606.4 & 19.05 & g & 185 & g,c,r,o & -8.0 & 1171.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019dke & SNII & SNII & 0.045 & 58605.4 & 16.78 & c & 113 & UVW1,U,g,c,r,G,o & -390.9 & 1504.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019cmy & SNII & SNII & 0.0314 & 58579.3 & 17.86 & g & 349 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -372.8 & 815.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019bmj & SNII & SNII & 0.05 & 58553.0 & 18.75 & g & 445 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,w,r,o,i} & -311.1 & 1137.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018kpo & SNII & SNII & 0.0174 & 58486.3 & 17.31 & g & 145 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,G,o} & -14.9 & 375.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018jkb & SNII & SNII & 0.021 & 58469.1 & 16.89 & g & 198 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -155.5 & 1436.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018hxf & SNII & SNII & 0.0296 & 58434.9 & 17.28 & V & 188 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -50.1 & 1206.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018hmx & SNII & SNII & 0.038 & 58431.6 & 17.16 & g & 613 & g,c,V,r,R,G,o & -217.1 & 1642.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018gn & SNII & SNII & 0.0036 & 58153.2 & 16.38 & o & 174 & \shortstack{UVW2,UVM2,UVW1 \\ c,G,o} & -1290.1 & 1442.1 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & \\ 
+\hline
+SN2018fif & SNII & SNII & 0.0171 & 58363.3 & 17.84 & g & 715 & g,c,V,r,G,o,i & -105.8 & 1594.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018emt & SNII & SNII & 0.024 & 58334.9 & 16.61 & c & 40 & U,B,c,V,G,o,i & -3.4 & 120.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & \\ 
+\hline
+SN2018dfi & SNII & SNII & 0.0313 & 58308.3 & 18.11 & g & 571 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,G,o,i} & -80.0 & 1810.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018dfg & SNII & SNII & 0.0095 & 58328.7 & 15.97 & o & 29 & UVW2,UVM2,U,c,o & -18.5 & 1680.4 & ATLAS, Swift & \\ 
+\hline
+SN2018dfc & SNII & SNII & 0.0365 & 58311.0 & 17.86 & g & 574 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,R,G,o,i} & -112.5 & 1826.3 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2018cyg & SNII & SNII & 0.0112 & 58303.3 & 19.25 & g & 365 & g,c,r,G,o,i & -89.1 & 1488.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018cug & SNII & SNII & 0.05 & 58301.6 & 18.7 & r & 654 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -74.2 & 1598.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018bek & SNII & SNII & 0.0218 & 58256.5 & 16.59 & o & 715 & UVW1,U,g,c,r,G,o,i,z & -57.9 & 1882.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018adu & SNII & SNII & 0.066 & 58223.6 & 17.68 & r & 325 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -38.7 & 1879.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2017hxz & SNII & SNII & 0.08 & 58068.9 & 18.3 & o & 24 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -6.0 & 1733.9 & ATLAS, Swift & \\ 
+\hline
+SN2017faf & SNII & SNII & 0.0295 & 57941.2 & 17.39 & B & 316 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,R,o,i,I,z} & -8.6 & 2200.4 & ATLAS, OSC, Swift & 23 24 \\ 
+\hline
+SN2017eaw & SNII & SNII & 0.0001 & 57894.6 & 12.79 & V & 374 & U,B,V,R,G,I & -6.6 & 545.8 & ASAS-SN, OSC, Swift & 25 2 \\ 
+\hline
+SN2016iog & SNII & SNII & 0.038 & 57731.2 & 16.76 & B & 63 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r,G,i} & -0.4 & 101.0 & OSC, Swift & \\ 
+\hline
+SN2016gfy & SNII & SNII & 0.008 & 57647.2 & 15.97 & V & 68 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G,i} & -1.2 & 327.9 & ASAS-SN, OSC, Swift & 2 \\ 
+\hline
+SN2016blz & SNII & SNII & 0.011 & 57496.8 & 15.58 & V & 63 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G,i} & -8.4 & 145.7 & ASAS-SN, OSC, Swift & 2 26 \\ 
+\hline
+SN2013ej & SNII & SNII & 0.0181 & 56510.2 & 12.5 & V & 1393 & \shortstack{UVW1,u,U,B,g,V,r,R \\ i,I,z,J,H,K} & -11.5 & 476.5 & ASAS-SN, OSC, Swift & \shortstack{27 28 13 \\ 29 10 2 \\ 23 24 29 }\\ 
+\hline
+SN2013ab & SNII & SNII & 0.0024 & 56347.3 & 14.75 & g & 810 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,R,i,I} & -9.5 & 450.4 & OSC, Swift & \shortstack{2 30 23 \\ 24 }\\ 
+\hline
+SN2011js & SNII & SNII & 0.0542 & 55944.8 & 17.09 & V & 30 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -10.5 & 0.9 & Swift & \\ 
+\hline
+SN2011hg & SNII & SNII & 0.0097 & 55878.4 & 18.04 & V & 20 & U,B,V & -9.4 & 8.5 & ASAS-SN, Swift & \\ 
+\hline
+SN2009kr & SNII & SNII & 0.036 & 55149.5 & 15.61 & V & 247 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I,J,H,K} & -3.1 & 96.6 & OSC, Swift & \shortstack{31 2 23 \\ 24 }\\ 
+\hline
+SN2009dd & SNII & SNII & 0.0136 & 54939.4 & 14.82 & V & 172 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r',R,i',I} & -4.5 & 276.1 & ASAS-SN, OSC, Swift & 31 32 \\ 
+\hline
+SN2009bw & SNII & SNII & 0.012 & 54925.2 & 14.9 & V & 221 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I,J,H} & -9.8 & 229.6 & OSC, Swift & 33 33 \\ 
+\hline
+SN2009at & SNII & SNII & 0.009 & 54907.6 & 16.17 & V & 69 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I} & -0.9 & 134.0 & ASAS-SN, OSC, Swift & 13 23 24 \\ 
+\hline
+SN2007od & SNII & SNII & 0.0233 & 54408.4 & 14.14 & V & 375 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r',R,i',I} & -1.7 & 309.2 & OSC, Swift & \shortstack{34 35 13 \\ 2 23 24 \\ 36 31 }\\ 
+\hline
+SN2007ct & SNII & SNII & 0.058 & 54293.6 & 17.42 & V & 46 & UVW1,U,B,V,r',i' & -10.4 & 21.0 & OSC, Swift & 31 \\ 
+\hline
+SN2006bc & SNII & SNII & 0.03 & 53823.2 & 17.27 & V & 42 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -1.2 & 47.8 & OSC, Swift & \shortstack{34 37 38 \\ 2 }\\ 
+\hline
+SN2006at & SNII & SNII & 0.024 & 53806.0 & 17.96 & B & 106 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r',i'} & -1.8 & 84.8 & ASAS-SN, OSC, Swift & 31 2 \\ 
+\hline
+SN2005cs & SNII & SNII & 0.0140 & 53555.8 & 14.5 & V & 597 & \shortstack{UVW2,U,B,V,R,I,z,J \\ H,K} & -6.8 & 5729.8 & ASAS-SN, OSC, Swift & \shortstack{39 40 41 \\ 2 39 42 }\\ 
+\hline
+SN2020faa & SNII & SNII-pec & 0.0410 & 59051.9 & 17.79 & g & 1344 & U,B,g,c,V,r,o,i & -807.6 & 384.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018hna & SNII & SNII-pec & 0.0024 & 58495.1 & 14.58 & g & 3740 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,R,G,o,i} & -280.7 & 1304.1 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2022fuc & SNII & SNIIP & 0.0091 & 59679.8 & 16.83 & g & 220 & UVW1,U,g,c,r,o,i & -8.5 & 396.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ewj & SNII & SNIIP & 0.0101 & 59671.4 & 16.33 & g & 138 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1145.0 & 436.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021yyg & SNII & SNIIP & 0.0116 & 59479.7 & 17.66 & g & 269 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,V,r,G,o,i} & -1082.3 & 828.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021yja & SNII & SNIIP & 0.0053 & 59475.3 & 14.38 & g & 320 & UVW1,U,g,c,r,G,o & -729.7 & 514.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020uem & SNII & SNIIP & 0.041 & 59128.0 & 16.84 & g & 495 & UVW1,U,g,c,V,r,G,o,i & -14.5 & 892.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020sje & SNII & SNIIP & 0.03 & 59098.8 & 18.86 & g & 485 & g,c,r,G,o,i & -8.4 & 666.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020esm & SNII & SNIIP & 0.036 & 58944.0 & 16.16 & g & 191 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -13.5 & 132.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020dpw & SNII & SNIIP & 0.0048 & 58941.6 & 17.03 & g & 557 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -1824.7 & 790.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020aavm & SNII & SNIIP & 0.045 & 59180.9 & 19.24 & g & 267 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -10.4 & 710.7 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2018imf & SNII & SNIIP & 0.0036 & 58442.5 & 17.14 & g & 260 & g,c,V,w,r,G,o,i & -168.3 & 1818.0 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2018cxn & SNII & SNIIP & 0.0401 & 58299.6 & 18.94 & g & 426 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -10.2 & 1125.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2016X & SNII & SNIIP & 0.0044 & 57416.6 & 14.07 & g & 877 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,R,i,I} & -9.6 & 186.5 & ASAS-SN, OSC, Swift & \shortstack{2 43 23 \\ 24 }\\ 
+\hline
+SN2016B & SNII & SNIIP & 0.0042 & 57393.9 & 14.87 & V & 46 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -2.8 & 11.2 & ASAS-SN, Swift & \\ 
+\hline
+SN2013fs & SNII & SNIIP & 0.0118 & 56577.2 & 16.03 & g & 520 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,R,i,I,z,y} & -5.9 & 101.9 & OSC, Swift & \shortstack{44 2 45 \\ 46 }\\ 
+\hline
+SN2011gv & SNII & SNIIP & 0.0184 & 55858.3 & 15.61 & V & 36 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -0.8 & 13.2 & Swift & \\ 
+\hline
+SN2011cj & SNII & SNIIP & 0.021 & 55696.9 & 16.15 & B & 182 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I} & -5.5 & 70.0 & ASAS-SN, OSC, Swift & 23 24 \\ 
+\hline
+SN2009N & SNII & SNIIP & 0.0034 & 54859.4 & 16.29 & V & 438 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g',V,r',R,i',I,z'} & -1.8 & 123.0 & OSC, Swift & \shortstack{34 2 23 \\ 24 47 31 }\\ 
+\hline
+SN2004dj & SNII & SNIIP & 0.0143 & 53221.1 & 11.88 & V & 362 & U,B,V,R,I & -1.3 & 1206.9 & ASAS-SN, OSC, Swift & 48 49 50 \\ 
+\hline
+SN2023jgf & SNIIn & SNIIn & 0.0171 & 60137.0 & 17.65 & V & 55 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -44.8 & 19.3 & ATLAS, Swift & \\ 
+\hline
+SN2023iex & SNIIn & SNIIn & 0.029 & 60111.4 & 18.43 & g & 98 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -1848.9 & 45.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022prr & SNIIn & SNIIn & 0.0151 & 59805.8 & 16.43 & g & 265 & g,r & -1586.3 & 347.5 & Swift, ZTF & \\ 
+\hline
+SN2022mma & SNIIn & SNIIn & 0.038 & 59773.3 & 15.62 & g & 500 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1505.9 & 382.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022hsu & SNIIn & SNIIn & 0.018 & 59714.1 & 16.52 & r & 125 & UVW1,U,g,c,r,o & -1004.6 & 169.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021ydc & SNIIn & SNIIn & 0.055 & 59844.9 & 17.87 & o & 91 & c,o & -389.4 & 124.3 & ATLAS, Swift & \\ 
+\hline
+SN2021ukt & SNIIn & SNIIn & 0.0128 & 59428.7 & 16.13 & g & 204 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o} & -217.6 & 452.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021qqp & SNIIn & SNIIn & 0.041 & 59445.4 & 17.47 & g & 781 & g,c,r,o,i & -309.3 & 378.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021kwc & SNIIn & SNIIn & 0.0217 & 59346.8 & 17.45 & g & 87 & U,B,g,r,o,i & -1127.5 & 567.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021kgj & SNIIn & SNIIn & 0.0143 & 59331.5 & 16.54 & o & 48 & UVW1,U,B,c,o & -19.1 & 68.7 & ATLAS, Swift & \\ 
+\hline
+SN2021jbi & SNIIn & SNIIn & 0.14 & 59343.3 & 18.67 & o & 42 & c,o & -35.8 & 442.4 & ATLAS, Swift & \\ 
+\hline
+SN2021adxl & SNIIn & SNIIn & 0.018 & 59526.2 & 14.33 & r & 422 & U,g,c,r,G,o,i & -2648.2 & 625.8 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021adou & SNIIn & SNIIn & 0.039 & 59531.7 & 19.42 & g & 56 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -9.4 & 319.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021acya & SNIIn & SNIIn & 0.063 & 59605.3 & 16.8 & c & 293 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -89.8 & 546.1 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020ywx & SNIIn & SNIIn & 0.0217 & 59167.6 & 16.99 & g & 668 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -18.0 & 973.4 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020tlf & SNIIn & SNIIn & 0.0084 & 59184.5 & 16.29 & g & 445 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,G,o,i} & -926.2 & 863.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020qpo & SNIIn & SNIIn & 0.053 & 59083.3 & 18.15 & g & 413 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -109.8 & 805.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020pvb & SNIIn & SNIIn & 0.0202 & 59155.4 & 16.99 & g & 79 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -111.9 & 278.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020nub & SNIIn & SNIIn & 0.017 & 59037.8 & 16.0 & o & 43 & U,B,c,V,G,o & -1619.7 & 135.6 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020jhs & SNIIn & SNIIn & 0.065 & 59115.3 & 17.73 & r & 679 & g,c,r,G,o,i & -143.1 & 978.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020dtd & SNIIn & SNIIn & 0.0695 & 58936.9 & 18.47 & r & 454 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o,i} & -2072.4 & 1145.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020dcs & SNIIn & SNIIn & 0.0240 & 58914.9 & 17.03 & r & 216 & g,c,r,o & -695.6 & 1197.4 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020cui & SNIIn & SNIIn & 0.025 & 58928.9 & 15.95 & V & 288 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -40.6 & 766.2 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020acct & SNIIn & SNIIn & 0.035 & 59197.4 & 18.02 & g & 171 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -761.9 & 897.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019wrt & SNIIn & SNIIn & 0.0572 & 58852.1 & 19.03 & g & 96 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o} & -404.8 & 1144.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019uit & SNIIn & SNIIn & 0.071 & 58820.7 & 18.61 & o & 77 & c,o & -23.0 & 440.8 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2019smj & SNIIn & SNIIn & 0.06 & 58783.0 & 17.41 & g & 334 & \shortstack{UVW1,U,B,g,c,V,r,G \\ o,i} & -14.6 & 1150.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019rz & SNIIn & SNIIn & 0.0188 & 58506.4 & 16.85 & g & 244 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -287.3 & 1543.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019qt & SNIIn & SNIIn & 0.035 & 58538.5 & 16.66 & g & 647 & \shortstack{UVW2,UVW1,B,g,c \\ V,r,R,G,o,i,z} & -46.9 & 212.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019pgu & SNIIn & SNIIn & 0.1055 & 58741.8 & 18.62 & g & 154 & UVM2,g,c,r,o,i & -515.4 & 63.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019njv & SNIIn & SNIIn & 0.0145 & 58715.7 & 18.13 & g & 466 & g,c,r,o & -458.2 & 1374.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019mtk & SNIIn & SNIIn & 0.084 & 58868.4 & 19.16 & g & 1568 & g,c,r,G,o,i & -178.0 & 629.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019fmb & SNIIn & SNIIn & 0.016 & 58779.5 & 17.21 & g & 264 & UVW2,g,c,r,o,i & -561.2 & 893.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019dde & SNIIn & SNIIn & 0.057 & 58599.2 & 17.43 & g & 280 & \shortstack{UVW2,UVW1,g,c,w \\ r,o,i} & -384.8 & 1187.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019ctt & SNIIn & SNIIn & 0.046 & 58588.3 & 18.91 & g & 72 & \shortstack{UVW2,UVW1,g,c,r \\ o,i} & -32.1 & 535.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019cac & SNIIn & SNIIn & 0.0467 & 58555.3 & 19.02 & g & 86 & UVW1,g,c,r,o,i & -38.7 & 1481.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019aafe & SNIIn & SNIIn & 0.074 & 58750.8 & 19.36 & g & 569 & g,r & -101.3 & 482.4 & Swift, ZTF & \\ 
+\hline
+SN2018kag & SNIIn & SNIIn & 0.0273 & 58483.0 & 17.11 & o & 286 & UVW2,UVW1,g,c,r,o & -58.5 & 1401.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018gwa & SNIIn & SNIIn & 0.0659 & 58397.5 & 18.84 & r & 189 & g,r,G & -170.4 & 1657.7 & \shortstack{ASAS-SN, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018fdt & SNIIn & SNIIn & 0.055 & 58362.7 & 18.36 & g & 317 & \shortstack{UVW2,UVW1,g,c,r \\ G,o,i} & -164.2 & 1714.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018bwr & SNIIn & SNIIn & 0.046 & 58291.4 & 16.56 & o & 573 & \shortstack{UVW2,UVM2,UVW1 \\ B,g,c,V,w,r,R,G,o,i} & -77.0 & 1856.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2017hcc & SNIIn & SNIIn & 0.0173 & 58077.3 & 13.68 & V & 261 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,w,G,o,i} & -48.9 & 1353.4 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & \\ 
+\hline
+SN2017gir & SNIIn & SNIIn & 0.164 & 58020.0 & 17.93 & o & 81 & \shortstack{UVW2,UVM2,UVW1 \\ c,G,o,i} & -44.4 & 261.5 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2017dwq & SNIIn & SNIIn & 0.018 & 57895.3 & 16.63 & c & 101 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -26.0 & 2167.1 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2016aps & SNIIn & SNIIn & 0.2657 & 57459.6 & 18.29 & r & 134 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,r,i,z} & -101.3 & 723.7 & OSC, Swift & 51 52 \\ 
+\hline
+SN2015J & SNIIn & SNIIn & 0.0054 & 57203.1 & 16.95 & V & 62 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -1.6 & 1853.1 & ASAS-SN, Swift & \\ 
+\hline
+SN2010jl & SNIIn & SNIIn & 0.018 & 55509.4 & 14.1 & B & 774 & \shortstack{UVW2,UVM2,UVW1 \\ u',U,B,V,r',R,i',I,J,H,K} & -30.7 & 1506.2 & ASAS-SN, OSC, Swift & \shortstack{53 54 55 \\ 56 2 13 \\ 57 58 }\\ 
+\hline
+SN2009au & SNIIn & SNIIn & 0.0145 & 54909.8 & 17.04 & V & 27 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -1.6 & 58.3 & OSC, Swift & 34 \\ 
+\hline
+SN2008S & SNIIn & SNIIn & 0.0001 & 54505.4 & 16.88 & V & 259 & UVW1,U,B,V,R,I,J,H,K & -15.6 & 828.0 & ASAS-SN, OSC, Swift & 59 60 2 \\ 
+\hline
+SN2007pk & SNIIn & SNIIn & 0.0166 & 54424.2 & 16.02 & V & 253 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r',R,i',I} & -8.9 & 69.7 & OSC, Swift & 31 2 32 \\ 
+\hline
+SN2006jd & SNIIn & SNIIn & 0.084 & 54041.0 & 18.04 & g & 488 & u,B,g,V,r,i,Y,J,H,K & -12.6 & 1617.8 & ASAS-SN, OSC, Swift & \shortstack{61 62 54 \\ 2 13 }\\ 
+\hline
+SN2005kd & SNIIn & SNIIn & 0.0084 & 53695.7 & 15.01 & V & 339 & U,B,V,r',R,i',I & -7.7 & 514.5 & ASAS-SN, OSC, Swift & 31 2 \\ 
+\hline
+SN2005ip & SNIIn & SNIIn & 0.0188 & 53683.4 & 15.38 & g & 393 & \shortstack{UVW1,u,B,g,V,r,i,Y \\ J,H} & 0.0 & 1929.8 & ASAS-SN, OSC, Swift & \shortstack{63 13 62 \\ 54 }\\ 
+\hline
+SN2023iuc & FBOT & SNIbn & 0.0768 & 60085.6 & 17.78 & g & 101 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -1818.3 & 61.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2022qhy & FBOT & SNIbn & 0.0061 & 59800.1 & 16.07 & o & 30 & c,o & -8.0 & 274.6 & ATLAS, Swift & \\ 
+\hline
+SN2022pff & FBOT & SNIbn & 0.091 & 59763.4 & 19.14 & g & 16 & g,r,i & -1165.1 & 6.8 & ZTF & \\ 
+\hline
+SN2022pda & FBOT & SNIbn & 0.062 & 59862.4 & 17.51 & r & 190 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -124.9 & 226.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ihx & FBOT & SNIbn & 0.033 & 59698.5 & 17.92 & V & 93 & UVW2,B,g,c,V,r,o,i & -1413.1 & 436.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022eux & FBOT & SNIbn & 0.0252 & 59658.1 & 16.89 & V & 85 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -3.8 & 340.0 & ATLAS, Swift & \\ 
+\hline
+SN2022ablq & FBOT & SNIbn & 0.014 & 59919.3 & 16.03 & V & 86 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -21.7 & 209.2 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2021zfx & FBOT & SNIbn & 0.069 & 59480.3 & 18.55 & o & 9 & o & -1.9 & 10.0 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2021jpk & FBOT & SNIbn & 0.038 & 59322.1 & 18.55 & g & 69 & \shortstack{UVW2,UVM2,g,c,r \\ o,i} & -326.8 & 22.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021iyt & FBOT & SNIbn & 0.0712 & 59316.5 & 18.66 & g & 48 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -710.4 & 59.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020nxt & FBOT & SNIbn & 0.049 & 59038.8 & 15.95 & o & 33 & c,o & -7.2 & 1112.7 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2020mso & FBOT & SNIbn & 0.1 & 59034.9 & 19.08 & g & 275 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o} & -306.6 & 686.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020bqj & FBOT & SNIbn & 0.068 & 58891.8 & 18.0 & g & 382 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -12.2 & 844.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020big & FBOT & SNIbn & 0.0245 & 58878.4 & 17.98 & o & 30 & UVM2,UVW1,U,c,o & -2.1 & 1108.7 & ATLAS, Swift & \\ 
+\hline
+SN2020able & FBOT & SNIbn & 0.0247 & 59200.5 & 16.3 & V & 64 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -15.0 & 90.9 & ATLAS, Swift & \\ 
+\hline
+SN2019qav & FBOT & SNIbn & 0.1353 & 58740.2 & 19.07 & g & 34 & g,r,i & -450.9 & 974.1 & Swift, ZTF & \\ 
+\hline
+SN2019lsm & FBOT & SNIbn & 0.0416 & 58691.3 & 18.22 & c & 52 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -7.1 & 1026.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019kbj & FBOT & SNIbn & 0.048 & 58670.0 & 17.32 & V & 64 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -4.5 & 105.2 & ATLAS, Swift & \\ 
+\hline
+SN2019deh & FBOT & SNIbn & 0.0546 & 58589.1 & 17.63 & o & 241 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,o,i} & -386.8 & 891.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019aajs & FBOT & SNIbn & 0.0358 & 58541.4 & 17.3 & g & 82 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r} & -338.0 & 1329.8 & Swift, ZTF & \\ 
+\hline
+SN2018jbs & FBOT & SNIbn & 0.059 & 58449.1 & 17.14 & r & 25 & U,g,r,i & -0.6 & 868.2 & Swift, ZTF & \\ 
+\hline
+SN2011hw & FBOT & SNIbn & 0.0240 & 55889.1 & 16.84 & V & 48 & \shortstack{UVW2,UVW1,U,B,V \\ R,I} & -1.3 & 53.9 & ASAS-SN, OSC, Swift & 2 64 53 \\ 
+\hline
+SN2006jc & FBOT & SNIbn & 0.0055 & 54020.6 & 14.09 & V & 357 & U,B,V,r,i,J,H & -0.1 & 154.6 & CfA & \\ 
+\hline
+SN2023emq & FBOT & SNIcn & 0.031 & 60043.3 & 17.4 & V & 56 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -9.4 & 18.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ann & FBOT & SNIcn & 0.049 & 59613.0 & 19.02 & o & 34 & g,c,r,o,i & -8.7 & 38.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021csp & FBOT & SNIcn & 0.083 & 59259.7 & 17.81 & V & 254 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -378.2 & 793.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021ckj & FBOT & SNIcn & 0.143 & 59257.1 & 19.17 & g & 21 & g,c,r,o,i & -2.8 & 429.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019hgp & FBOT & SNIcn & 0.0641 & 58647.9 & 18.65 & g & 163 & UVM2,g,c,r,o,i & -6.6 & 1070.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022xgc & SLSN-I & SLSN-I & 0.31 & 59904.0 & 18.72 & g & 149 & g,c,r,o & -732.7 & 161.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022lxd & SLSN-I & SLSN-I & 0.54 & 59789.4 & 19.4 & o & 29 & c,o & -62.0 & 33.8 & ATLAS, Swift & \\ 
+\hline
+SN2022acch & SLSN-I & SLSN-I & 0.42 & 59934.5 & 19.42 & g & 161 & \shortstack{UVM2,UVW1,U,B,g \\ c,r,o} & -1421.1 & 120.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022abdu & SLSN-I & SLSN-I & 0.13 & 59917.2 & 18.63 & B & 55 & UVW1,U,B,c,V,o & -17.0 & 81.6 & ATLAS, Swift & \\ 
+\hline
+SN2021zcl & SLSN-I & SLSN-I & 0.117 & 59517.6 & 18.59 & g & 88 & UVW1,B,g,c,r,o & -777.3 & 122.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021lwz & SLSN-I & SLSN-I & 0.065 & 59350.7 & 17.32 & g & 68 & UVW1,U,g,c,r,G,o,i & -7.4 & 740.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021kty & SLSN-I & SLSN-I & 0.159 & 59336.0 & 18.69 & g & 267 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -56.4 & 685.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021hpx & SLSN-I & SLSN-I & 0.213 & 59327.5 & 18.3 & g & 84 & U,g,c,V,r,G,o,i & -62.3 & 185.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021ek & SLSN-I & SLSN-I & 0.193 & 59242.2 & 19.0 & r & 127 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -873.1 & 668.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021bnw & SLSN-I & SLSN-I & 0.098 & 59264.6 & 17.39 & g & 217 & g,c,V,r,G,o,i & -37.3 & 692.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021ahpl & SLSN-I & SLSN-I & 0.051 & 59625.1 & 17.19 & o & 437 & g,c,r,G,o,i & -506.8 & 460.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020znr & SLSN-I & SLSN-I & 0.1 & 59225.4 & 17.08 & g & 719 & g,c,r,G,o,i & -436.4 & 614.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020xga & SLSN-I & SLSN-I & 0.44 & 59166.6 & 19.18 & g & 272 & g,c,r,o,i & -57.9 & 381.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020uew & SLSN-I & SLSN-I & 0.2236 & 59128.8 & 18.36 & o & 52 & UVM2,U,B,c,V,o & -21.6 & 102.1 & ATLAS, Swift & \\ 
+\hline
+SN2020tcw & SLSN-I & SLSN-I & 0.0645 & 59143.3 & 16.23 & V & 231 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -923.3 & 1012.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020rmv & SLSN-I & SLSN-I & 0.27 & 59113.7 & 18.74 & g & 238 & UVW1,U,g,c,r,o,i & -51.7 & 802.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020qlb & SLSN-I & SLSN-I & 0.159 & 59140.7 & 17.19 & g & 419 & g,c,r,G,o,i & -461.5 & 763.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020jhm & SLSN-I & SLSN-I & 0.06 & 58993.4 & 16.72 & g & 638 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -18.2 & 412.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020aewh & SLSN-I & SLSN-I & 0.345 & 59232.0 & 19.51 & g & 189 & g,r,i & -820.2 & 272.9 & Swift, ZTF & \\ 
+\hline
+SN2020adkm & SLSN-I & SLSN-I & 0.226 & 59248.5 & 19.28 & g & 142 & g,c,r,o & -93.8 & 183.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020abjc & SLSN-I & SLSN-I & 0.219 & 59276.1 & 18.97 & g & 334 & UVW1,U,B,g,c,V,r,o,i & -139.3 & 724.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019unb & SLSN-I & SLSN-I & 0.0635 & 58844.8 & 17.38 & o & 151 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -68.3 & 127.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019szu & SLSN-I & SLSN-I & 0.213 & 58861.1 & 18.75 & g & 211 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -117.6 & 381.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019stc & SLSN-I & SLSN-I & 0.1178 & 58781.1 & 18.83 & g & 577 & g,c,r,o & -29.4 & 126.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019sgh & SLSN-I & SLSN-I & 0.344 & 58766.3 & 19.8 & g & 144 & g,r,i & -337.0 & 46.0 & Swift, ZTF & \\ 
+\hline
+SN2019sgg & SLSN-I & SLSN-I & 0.5726 & 58771.0 & 19.67 & g & 120 & U,g,r,i & -50.6 & 712.3 & Swift, ZTF & \\ 
+\hline
+SN2019pud & SLSN-I & SLSN-I & 0.1136 & 58754.0 & 17.89 & r & 70 & g,c,r,G,o & -24.5 & 264.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019nhs & SLSN-I & SLSN-I & 0.19 & 58732.1 & 18.41 & g & 142 & g,c,r,o,i & -36.1 & 108.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019neq & SLSN-I & SLSN-I & 0.1075 & 58731.1 & 17.02 & g & 443 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -529.2 & 617.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019lsq & SLSN-I & SLSN-I & 0.14 & 58708.1 & 18.08 & g & 458 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -330.8 & 786.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019kcy & SLSN-I & SLSN-I & 0.4 & 58691.9 & 19.05 & g & 62 & U,g,c,w,r,o,i & -33.1 & 754.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019hge & SLSN-I & SLSN-I & 0.0866 & 58688.4 & 18.16 & g & 318 & g,c,r,G,o,i & -404.1 & 1175.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019gfm & SLSN-I & SLSN-I & 0.1816 & 58644.4 & 18.65 & g & 84 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -15.3 & 342.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019eot & SLSN-I & SLSN-I & 0.3057 & 58640.8 & 18.57 & g & 568 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -336.4 & 123.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019enz & SLSN-I & SLSN-I & 0.22 & 58631.6 & 18.72 & o & 52 & \shortstack{UVW2,UVM2,UVW1 \\ U,c,G,o} & -28.6 & 33.3 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2018lfd & SLSN-I & SLSN-I & 0.27 & 58494.1 & 18.92 & o & 101 & g,c,r,G,o & -63.8 & 541.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018kyt & SLSN-I & SLSN-I & 0.108 & 58508.3 & 18.39 & o & 377 & g,c,r,G,o,i & -253.4 & 1621.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018jfo & SLSN-I & SLSN-I & 0.163 & 58439.9 & 18.63 & g & 74 & g,r,i & -10.5 & 172.2 & OSC, Swift, ZTF & 16 \\ 
+\hline
+SN2018ibb & SLSN-I & SLSN-I & 0.16 & 58474.8 & 17.74 & V & 550 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,G,o,i} & -118.2 & 1526.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018hti & SLSN-I & SLSN-I & 0.063 & 58459.3 & 16.44 & g & 594 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,G,o,i} & -40.3 & 1418.5 & ATLAS, OSC, Swift & 65 16 \\ 
+\hline
+SN2018gft & SLSN-I & SLSN-I & 0.23 & 58432.0 & 17.99 & o & 224 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -93.8 & 1369.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018fcg & SLSN-I & SLSN-I & 0.101 & 58361.5 & 18.47 & o & 403 & g,c,r,G,o & -49.8 & 1547.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018bym & SLSN-I & SLSN-I & 0.267 & 58308.8 & 19.34 & c & 1096 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,o,i} & -57.4 & 1518.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & 16 \\ 
+\hline
+SN2018bsz & SLSN-I & SLSN-I & 0.027 & 58265.6 & 15.64 & g & 126 & \shortstack{u,U,B,g,c,V,r,o,i,z,J \\ H,K} & -64.6 & 1433.2 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & 66 \\ 
+\hline
+SN2017ens & SLSN-I & SLSN-I & 0.1086 & 57928.7 & 17.65 & o & 25 & UVW2,U,o & -19.8 & 30.1 & ATLAS, Swift & \\ 
+\hline
+SN2017egm & SLSN-I & SLSN-I & 0.0307 & 57926.6 & 14.66 & B & 112 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -15.3 & 208.9 & ASAS-SN, Swift & \\ 
+\hline
+SN2017dwh & SLSN-I & SLSN-I & 0.13 & 57889.0 & 17.9 & o & 46 & U,c,o,i & -45.8 & 38.9 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2016ard & SLSN-I & SLSN-I & 0.2025 & 57463.7 & 18.97 & V & 45 & \shortstack{UVM2,UVW1,U,B,V \\ w,i,z} & -0.0 & 129.7 & OSC, Swift & 52 \\ 
+\hline
+SN2015bn & SLSN-I & SLSN-I & 0.11 & 57102.1 & 16.54 & V & 653 & \shortstack{UVW2,UVM2,u',B \\ g',V,r,r',R,i',I,z',J,H,K} & -59.8 & 1093.9 & OSC, Swift & \shortstack{67 68 69 \\ 67 68 2 \\ 16 }\\ 
+\hline
+SN2023gpw & SLSN-II & SLSN-II & 0.08 & 60084.4 & 16.31 & g & 96 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o} & -33.1 & 68.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022cvz & SLSN-II & SLSN-II & 0.188 & 59654.2 & 18.69 & o & 151 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -37.7 & 370.3 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021fmu & SLSN-II & SLSN-II & 0.14 & 59321.4 & 17.79 & g & 116 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,G,o,i} & -53.3 & 102.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021aadc & SLSN-II & SLSN-II & 0.1953 & 59529.4 & 19.29 & g & 249 & UVW1,U,B,g,c,V,r,o,i & -386.1 & 428.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020yue & SLSN-II & SLSN-II & 0.204 & 59182.2 & 18.57 & g & 249 & UVM2,g,r,i & -46.3 & 876.5 & Swift, ZTF & \\ 
+\hline
+SN2020vfu & SLSN-II & SLSN-II & 0.1281 & 59145.5 & 18.27 & g & 574 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,G,o,i} & -19.5 & 321.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020hgr & SLSN-II & SLSN-II & 0.1258 & 58990.5 & 18.68 & g & 428 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -674.5 & 1095.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019zcr & SLSN-II & SLSN-II & 0.259 & 58904.3 & 17.88 & o & 207 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -66.5 & 985.4 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019uba & SLSN-II & SLSN-II & 0.3035 & 58808.0 & 18.92 & g & 115 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o} & -432.9 & 378.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019qfb & SLSN-II & SLSN-II & 0.1423 & 58773.2 & 18.56 & g & 119 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,G,o} & -47.0 & 642.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019hcc & SLSN-II & SLSN-II & 0.044 & 58636.5 & 18.67 & c & 25 & U,B,c,G,o & -7.9 & 135.8 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2019fdr & SLSN-II & SLSN-II & 0.2666 & 58704.1 & 18.24 & g & 1139 & \shortstack{UVW2,UVM2,g,c,r \\ o,i} & -100.7 & 1451.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019cqc & SLSN-II & SLSN-II & 0.1173 & 58597.8 & 18.73 & g & 584 & g,c,r,G,o,i & -39.6 & 1374.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019avv & SLSN-II & SLSN-II & 0.2207 & 58539.1 & 19.02 & g & 203 & g,r,i & -16.8 & 96.9 & Swift, ZTF & \\ 
+\hline
+SN2018lnb & SLSN-II & SLSN-II & 0.222 & 58546.9 & 18.43 & g & 347 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,r,i} & -323.9 & 1098.1 & OSC, Swift, ZTF & 16 \\ 
+\hline
+SN2023nlk & Other & SNIa & 0.03 & 60155.3 & 16.22 & g & 48 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,o,i} & -1862.0 & 12.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023mvl & Other & SNIa & 0.0482 & 60143.8 & 18.33 & o & 23 & g,c,r,o & -1477.4 & 10.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023mkt & Other & SNIa & 0.0070 & 60146.8 & 14.24 & g & 85 & UVW1,U,g,r,o & -14.6 & 13.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023mde & Other & SNIa & 0.026 & 60138.0 & 17.58 & g & 43 & U,B,g,V,r,i & -15.7 & 17.3 & Swift, ZTF & \\ 
+\hline
+SN2023lnh & Other & SNIa & 0.012 & 60132.3 & 14.93 & o & 14 & UVW1,g,r,o & -1697.0 & 23.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023kmj & Other & SNIa & 0.0297 & 60118.9 & 17.06 & o & 37 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -13.7 & 34.2 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2023jww & Other & SNIa & 0.041 & 60110.0 & 17.8 & c & 87 & U,B,g,c,V,r,o,i & -1893.5 & 45.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023jwr & Other & SNIa & 0.0464 & 60112.5 & 17.56 & g & 92 & U,B,g,c,V,r,o,i & -1894.1 & 42.7 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2023jvu & Other & SNIa & 0.0301 & 60109.2 & 16.64 & g & 264 & \shortstack{UVM2,UVW1,U,B,g \\ c,V,r,o,i} & -1528.8 & 47.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023iks & Other & SNIa & 0.04 & 60091.9 & 17.07 & g & 96 & UVW1,U,B,g,V,r & -1844.5 & 63.4 & Swift, ZTF & \\ 
+\hline
+SN2023hzy & Other & SNIa & 0.0301 & 60089.4 & 17.55 & g & 82 & UVW1,U,B,g,c,V,r,o,i & -16.1 & 53.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023hwm & Other & SNIa & 0.0381 & 60085.7 & 16.69 & g & 58 & UVW1,U,B,g,c,V,r,o,i & -868.3 & 70.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023hwg & Other & SNIa & 0.044 & 60092.9 & 17.64 & V & 42 & \shortstack{UVW2,UVW1,U,B,c \\ V,o} & -22.0 & 60.1 & ATLAS, Swift & \\ 
+\hline
+SN2023huy & Other & SNIa & 0.0305 & 60087.4 & 16.52 & g & 75 & UVW1,U,g,c,r,o,i & -1840.2 & 60.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2023hsy & Other & SNIa & 0.0377 & 60083.7 & 16.74 & g & 61 & UVW1,U,B,g,c,V,r,o,i & -774.5 & 47.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023hsw & Other & SNIa & 0.0417 & 60084.3 & 17.07 & g & 61 & UVW1,U,B,g,c,V,r,o,i & -815.9 & 46.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023hrw & Other & SNIa & 0.0344 & 60085.6 & 16.55 & g & 94 & UVW1,U,B,g,c,V,r,o,i & -1205.1 & 67.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023hro & Other & SNIa & 0.0273 & 60082.9 & 16.41 & g & 75 & UVW1,U,B,g,c,V,r,o,i & -12.7 & 66.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023gxf & Other & SNIa & 0.05 & 60075.3 & 17.9 & g & 106 & g,c,r,o,i & -15.9 & 78.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023guy & Other & SNIa & 0.0415 & 60075.5 & 16.96 & g & 88 & UVW1,U,g,c,r,o,i & -1783.3 & 77.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023grn & Other & SNIa & 0.049 & 60071.0 & 17.73 & o & 55 & U,B,g,c,V,r,o,i & -757.7 & 56.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023goe & Other & SNIa & 0.0355 & 60074.4 & 17.09 & o & 47 & UVM2,UVW1,c,o & -26.1 & 78.7 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+SN2023gft & Other & SNIa & 0.0098 & 60072.5 & 14.38 & g & 89 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,o,i} & -901.3 & 83.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023ftr & Other & SNIa & 0.0283 & 60060.2 & 16.49 & g & 51 & UVW1,U,B,g,c,V,r,o,i & -12.8 & 49.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023ext & Other & SNIa & 0.04 & 60057.0 & 17.27 & c & 145 & UVW1,U,B,g,c,V,r,o & -1852.7 & 69.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2023cqc & Other & SNIa & 0.031 & 60020.4 & 17.02 & r & 458 & g,r,i & -1815.9 & 136.0 & ASAS-SN, ZTF & \\ 
+\hline
+SN2023bee & Other & SNIa & 0.0066 & 59988.4 & 13.89 & V & 181 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,o,i} & -11.5 & 112.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022zut & Other & SNIa & 0.0033 & 59904.7 & 13.23 & g & 143 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,o,i} & -1477.2 & 223.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ywf & Other & SNIa & 0.0078 & 59892.4 & 18.19 & o & 121 & UVW1,g,c,r,o,i & -1543.0 & 261.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022xzm & Other & SNIa & 0.0179 & 59883.8 & 16.04 & g & 279 & UVW1,U,g,c,r,o,i & -1519.5 & 268.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022wpy & Other & SNIa & 0.0152 & 59872.4 & 14.83 & g & 384 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -18.0 & 147.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022ssk & Other & SNIa & 0.042 & 59831.6 & 17.92 & o & 167 & g,c,r,o,i & -1454.2 & 151.5 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2022lxq & Other & SNIa & 0.017 & 59752.9 & 15.59 & g & 95 & U,B,g,c,V,r,o,i & -1212.5 & 219.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022hrs & Other & SNIa & 0.0047 & 59699.5 & 12.48 & g & 456 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -17.3 & 419.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022erw & Other & SNIa & 0.015 & 59671.3 & 15.85 & r & 86 & UVW1,U,g,c,r,o,i & -22.9 & 373.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022eat & Other & SNIa & 0.027 & 59660.1 & 16.39 & o & 169 & UVW1,U,B,g,c,V,r,o,i & -20.8 & 473.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022dmf & Other & SNIa & 0.03 & 59649.9 & 17.11 & V & 85 & \shortstack{UVW2,UVW1,U,B,c \\ V,o} & -12.6 & 410.1 & ATLAS, Swift & \\ 
+\hline
+SN2022adby & Other & SNIa & 0.0917 & 59934.8 & 19.23 & c & 49 & UVW1,U,c,o & -12.3 & 216.5 & ATLAS, Swift & \\ 
+\hline
+SN2022acsh & Other & SNIa & 0.03 & 59936.2 & 15.68 & g & 193 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,o,i} & -951.0 & 187.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022aaiq & Other & SNIa & 0.0064 & 59910.3 & 13.63 & g & 187 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,o,i} & -1664.0 & 243.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021xju & Other & SNIa & 0.0155 & 59469.5 & 14.56 & V & 37 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -4.0 & 83.2 & OSC, Swift & \\ 
+\hline
+SN2021skf & Other & SNIa & 0.0117 & 59418.3 & 15.15 & o & 30 & UVW1,c,G,o & -16.0 & 545.1 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2021rhu & Other & SNIa & 0.0035 & 59410.9 & 12.39 & g & 390 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1118.5 & 708.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021pit & Other & SNIa & 0.0038 & 59380.6 & 12.52 & V & 163 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -4.0 & 606.1 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2021pfs & Other & SNIa & 0.0087 & 59391.6 & 14.15 & g & 93 & g,c,r,G,o,i & -1135.3 & 521.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021oat & Other & SNIa & 0.0225 & 59380.1 & 15.66 & r & 165 & U,g,c,r,G,o & -34.9 & 649.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021mxs & Other & SNIa & 0.0344 & 59369.0 & 16.72 & g & 140 & UVW1,g,c,r,o,i & -1161.7 & 175.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021mim & Other & SNIa & 0.0381 & 59362.1 & 17.63 & g & 161 & U,B,g,c,V,r,o,i & -14.6 & 774.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021lxb & Other & SNIa & 0.0259 & 59358.4 & 16.75 & o & 59 & \shortstack{UVW2,UVM2,UVW1 \\ U,c,G,o} & -15.0 & 416.9 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2021low & Other & SNIa & 0.0219 & 59357.8 & 15.63 & g & 89 & UVW1,U,g,c,r,G,o & -154.4 & 684.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021jag & Other & SNIa & 0.0083 & 59327.6 & 16.62 & o & 172 & g,c,r,o,i & -1106.4 & 808.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021hpr & Other & SNIa & 0.0093 & 59323.1 & 14.19 & g & 155 & UVW2,g,c,V,r,G,o,i & -17.9 & 355.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021hiz & Other & SNIa & 0.0033 & 59321.2 & 13.23 & g & 324 & UVW1,g,c,r,G,o,i & -1064.0 & 761.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021gma & Other & SNIa & 0.065 & 59306.7 & 18.01 & r & 708 & g,r,i & -1109.2 & 842.7 & \shortstack{ASAS-SN, Swift \\ ZTF} & \\ 
+\hline
+SN2021ghc & Other & SNIa & 0.0462 & 59306.8 & 17.29 & g & 123 & \shortstack{UVW1,U,B,g,c,V,r,G \\ o,i} & -15.5 & 69.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2021fxy & Other & SNIa & 0.0094 & 59307.1 & 13.97 & g & 121 & UVW1,U,g,c,r,G,o,i & -89.6 & 778.2 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021dov & Other & SNIa & 0.012 & 59286.5 & 14.63 & V & 233 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -1031.4 & 755.6 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021dnm & Other & SNIa & 0.0461 & 59280.2 & 17.49 & g & 296 & g,c,r,o,i & -301.9 & 750.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2021cwc & Other & SNIa & 0.021 & 59266.5 & 17.52 & c & 22 & c,G,o & -14.1 & 57.7 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2021bmx & Other & SNIa & 0.0146 & 59267.4 & 15.98 & o & 58 & UVW1,U,c,G,o & -23.9 & 769.5 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2021ads & Other & SNIa & 0.013 & 59245.6 & 15.68 & o & 33 & UVW1,U,c,o & -22.0 & 860.5 & ATLAS, Swift & \\ 
+\hline
+SN2021abpt & Other & SNIa & 0.014 & 59517.5 & 16.24 & g & 125 & UVW1,U,B,g,c,V,r,o & -16.9 & 290.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021K & Other & SNIa & 0.0163 & 59223.0 & 15.11 & g & 520 & UVW1,g,c,r,G,o,i & -1008.7 & 911.0 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2021J & Other & SNIa & 0.0023 & 59227.3 & 12.61 & g & 706 & g,c,r,o,i & -1019.0 & 865.0 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020zpi & Other & SNIa & 0.0372 & 59180.3 & 17.18 & g & 187 & U,B,g,c,V,r,G,o,i & -16.0 & 671.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020yvu & Other & SNIa & 0.01 & 59175.0 & 15.87 & V & 241 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o} & -18.6 & 694.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020xtz & Other & SNIa & 0.0076 & 59152.1 & 14.77 & g & 418 & B,g,c,V,r,G,o & -948.6 & 902.3 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020wtq & Other & SNIa & 0.007 & 59148.2 & 16.73 & g & 174 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,o,i} & -450.8 & 818.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020uxz & Other & SNIa & 0.0082 & 59143.0 & 13.44 & g & 370 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -752.7 & 1004.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020tug & Other & SNIa & 0.05 & 59126.9 & 17.39 & g & 138 & UVW1,U,B,g,c,V,r,o,i & -757.5 & 647.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020tld & Other & SNIa & 0.0112 & 59117.9 & 15.34 & V & 76 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -8.2 & 117.6 & OSC, Swift & \\ 
+\hline
+SN2020tkp & Other & SNIa & 0.035 & 59122.0 & 17.51 & g & 179 & U,B,g,c,V,r,o,i & -424.6 & 775.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020szr & Other & SNIa & 0.0258 & 59117.4 & 16.9 & g & 196 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o,i} & -18.1 & 134.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020ssf & Other & SNIa & 0.0133 & 59113.0 & 14.54 & g & 577 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,i} & -762.6 & 1037.4 & Swift, ZTF & \\ 
+\hline
+SN2020sin & Other & SNIa & 0.077 & 59107.5 & 18.99 & c & 159 & g,c,r,o,i & -771.1 & 748.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020rlj & Other & SNIa & 0.045 & 59087.8 & 18.72 & g & 357 & B,g,c,V,r,o,i & -18.3 & 1059.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020rgz & Other & SNIa & 0.0285 & 59090.7 & 17.06 & g & 188 & U,B,g,c,V,r,G,o,i & -866.3 & 790.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020qic & Other & SNIa & 0.048 & 59070.0 & 17.22 & g & 257 & \shortstack{UVW1,U,B,g,c,V,r,G \\ o,i} & -15.6 & 815.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020pst & Other & SNIa & 0.046 & 59063.8 & 17.27 & g & 200 & U,g,c,V,r,G,o & -327.3 & 134.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020lse & Other & SNIa & 0.016 & 59020.0 & 15.13 & V & 82 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -18.7 & 673.1 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020lil & Other & SNIa & 0.0307 & 59012.1 & 17.11 & g & 144 & \shortstack{UVW1,U,B,g,c,V,r,G \\ o,i} & -16.8 & 220.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020kyx & Other & SNIa & 0.0319 & 59008.5 & 16.64 & g & 212 & \shortstack{UVW1,U,B,g,c,V,r,G \\ o,i} & -16.3 & 336.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020kpx & Other & SNIa & 0.0229 & 59004.8 & 15.96 & g & 162 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o} & -14.4 & 787.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020jgl & Other & SNIa & 0.0067 & 58996.3 & 13.71 & V & 238 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -21.0 & 328.9 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020jdo & Other & SNIa & 0.071 & 58984.2 & 18.95 & g & 199 & U,B,g,c,V,r,o & -13.8 & 1116.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020hvf & Other & SNIa & 0.0058 & 58978.0 & 12.56 & g & 393 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -17.6 & 943.1 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2020fxa & Other & SNIa & 0.064 & 58957.0 & 17.78 & V & 581 & \shortstack{UVW1,U,B,g,c,V,r,G \\ o,i} & -15.5 & 154.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020ftl & Other & SNIa & 0.0073 & 58958.0 & 14.32 & r & 129 & g,c,r,G,o & -708.8 & 1126.1 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020ees & Other & SNIa & 0.0244 & 58931.1 & 16.07 & V & 98 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o} & -27.5 & 1208.2 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020dul & Other & SNIa & 0.07 & 58915.1 & 18.21 & o & 34 & U,c,V,o & -12.6 & 409.3 & ATLAS, Swift & \\ 
+\hline
+SN2020dko & Other & SNIa & 0.0225 & 58921.1 & 16.62 & V & 118 & UVW1,U,B,g,c,V,r,o & -16.7 & 761.1 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020dhj & Other & SNIa & 0.0441 & 58914.5 & 17.13 & g & 146 & UVW1,U,B,g,c,V,r,o,i & -41.9 & 886.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020czo & Other & SNIa & 0.0267 & 58914.5 & 16.33 & g & 178 & g,c,r,o,i & -693.3 & 1211.4 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020bpi & Other & SNIa & 0.041 & 58894.4 & 17.62 & g & 712 & U,B,g,c,V,r,G,o,i & -652.1 & 149.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020adra & Other & SNIa & 0.0840 & 59221.1 & 18.36 & g & 179 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -958.9 & 882.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2020adcb & Other & SNIa & 0.0151 & 59218.1 & 16.18 & g & 101 & UVW1,U,g,c,r,o,i & -164.7 & 602.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020aczg & Other & SNIa & 0.03 & 59217.8 & 15.9 & g & 377 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -960.6 & 775.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020acma & Other & SNIa & 0.014 & 59210.3 & 14.76 & V & 117 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -14.7 & 558.7 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020abgq & Other & SNIa & 0.0080 & 59194.6 & 16.65 & c & 126 & B,g,c,r,G,o,i & -17.1 & 837.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020aatc & Other & SNIa & 0.0152 & 59192.8 & 15.14 & g & 332 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o,i} & -795.5 & 712.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020aabz & Other & SNIa & 0.0241 & 59184.3 & 16.08 & g & 296 & \shortstack{UVW1,U,B,g,c,V,r,G \\ o,i} & -757.1 & 961.1 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2019tdf & Other & SNIa & 0.0155 & 58798.2 & 16.51 & V & 111 & U,B,g,c,V,r,G,o,i & -525.8 & 1327.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019qym & Other & SNIa & 0.0199 & 58764.5 & 16.51 & g & 263 & U,B,g,c,V,r,G,o & -16.1 & 859.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019odh & Other & SNIa & 0.0536 & 58729.3 & 18.18 & g & 314 & g,r,i & -506.8 & 710.0 & Swift, ZTF & \\ 
+\hline
+SN2019np & Other & SNIa & 0.0045 & 58510.5 & 13.35 & V & 322 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,R,G,o,i} & -71.1 & 746.9 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2019myl & Other & SNIa & 0.0705 & 58723.4 & 17.76 & V & 174 & U,B,g,c,V,r,R,G,o,i & -24.9 & 463.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019kf & Other & SNIa & 0.021 & 58507.1 & 16.3 & V & 166 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,o,i} & -64.6 & 1551.1 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019gbx & Other & SNIa & 0.013 & 58648.4 & 14.83 & V & 122 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o} & -16.1 & 662.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019ein & Other & SNIa & 0.0077 & 58618.3 & 14.03 & g & 614 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,R,G,o,i} & -326.1 & 393.9 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2019daj & Other & SNIa & 0.038 & 58566.4 & 17.08 & o & 37 & c,o & -6.9 & 107.9 & ATLAS, Swift & \\ 
+\hline
+SN2019byw & Other & SNIa & 0.0303 & 58569.5 & 16.95 & g & 280 & U,B,g,c,V,r,o & -371.1 & 1552.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+SN2019bqe & Other & SNIa & 0.017 & 58558.5 & 17.59 & o & 68 & U,g,c,r,o,i & -9.0 & 103.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019ata & Other & SNIa & 0.03 & 58537.5 & 16.7 & V & 90 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -14.0 & 1438.2 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2019arb & Other & SNIa & 0.0136 & 58522.0 & 17.13 & g & 156 & g,V,r,G,o,i & -10.6 & 1611.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018zz & Other & SNIa & 0.0138 & 58189.1 & 14.97 & V & 38 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G,o} & -4.6 & 1166.3 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & \\ 
+\hline
+SN2018yu & Other & SNIa & 0.008 & 58197.2 & 13.93 & V & 98 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -18.5 & 297.2 & ATLAS, Swift & \\ 
+\hline
+SN2018xx & Other & SNIa & 0.0099 & 58185.0 & 14.53 & V & 110 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -13.8 & 1931.8 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2018ph & Other & SNIa & 0.0304 & 58165.4 & 16.47 & V & 50 & \shortstack{UVM2,UVW1,U,B,c \\ V,o} & -17.9 & 1791.6 & ATLAS, Swift & \\ 
+\hline
+SN2018pc & Other & SNIa & 0.009 & 58168.8 & 15.45 & B & 60 & \shortstack{UVW2,UVW1,U,B,c \\ V,o,i} & -20.3 & 1684.8 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & \\ 
+\hline
+SN2018oh & Other & SNIa & 0.012 & 58164.8 & 14.31 & V & 86 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -17.3 & 1852.5 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2018jov & Other & SNIa & 0.0192 & 58475.0 & 16.24 & o & 364 & U,g,c,r,o & -47.6 & 871.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018jky & Other & SNIa & 0.0145 & 58470.7 & 15.49 & o & 125 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,w,r,G,o} & -17.2 & 1461.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018isq & Other & SNIa & 0.0075 & 58453.2 & 16.07 & V & 53 & UVW1,U,B,c,V,o,i & -10.8 & 1206.1 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2018ilu & Other & SNIa & 0.03 & 58451.8 & 15.27 & V & 241 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,w,r,R,G,o,i} & -19.6 & 665.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018ieu & Other & SNIa & 0.0405 & 58442.3 & 18.05 & g & 110 & g,c,w,r,G,o,i & -17.0 & 1510.5 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018hkx & Other & SNIa & 0.025 & 58418.9 & 16.32 & V & 38 & UVW2,UVW1,U,B,V,I & -9.0 & 18.5 & OSC, Swift & \\ 
+\hline
+SN2018gvi & Other & SNIa & 0.0209 & 58402.5 & 16.51 & o & 237 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -101.1 & 1640.6 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2018gv & Other & SNIa & 0.0053 & 58152.8 & 12.93 & V & 269 & B,V,R,G,I & -10.4 & 308.2 & ASAS-SN, OSC, Swift & 70 24 \\ 
+\hline
+SN2018feb & Other & SNIa & 0.0148 & 58364.7 & 15.15 & g & 219 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,w,r,R,G,o,i} & -136.1 & 1789.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+SN2018dhw & Other & SNIa & 0.0323 & 58322.9 & 16.66 & g & 505 & B,g,c,r,o,i & -17.6 & 1141.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018cvf & Other & SNIa & 0.0638 & 58305.0 & 17.96 & r & 81 & g,c,r,G,o,i & -16.8 & 1771.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018coi & Other & SNIa & 0.0594 & 58291.9 & 18.25 & g & 353 & g,c,w,r,o,i,z & -45.5 & 1739.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018aoz & Other & SNIa & 0.0058 & 58225.7 & 12.81 & V & 240 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,R,G,o,I} & -14.1 & 769.6 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift} & 2 70 24 \\ 
+\hline
+SN2018agk & Other & SNIa & 0.0261 & 58204.9 & 16.91 & V & 53 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -10.0 & 1106.6 & ATLAS, Swift & \\ 
+\hline
+SN2018aaz & Other & SNIa & 0.023 & 58194.4 & 17.24 & c & 307 & U,g,c,r,G,o,i & -11.0 & 1897.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2017yv & Other & SNIa & 0.0155 & 57796.2 & 15.71 & B & 38 & UVW2,UVW1,U,B,V,G & -10.6 & 197.8 & OSC, Swift & \\ 
+\hline
+SN2017jl & Other & SNIa & 0.02 & 57784.1 & 14.87 & V & 58 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -14.8 & 203.5 & ATLAS, OSC, Swift & 71 \\ 
+\hline
+SN2017jav & Other & SNIa & 0.0151 & 58126.1 & 16.28 & V & 31 & UVW2,UVW1,U,B,V,G & -16.4 & 143.7 & OSC, Swift & \\ 
+\hline
+SN2017izu & Other & SNIa & 0.017 & 58122.4 & 15.02 & V & 46 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -20.5 & 209.0 & OSC, Swift & \\ 
+\hline
+SN2017iyb & Other & SNIa & 0.008 & 58120.1 & 14.76 & V & 82 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o,i} & -16.7 & 1516.9 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2017hpa & Other & SNIa & 0.0156 & 58067.7 & 15.33 & V & 90 & \shortstack{UVW2,UVW1,U,B,V \\ w,i} & -15.0 & 63.6 & OSC, Swift & \\ 
+\hline
+SN2017hou & Other & SNIa & 0.0167 & 58056.7 & 17.37 & V & 20 & U,B,V,r,i & -4.8 & 63.7 & OSC, Swift & \\ 
+\hline
+SN2017hoq & Other & SNIa & 0.02 & 58062.4 & 15.81 & V & 58 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -12.9 & 1497.0 & ATLAS, Swift & \\ 
+\hline
+SN2017hjy & Other & SNIa & 0.007 & 58056.1 & 15.43 & V & 126 & \shortstack{UVW2,UVW1,U,B,c \\ V,r,R,G,o,i} & -15.6 & 1859.3 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2017hjw & Other & SNIa & 0.0161 & 58060.9 & 16.08 & V & 88 & \shortstack{UVW2,UVW1,U,B,c \\ V,r,G,o,i} & -18.3 & 152.9 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2017haf & Other & SNIa & 0.0094 & 58035.1 & 15.35 & V & 72 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,w,G,i,y} & -3.3 & 307.4 & ASAS-SN, OSC, Swift & \\ 
+\hline
+SN2017gvp & Other & SNIa & 0.023 & 58032.4 & 16.08 & V & 41 & UVW1,U,B,V,w,G & -14.0 & 104.7 & OSC, Swift & \\ 
+\hline
+SN2017gup & Other & SNIa & 0.016 & 58025.9 & 17.38 & o & 46 & UVW1,U,B,c,V,w,G,o & -12.3 & 1907.0 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2017guh & Other & SNIa & 0.015 & 58020.3 & 15.08 & B & 19 & UVW2,UVW1,U,B,V & -5.5 & 12.1 & ASAS-SN, Swift & \\ 
+\hline
+SN2017glq & Other & SNIa & 0.0117 & 58014.7 & 14.26 & V & 118 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,w,G} & -16.1 & 337.9 & ASAS-SN, OSC, Swift & 16 \\ 
+\hline
+SN2017gjn & Other & SNIa & 0.015 & 58003.8 & 14.98 & V & 50 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,G} & -14.6 & 195.2 & OSC, Swift & \\ 
+\hline
+SN2017gah & Other & SNIa & 0.0089 & 57979.5 & 15.16 & B & 81 & \shortstack{UVW2,UVW1,U,B,c \\ V,G,o} & -9.1 & 2065.6 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2017fgc & Other & SNIa & 0.008 & 57962.9 & 13.51 & V & 306 & \shortstack{UVW2,UVM2,UVW1 \\ B,V,R,I} & -16.5 & 191.2 & ASAS-SN, OSC, Swift & 70 24 16 \\ 
+\hline
+SN2017evn & Other & SNIa & 0.017 & 57943.5 & 15.66 & V & 22 & \shortstack{UVM2,UVW1,U,B,V \\ G,i} & -12.8 & 188.7 & ASAS-SN, OSC, Swift & \\ 
+\hline
+SN2017erp & Other & SNIa & 0.0061 & 57936.7 & 13.55 & V & 369 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,w,r,R,G,I} & -18.5 & 1051.9 & OSC, Swift & 2 70 24 \\ 
+\hline
+SN2017emq & Other & SNIa & 0.0052 & 57917.7 & 14.12 & V & 54 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,i,z} & -10.4 & 266.7 & ASAS-SN, OSC, Swift & \\ 
+\hline
+SN2017ejw & Other & SNIa & 0.019 & 57914.2 & 15.41 & V & 81 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,w,r,G,i} & -10.2 & 238.0 & OSC, Swift & \\ 
+\hline
+SN2017dit & Other & SNIa & 0.0185 & 57882.8 & 15.75 & V & 47 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G,i} & -14.9 & 147.9 & OSC, Swift & \\ 
+\hline
+SN2017cts & Other & SNIa & 0.02 & 57858.7 & 15.74 & V & 175 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,G,i} & -10.9 & 145.2 & OSC, Swift & \\ 
+\hline
+SN2017ckq & Other & SNIa & 0.01 & 57850.3 & 14.53 & o & 71 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -14.9 & 259.2 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2017bc & Other & SNIa & 0.027 & 57765.9 & 17.29 & V & 42 & UVW1,U,B,V,w & -6.0 & 105.4 & OSC, Swift & \\ 
+\hline
+SN2016zd & Other & SNIa & 0.032 & 57431.3 & 16.98 & V & 66 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r,i} & -8.3 & 73.0 & OSC, Swift & 71 72 \\ 
+\hline
+SN2016ito & Other & SNIa & 0.02 & 57731.7 & 15.72 & V & 43 & UVW2,UVW1,U,B,V,G & -8.8 & 165.5 & ASAS-SN, OSC, Swift & \\ 
+\hline
+SN2016ipf & Other & SNIa & 0.021 & 57727.5 & 17.41 & V & 52 & \shortstack{UVW2,UVW1,U,B,c \\ V,o,i} & -6.8 & 2249.5 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2016hvl & Other & SNIa & 0.013 & 57714.1 & 15.45 & V & 418 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,r,R,G,o,i,I} & -17.4 & 2310.2 & ATLAS, OSC, Swift & 71 70 24 \\ 
+\hline
+SN2016hpw & Other & SNIa & 0.02 & 57704.7 & 15.84 & V & 47 & \shortstack{UVW2,UVW1,U,B,c \\ V,o} & -17.4 & 1080.6 & ATLAS, OSC, Swift & 71 \\ 
+\hline
+SN2016hli & Other & SNIa & 0.017 & 57698.6 & 16.9 & V & 36 & U,c,V,o & -12.1 & 2099.1 & ATLAS, OSC, Swift & 71 \\ 
+\hline
+SN2016gxp & Other & SNIa & 0.0186 & 57689.1 & 14.83 & V & 118 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r,G} & -13.5 & 260.2 & OSC, Swift & \\ 
+\hline
+SN2016ffh & Other & SNIa & 0.018 & 57634.2 & 15.74 & V & 85 & \shortstack{UVW2,UVW1,U,B,c \\ V,R,G,o,I} & -16.9 & 1738.3 & ATLAS, OSC, Swift & 70 24 71 \\ 
+\hline
+SN2016fej & Other & SNIa & 0.0109 & 57638.7 & 13.85 & V & 96 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -16.5 & 227.7 & ASAS-SN, OSC, Swift & \\ 
+\hline
+SN2016euj & Other & SNIa & 0.017 & 57620.2 & 15.48 & V & 36 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -11.8 & 7.0 & ASAS-SN, OSC, Swift & 2 71 \\ 
+\hline
+SN2016ekg & Other & SNIa & 0.017 & 57610.8 & 15.09 & V & 61 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -5.1 & 139.7 & ASAS-SN, OSC, Swift & \\ 
+\hline
+SN2016eiy & Other & SNIa & 0.0087 & 57611.3 & 14.15 & V & 101 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -16.2 & 2436.5 & OSC, Swift & \\ 
+\hline
+SN2016daj & Other & SNIa & 0.032 & 57592.7 & 16.39 & V & 47 & UVW1,U,B,V,r,G & -12.3 & 67.4 & OSC, Swift & \\ 
+\hline
+SN2016coj & Other & SNIa & 0.005 & 57548.5 & 13.17 & V & 227 & \shortstack{UVW2,UVM2,UVW1 \\ B,V,R,G,I} & -12.2 & 296.7 & ASAS-SN, OSC, Swift & 70 24 71 \\ 
+\hline
+SN2016ccz & Other & SNIa & 0.0149 & 57539.4 & 15.5 & B & 60 & UVW1,U,B,g,V,r,G,i & -18.0 & 184.2 & OSC, Swift & 71 73 \\ 
+\hline
+SN2016blk & Other & SNIa & 0.0299 & 57490.4 & 16.66 & B & 36 & UVW2,UVW1,U,B,V & -0.2 & 21.1 & ASAS-SN, Swift & \\ 
+\hline
+SN2016blc & Other & SNIa & 0.012 & 57490.3 & 14.69 & V & 92 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r,G,y} & -13.2 & 225.2 & OSC, Swift & 71 2 74 \\ 
+\hline
+SN2016asf & Other & SNIa & 0.021 & 57467.1 & 15.96 & V & 45 & UVW2,UVW1,U,B,V & -13.7 & 21.1 & OSC, Swift & 2 71 \\ 
+\hline
+SN2016adi & Other & SNIa & 0.015 & 57434.4 & 15.66 & V & 36 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -0.6 & 14.0 & Swift & \\ 
+\hline
+SN2016F & Other & SNIa & 0.016 & 57406.9 & 15.18 & V & 40 & UVW2,UVW1,U,B,V & -15.6 & 19.9 & ASAS-SN, OSC, Swift & 2 71 \\ 
+\hline
+SN2014ai & Other & SNIa & 0.0231 & 56741.2 & 16.45 & V & 40 & UVW2,U,B,V,R,I & -0.2 & 52.0 & OSC, Swift & 70 24 \\ 
+\hline
+SN2014J & Other & SNIa & 0.0006 & 56691.5 & 11.26 & g & 872 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,R,i,I,z} & -12.6 & 120.4 & ASAS-SN, OSC, Swift & \shortstack{75 76 77 \\ 2 78 10 \\ 70 24 79 \\ 80 }\\ 
+\hline
+SN2014I & Other & SNIa & 0.03 & 56683.9 & 16.38 & V & 30 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -6.2 & 2.0 & Swift & \\ 
+\hline
+SN2013gy & Other & SNIa & 0.0140 & 56648.8 & 14.9 & V & 383 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,R,i,I,y} & -17.4 & 81.4 & OSC, Swift & \shortstack{81 70 24 \\ 82 2 }\\ 
+\hline
+SN2013gs & Other & SNIa & 0.0169 & 56642.7 & 15.4 & V & 76 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -14.5 & 44.1 & Swift & \\ 
+\hline
+SN2013eu & Other & SNIa & 0.0092 & 56525.5 & 15.21 & V & 44 & UVW2,UVW1,U,B,V & -7.4 & 20.3 & Swift & \\ 
+\hline
+SN2013dy & Other & SNIa & 0.0038 & 56498.1 & 13.01 & V & 31 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -8.0 & 18.0 & ASAS-SN, Swift & \\ 
+\hline
+SN2013dh & Other & SNIa & 0.0133 & 56466.9 & 17.38 & V & 140 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I} & -11.5 & 81.3 & OSC, Swift & 70 24 2 \\ 
+\hline
+SN2013ag & Other & SNIa & 0.0212 & 56359.8 & 16.35 & V & 45 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -3.9 & 9.9 & Swift & \\ 
+\hline
+SN2012ht & Other & SNIa & 0.004 & 56299.1 & 13.19 & V & 321 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,R,G,i,I,z} & -17.1 & 3974.5 & ASAS-SN, OSC, Swift & \shortstack{75 2 83 \\ 84 }\\ 
+\hline
+SN2012hj & Other & SNIa & 0.0245 & 56277.8 & 16.53 & V & 30 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -9.6 & 3.4 & Swift & \\ 
+\hline
+SN2012fr & Other & SNIa & 0.004 & 56244.2 & 12.06 & g & 1306 & \shortstack{UVW1,u,U,B,g,V,r,R \\ i,I,Y,J,H} & -15.3 & 415.8 & ASAS-SN, OSC, Swift & \shortstack{77 85 82 \\ 2 16 }\\ 
+\hline
+SN2012cp & Other & SNIa & 0.0166 & 56083.9 & 16.05 & V & 41 & UVW1,U,B,V & -15.7 & 28.6 & ASAS-SN, Swift & \\ 
+\hline
+SN2012cg & Other & SNIa & 0.0014 & 56083.2 & 12.0 & V & 524 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I} & -18.9 & 553.4 & ASAS-SN, OSC, Swift & \shortstack{75 86 2 \\ 70 24 87 \\ 78 }\\ 
+\hline
+SN2012bl & Other & SNIa & 0.0187 & 56019.7 & 15.12 & V & 56 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -2.9 & 18.6 & OSC, Swift & 16 \\ 
+\hline
+SN2012V & Other & SNIa & 0.011 & 55962.1 & 14.9 & V & 66 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -4.7 & 17.3 & Swift & \\ 
+\hline
+SN2012G & Other & SNIa & 0.0318 & 55949.6 & 16.09 & V & 61 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -2.9 & 19.2 & Swift & \\ 
+\hline
+SN2011im & Other & SNIa & 0.0162 & 55906.0 & 15.59 & V & 46 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -6.5 & 17.1 & ASAS-SN, OSC, Swift & 88 89 \\ 
+\hline
+SN2011ia & Other & SNIa & 0.0177 & 55892.6 & 15.33 & V & 69 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -4.6 & 17.9 & ASAS-SN, Swift & \\ 
+\hline
+SN2011fs & Other & SNIa & 0.021 & 55834.8 & 15.64 & V & 111 & B,V,R,I,J,H & -5.6 & 108.0 & ASAS-SN, OSC, Swift & \shortstack{90 70 24 \\ 91 2 }\\ 
+\hline
+SN2011fe & Other & SNIa & 0.0008 & 55815.9 & 10.0 & V & 1745 & U,B,g',g,V,r,R,I & -19.2 & 634.0 & ASAS-SN, OSC, Swift & \shortstack{92 93 78 \\ 94 86 82 \\ 2 89 95 \\ 94 70 24 \\ 91 }\\ 
+\hline
+SN2011by & Other & SNIa & 0.0028 & 55692.8 & 12.89 & V & 299 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I,J,H,Ks} & -14.6 & 74.1 & ASAS-SN, OSC, Swift & \shortstack{70 24 2 \\ 96 }\\ 
+\hline
+SN2011ao & Other & SNIa & 0.0107 & 55642.2 & 14.32 & V & 181 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,J,H,Ks} & -14.0 & 69.0 & ASAS-SN, OSC, Swift & 96 \\ 
+\hline
+SN2010kg & Other & SNIa & 0.0166 & 55545.3 & 15.65 & V & 116 & \shortstack{UVW2,UVW1,U,B,V \\ J,H,Ks} & -13.2 & 72.8 & OSC, Swift & 96 \\ 
+\hline
+SN2010hh & Other & SNIa & 0.0190 & 55450.8 & 16.88 & V & 41 & UVW1,U,B,V & -8.8 & 20.4 & Swift & \\ 
+\hline
+SN2010ev & Other & SNIa & 0.0092 & 55386.4 & 14.57 & V & 97 & \shortstack{UVW2,UVM2,UVW1 \\ u',U,B,g',V,r',R,i',I,z'} & -9.4 & 19.8 & OSC, Swift & 2 97 \\ 
+\hline
+SN2010Y & Other & SNIa & 0.0108 & 55249.4 & 15.02 & V & 136 & \shortstack{UVM2,u',B,V,r',i' \\ J,H,Ks} & -10.1 & 287.1 & OSC, Swift & \shortstack{98 96 99 \\ 2 }\\ 
+\hline
+SN2009jr & Other & SNIa & 0.0165 & 55121.8 & 16.21 & V & 122 & \shortstack{UVW1,U,B,V,r',i' \\ J,H,Ks} & -4.7 & 37.3 & ASAS-SN, OSC, Swift & \shortstack{98 96 2 \\ 13 }\\ 
+\hline
+SN2009ig & Other & SNIa & 0.0087 & 55081.0 & 13.44 & V & 461 & \shortstack{UVW2,UVM2,UVW1 \\ u',U,B,V,r',R,i',I,J,H,Ks} & -16.5 & 161.1 & ASAS-SN, OSC, Swift & \shortstack{98 96 78 \\ 94 99 2 \\ 70 24 }\\ 
+\hline
+SN2009gf & Other & SNIa & 0.0185 & 55003.6 & 16.02 & V & 98 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r',i'} & -4.9 & 39.8 & OSC, Swift & 98 2 \\ 
+\hline
+SN2009an & Other & SNIa & 0.0093 & 54899.0 & 14.47 & V & 290 & \shortstack{UVW2,UVM2,UVW1 \\ u',U,B,V,r',R,i',I,J,H,Ks} & -7.8 & 115.9 & ASAS-SN, OSC, Swift & \shortstack{98 96 2 \\ 70 24 }\\ 
+\hline
+SN2009Y & Other & SNIa & 0.0093 & 54878.2 & 14.19 & V & 139 & u',B,V,r',i',J,H,Ks & -4.7 & 91.0 & ASAS-SN, OSC, Swift & 98 96 2 \\ 
+\hline
+SN2008hv & Other & SNIa & 0.0125 & 54817.2 & 14.79 & g & 421 & \shortstack{u,B,g,V,r,r',i',i,Y \\ J,H,Ks} & -12.9 & 128.0 & ASAS-SN, OSC, Swift & \shortstack{98 100 96 \\ 99 2 }\\ 
+\hline
+SN2008Q & Other & SNIa & 0.0081 & 54507.1 & 13.74 & V & 124 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,r',R,i',I} & -10.9 & 207.4 & ASAS-SN, OSC, Swift & \shortstack{98 24 101 \\ 94 2 }\\ 
+\hline
+SN2007on & Other & SNIa & 0.0064 & 54421.6 & 12.96 & V & 374 & \shortstack{UVW2,UVM2,UVW1 \\ u,U,B,g,V,r,i,Y,J,H,K} & -11.3 & 86.5 & ASAS-SN, OSC, Swift & 100 2 \\ 
+\hline
+SN2007cq & Other & SNIa & 0.0262 & 54282.1 & 16.11 & V & 227 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I,J,H,Ks} & -8.2 & 121.5 & OSC, Swift & \shortstack{102 96 2 \\ 24 101 }\\ 
+\hline
+SN2007co & Other & SNIa & 0.027 & 54265.8 & 16.71 & V & 214 & \shortstack{UVW2,U,B,V,R,I,J,H \\ Ks} & -7.4 & 49.5 & ASAS-SN, OSC, Swift & \shortstack{24 101 102 \\ 2 96 }\\ 
+\hline
+SN2007bm & Other & SNIa & 0.0062 & 54225.8 & 14.16 & V & 220 & \shortstack{UVW2,UVW1,u,U,B \\ g,V,r,R,i,I,Y,J,H} & -12.1 & 52.2 & ASAS-SN, OSC, Swift & \shortstack{70 24 102 \\ 100 2 }\\ 
+\hline
+SN2007af & Other & SNIa & 0.0054 & 54176.1 & 13.21 & V & 763 & \shortstack{UVW2,UVM2,UVW1 \\ u,U,B,g,V,r,R,i,I,Y,J,H,K} & -14.3 & 150.1 & OSC, Swift & \shortstack{100 24 101 \\ 2 102 78 }\\ 
+\hline
+SN2007S & Other & SNIa & 0.0139 & 54144.2 & 15.48 & V & 435 & \shortstack{UVW2,UVW1,u,U,B \\ g,V,r,i,Y,J,H,K,Ks} & -11.9 & 107.5 & ASAS-SN, OSC, Swift & \shortstack{100 102 2 \\ 96 }\\ 
+\hline
+SN2006dm & Other & SNIa & 0.0220 & 53929.9 & 16.08 & V & 155 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,R,I} & -8.5 & 52.4 & OSC, Swift & 24 101 2 \\ 
+\hline
+SN2006X & Other & SNIa & 0.0052 & 53787.3 & 14.8 & g & 627 & \shortstack{u,U,B,g,V,r,R,i,I,Y,J \\ H,K,Ks} & -12.8 & 150.4 & ASAS-SN, OSC, Swift & \shortstack{100 96 2 \\ 24 101 102 \\ 78 }\\ 
+\hline
+SN2005mz & Other & SNIa & 0.0176 & 53746.7 & 16.64 & V & 48 & UVW2,U,B,V & -9.9 & 69.9 & OSC, Swift & 102 2 \\ 
+\hline
+SN2022xkq & Other & SNIa-91bg-like & 0.0077 & 59881.0 & 14.73 & o & 127 & UVW1,U,c,o & -14.4 & 170.0 & ATLAS, Swift & \\ 
+\hline
+SN2022ihz & Other & SNIa-91bg-like & 0.006 & 59706.4 & 15.03 & V & 122 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1459.1 & 203.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021qvv & Other & SNIa-91bg-like & 0.0018 & 59395.6 & 14.12 & g & 66 & \shortstack{UVW2,UVW1,U,B,g \\ c,V,r,G,o,i} & -1181.3 & 344.7 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020nta & Other & SNIa-91bg-like & 0.0339 & 59035.1 & 18.62 & o & 72 & g,c,r,o,i & -7.9 & 699.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2018jag & Other & SNIa-91bg-like & 0.04 & 58455.0 & 18.24 & c & 82 & U,B,g,c,V,w,r,o & -18.8 & 1355.6 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2017hle & Other & SNIa-91bg-like & 0.015 & 58051.2 & 16.93 & V & 153 & U,B,V,r,i,z,y & -3.6 & 60.0 & OSC, Swift & \\ 
+\hline
+SN2017fzw & Other & SNIa-91bg-like & 0.0054 & 57990.6 & 13.71 & V & 98 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -14.3 & 242.6 & OSC, Swift & \\ 
+\hline
+SN2017ejb & Other & SNIa-91bg-like & 0.0098 & 57912.7 & 15.36 & V & 57 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V} & -10.3 & 25.9 & Swift & \\ 
+\hline
+SN2016iuh & Other & SNIa-91bg-like & 0.0136 & 57741.1 & 15.59 & V & 69 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G,i} & -9.9 & 109.3 & OSC, Swift & \\ 
+\hline
+SN2015bo & Other & SNIa-91bg-like & 0.0161 & 57076.7 & 16.29 & V & 17 & UVW1,U,B,V & -6.8 & 5.0 & Swift & \\ 
+\hline
+SN2007ax & Other & SNIa-91bg-like & 0.0071 & 54191.9 & 15.62 & V & 193 & \shortstack{u,U,B,g',g,V,r,r',i \\ Y,J,H} & -7.9 & 56.0 & ASAS-SN, OSC, Swift & 100 103 102 \\ 
+\hline
+SN2005ke & Other & SNIa-91bg-like & 0.0045 & 53700.7 & 14.2 & V & 519 & \shortstack{UVW2,UVM2,UVW1 \\ u,U,B,g,V,r,i,Y,J,H,K,Ks} & -11.9 & 266.7 & ASAS-SN, OSC, Swift & \shortstack{102 100 2 \\ 96 }\\ 
+\hline
+SN2022xmo & Other & SNIa-91T-like & 0.0859 & 59875.8 & 18.33 & g & 77 & \shortstack{UVW2,UVW1,U,B,g \\ c,r,o,i} & -657.4 & 182.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022idx & Other & SNIa-91T-like & 0.0141 & 59711.9 & 14.43 & r & 143 & U,g,c,r,o,i & -1505.6 & 393.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021msu & Other & SNIa-91T-like & 0.05 & 59367.7 & 16.93 & g & 233 & UVW1,U,B,g,c,V,r,o,i & -459.1 & 776.4 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2021aakl & Other & SNIa-91T-like & 0.029 & 59506.5 & 16.81 & V & 59 & \shortstack{UVW2,UVW1,U,B,c \\ V,o} & -16.0 & 474.4 & ATLAS, Swift & \\ 
+\hline
+SN2020akf & Other & SNIa-91T-like & 0.0124 & 58877.2 & 15.8 & c & 53 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -8.7 & 335.3 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2019vrq & Other & SNIa-91T-like & 0.013 & 58830.2 & 14.71 & o & 57 & \shortstack{UVW2,UVW1,U,B,c \\ V,o} & -15.8 & 1082.9 & ATLAS, Swift & \\ 
+\hline
+SN2017glx & Other & SNIa-91T-like & 0.011 & 58009.4 & 14.57 & V & 193 & UVM2,B,V,R,i,I,y & -10.1 & 87.7 & OSC, Swift & 70 24 \\ 
+\hline
+SN2017awz & Other & SNIa-91T-like & 0.022 & 57809.7 & 15.83 & V & 66 & UVW1,U,B,c,V,o & -8.1 & 2206.3 & ATLAS, OSC, Swift & 71 \\ 
+\hline
+SN2016aix & Other & SNIa-91T-like & 0.029 & 57446.5 & 15.93 & g & 46 & UVW1,U,B,g,V,r,G,i & -14.0 & 140.0 & OSC, Swift & 2 \\ 
+\hline
+SN2022erq & Other & SNIa-CSM & 0.066 & 59679.7 & 16.36 & g & 408 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1413.3 & 463.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020qxz & Other & SNIa-CSM & 0.0964 & 59087.7 & 18.6 & g & 390 & g,r,i & -652.5 & 772.5 & Swift, ZTF & \\ 
+\hline
+SN2020eyj & Other & SNIa-CSM & 0.03 & 58925.5 & 17.24 & o & 347 & g,c,r,G,o,i & -10.3 & 455.8 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020aeuh & Other & SNIa-CSM & 0.126 & 59216.8 & 19.09 & g & 347 & g,c,r,o,i & -404.2 & 916.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020aekp & Other & SNIa-CSM & 0.046 & 59224.5 & 16.97 & g & 953 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -999.1 & 908.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018evt & Other & SNIa-CSM & 0.029 & 58479.0 & 16.26 & o & 258 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -234.6 & 1579.3 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2022vqz & Other & SNIa-pec & 0.0169 & 59864.0 & 15.84 & g & 169 & UVW1,g,c,r,o,i & -1551.7 & 269.5 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2022joj & Other & SNIa-pec & 0.03 & 59723.0 & 15.84 & g & 145 & U,g,c,r,o,i & -15.7 & 310.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2020pjj & Other & SNIa-pec & 0.03 & 59053.1 & 18.27 & g & 222 & UVW2,U,g,c,r,G,o,i & -835.7 & 698.2 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2019yvq & Other & SNIa-pec & 0.009 & 58863.9 & 14.83 & g & 696 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,G,o,i} & -649.6 & 1244.4 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2018byg & Other & SNIa-pec & 0.066 & 58258.6 & 19.08 & r & 98 & g,c,r,o,i & -16.4 & 1128.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2016ccj & Other & SNIa-pec & 0.03 & 57525.4 & 16.96 & V & 78 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,G} & -17.0 & 126.5 & OSC, Swift & 2 71 \\ 
+\hline
+SN2016bln & Other & SNIa-pec & 0.0232 & 57500.3 & 15.93 & V & 71 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,i} & -18.0 & 30.1 & OSC, Swift & \shortstack{104 71 105 \\ 106 2 107 }\\ 
+\hline
+SN2016aqt & Other & SNIa-pec & 0.05 & 57455.1 & 17.12 & V & 78 & \shortstack{UVW2,UVW1,U,B,V \\ r,i} & -8.5 & 77.3 & OSC, Swift & 71 \\ 
+\hline
+SN2012dn & Other & SNIa-pec & 0.0101 & 56133.8 & 14.32 & V & 1315 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g',V,R,i',I,z',J,H,Ks} & -13.1 & 139.0 & ASAS-SN, OSC, Swift & \shortstack{70 24 108 \\ 2 109 }\\ 
+\hline
+SN2009dc & Other & SNIa-pec & 0.0215 & 54945.8 & 15.28 & V & 888 & \shortstack{UVW2,UVM2,UVW1 \\ u',u,U,B,g,V,r',r,R,i',i,I,Y,J,H,Ks} & -20.3 & 286.8 & ASAS-SN, OSC, Swift & \shortstack{98 96 100 \\ 2 110 70 \\ 24 }\\ 
+\hline
+SN2023hym & Other & SNIax & 0.01 & 60078.9 & 18.38 & o & 22 & UVW1,U,c,o & -6.3 & 27.0 & ATLAS, Swift & \\ 
+\hline
+SN2022xlp & Other & SNIax & 0.0026 & 59877.6 & 15.9 & o & 62 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -6.7 & 238.7 & ATLAS, Swift & \\ 
+\hline
+SN2021jun & Other & SNIax & 0.04 & 59334.0 & 18.5 & o & 27 & c,o & -15.7 & 744.3 & ATLAS, Swift & \\ 
+\hline
+SN2021afcp & Other & SNIax & 0.041 & 59553.0 & 17.1 & o & 64 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,G,o} & -14.4 & 123.6 & ATLAS, OSC, Swift & \\ 
+\hline
+SN2020udy & Other & SNIax & 0.0172 & 59130.6 & 16.46 & g & 199 & g,c,r,G,o,i & -15.1 & 338.0 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+SN2020kyg & Other & SNIax & 0.0087 & 58998.3 & 18.29 & g & 81 & U,g,c,r,o,i & -353.1 & 1031.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+SN2019muj & Other & SNIax & 0.0070 & 58710.0 & 16.3 & V & 111 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -7.5 & 178.3 & ATLAS, Swift & \\ 
+\hline
+SN2012Z & Other & SNIax & 0.0071 & 55969.2 & 14.57 & g & 374 & \shortstack{UVW2,UVM2,UVW1 \\ u,U,B,g,V,r,R,i,I,Y,J,H} & -14.0 & 264.1 & OSC, Swift & \shortstack{70 24 111 \\ 2 112 }\\ 
+\hline
+SN2011ay & Other & SNIax & 0.021 & 55647.9 & 16.7 & V & 56 & UVW2,UVM2,B,V,r,i & -2.9 & 207.5 & OSC, Swift & 2 112 \\ 
+\hline
+SN2008ha & Other & SNIax & 0.0046 & 54786.3 & 17.73 & V & 169 & U,B,V,R,I,J,H,Ks & -5.2 & 44.8 & OSC, Swift & \shortstack{70 24 96 \\ 113 2 }\\ 
+\hline
+SN2008ge & Other & SNIax & 0.0040 & 54725.9 & 13.82 & V & 22 & UVW1,U,B,V & -8.7 & 121.2 & OSC, Swift & 114 \\ 
+\hline
+SN2008ae & Other & SNIax & 0.0301 & 54513.0 & 18.05 & V & 233 & \shortstack{u,U,B,g,V,r,r',i',i \\ J,H} & -5.9 & 84.0 & OSC, Swift & \shortstack{98 96 2 \\ 112 }\\ 
+\hline
+SN2005hk & Other & SNIax & 0.0129 & 53688.2 & 15.75 & V & 510 & \shortstack{u',U,B,g',V,r',R,i' \\ I,z',J,H,Ks} & -65.9 & 378.0 & OSC, Swift & \shortstack{115 96 116 \\ 117 2 70 \\ 24 102 }\\ 
+\hline
+SN2016ezh & Other & TDE & 0.08 & 57726.0 & 15.96 & B & 455 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,V,w} & -114.0 & 1501.5 & ASAS-SN, OSC, Swift & \\ 
+\hline
+AT2023mhs & Other & TDE & 0.0482 & 60134.4 & 15.76 & g & 92 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -1860.2 & 52.0 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2023cvb & Other & TDE & 0.071 & 60051.7 & 18.04 & c & 160 & g,c,r,o & -1766.4 & 103.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2023clx & Other & TDE & 0.0110 & 60003.3 & 16.34 & V & 347 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,i} & -1788.1 & 113.9 & \shortstack{ASAS-SN, Swift \\ ZTF} & \\ 
+\hline
+AT2022wtn & Other & TDE & 0.049 & 59885.4 & 17.97 & g & 238 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -1543.0 & 271.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2022upj & Other & TDE & 0.054 & 59877.0 & 18.23 & g & 348 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -1531.7 & 614.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2022rz & Other & TDE & 0.107 & 59606.5 & 19.17 & o & 162 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -1026.1 & 390.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2022ibq & Other & TDE & 0.395 & 59695.1 & 18.93 & g & 199 & g,r,i & -1445.7 & 454.2 & Swift, ZTF & \\ 
+\hline
+AT2022hvp & Other & TDE & 0.12 & 59698.5 & 16.39 & g & 227 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -1131.2 & 389.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2022gri & Other & TDE & 0.028 & 59866.7 & 17.61 & g & 576 & g,c,r,o,i & -1617.6 & 210.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2022gdw & Other & TDE & 0.105 & 59688.1 & 19.16 & g & 233 & UVW2,UVM2,g,r,i & -1470.8 & 390.2 & Swift, ZTF & \\ 
+\hline
+AT2022fpx & Other & TDE & 0.073 & 59804.9 & 17.77 & g & 550 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -1517.7 & 350.3 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2022exr & Other & TDE & 0.096 & 59673.3 & 18.22 & c & 927 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -1474.8 & 480.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2022dyt & Other & TDE & 0.072 & 59666.1 & 18.84 & c & 164 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -1448.9 & 771.0 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2022dsb & Other & TDE & 0.023 & 59673.3 & 19.1 & g & 87 & g,c,r,o & -1027.0 & 465.9 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2022czy & Other & TDE & 0.109 & 59640.3 & 18.35 & c & 124 & U,c,o & -15.8 & 860.6 & ATLAS, Swift & \\ 
+\hline
+AT2022bdw & Other & TDE & 0.0378 & 59634.7 & 17.71 & c & 363 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,G,o,i} & -2647.7 & 378.5 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+AT2022arb & Other & TDE & 0.062 & 59639.7 & 19.11 & c & 99 & \shortstack{UVM2,UVW1,U,g,c \\ r,o,i} & -406.3 & 599.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2022aee & Other & TDE & 0.124 & 59624.3 & 18.29 & g & 75 & UVM2,g,r,i & -403.0 & 434.9 & Swift, ZTF & \\ 
+\hline
+AT2021yzv & Other & TDE & 0.286 & 59499.0 & 18.98 & g & 217 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,r,i} & -62.5 & 472.3 & Swift, ZTF & \\ 
+\hline
+AT2021yte & Other & TDE & 0.053 & 59477.4 & 18.7 & g & 65 & \shortstack{UVW2,UVM2,UVW1 \\ g,r,i} & -1016.0 & 96.5 & Swift, ZTF & \\ 
+\hline
+AT2021uvz & Other & TDE & 0.176 & 59435.9 & 19.64 & g & 562 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -1213.4 & 558.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2021uqv & Other & TDE & 0.106 & 59447.3 & 19.1 & g & 733 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -1050.0 & 704.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2021sdu & Other & TDE & 0.059 & 59416.7 & 18.62 & g & 236 & g,c,r,o,i & -1094.3 & 737.7 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2021nwa & Other & TDE & 0.047 & 59403.7 & 18.41 & g & 567 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -1205.2 & 749.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2021mhg & Other & TDE & 0.073 & 59387.7 & 18.8 & g & 746 & \shortstack{UVW2,UVM2,UVW1 \\ g,c,r,o,i} & -1050.3 & 762.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2021jsg & Other & TDE & 0.126 & 59256.8 & 19.5 & g & 190 & \shortstack{UVW2,UVM2,UVW1 \\ g,r,i} & -442.3 & 273.7 & Swift, ZTF & \\ 
+\hline
+AT2021jjm & Other & TDE & 0.153 & 59326.9 & 19.17 & g & 77 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o} & -19.3 & 663.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2021gje & Other & TDE & 0.358 & 59308.4 & 19.52 & g & 468 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -1089.0 & 840.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2021ehb & Other & TDE & 0.018 & 59305.8 & 16.87 & U & 779 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o} & -1004.4 & 844.8 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2021blz & Other & TDE & 0.045 & 59251.3 & 17.8 & c & 124 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,c,V,o} & -8.0 & 882.1 & \shortstack{ASAS-SN, ATLAS \\ Swift} & \\ 
+\hline
+AT2021axu & Other & TDE & 0.192 & 59251.5 & 18.63 & g & 619 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,r,o,i} & -644.2 & 857.8 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2021ack & Other & TDE & 0.133 & 59232.1 & 19.51 & r & 207 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -688.6 & 877.1 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2020zso & Other & TDE & 0.061 & 59190.1 & 17.68 & g & 187 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o} & -810.8 & 685.0 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2020wey & Other & TDE & 0.0273 & 59151.9 & 17.94 & g & 242 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -906.7 & 754.5 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2020vwl & Other & TDE & 0.0325 & 59145.8 & 17.63 & r & 656 & UVW1,g,c,r,G,o,i & -2111.4 & 992.4 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & \\ 
+\hline
+AT2020pj & Other & TDE & 0.068 & 58871.7 & 18.92 & c & 257 & \shortstack{UVW2,UVW1,B,g,c \\ r,o,i} & -655.3 & 878.6 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2020nov & Other & TDE & 0.084 & 59096.7 & 17.6 & g & 809 & g,c,r,o & -820.4 & 1039.6 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2020neh & Other & TDE & 0.062 & 59032.5 & 17.79 & g & 225 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,c,V,r,o,i} & -66.1 & 1035.2 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2020mot & Other & TDE & 0.07 & 59082.4 & 18.19 & B & 421 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,r} & -68.1 & 1073.9 & Swift, ZTF & \\ 
+\hline
+AT2020acka & Other & TDE & 0.338 & 59216.6 & 18.15 & g & 477 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -74.5 & 875.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2019vcb & Other & TDE & 0.089 & 58834.3 & 18.76 & r & 324 & UVW2,g,c,r,o,i & -365.8 & 1185.7 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2019teq & Other & TDE & 0.0878 & 58786.8 & 19.32 & g & 144 & g,r,i & -505.5 & 1313.5 & Swift, ZTF & \\ 
+\hline
+AT2019qiz & Other & TDE & 0.0151 & 58764.1 & 15.8 & g & 526 & UVW2,U,g,c,r,G,o,i & -327.8 & 1252.6 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & 118 \\ 
+\hline
+AT2019lwu & Other & TDE & 0.117 & 58694.2 & 18.81 & g & 64 & \shortstack{UVM2,UVW1,g,c,r \\ o,i} & -15.8 & 80.9 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2019gte & Other & TDE & 0.086 & 58643.5 & 18.96 & g & 89 & U,B,g,c,V,r,o,i & -367.3 & 1458.7 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2019ehz & Other & TDE & 0.074 & 58617.4 & 18.1 & g & 470 & UVM2,g,V,r,R,G,i & -1746.4 & 909.9 & OSC, Swift, ZTF & \\ 
+\hline
+AT2019dsg & Other & TDE & 0.0512 & 58615.7 & 17.9 & o & 455 & g,c,r,o,i & -253.4 & 1289.5 & \shortstack{ASAS-SN, ATLAS \\ Swift, ZTF} & \\ 
+\hline
+AT2019bhf & Other & TDE & 0.1206 & 58547.4 & 18.82 & r & 96 & \shortstack{UVW2,UVW1,U,B,g \\ r,i} & -20.9 & 1586.8 & Swift, ZTF & \\ 
+\hline
+AT2019azh & Other & TDE & 0.022 & 58563.7 & 15.29 & g & 2020 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,V,r,i} & -346.5 & 1509.5 & \shortstack{ASAS-SN, Swift \\ ZTF} & \\ 
+\hline
+AT2018lna & Other & TDE & 0.091 & 58506.8 & 18.96 & r & 71 & UVW2,g,r,i & -292.6 & 259.7 & Swift, ZTF & \\ 
+\hline
+AT2018iih & Other & TDE & 0.212 & 58434.5 & 18.46 & c & 1109 & g,c,r,G,o,i & -1337.2 & 1301.9 & \shortstack{ATLAS, OSC, Swift \\ ZTF} & \\ 
+\hline
+AT2018hyz & Other & TDE & 0.0457 & 58429.7 & 16.2 & V & 524 & U,g,c,V,r,o,i & -219.5 & 1820.7 & \shortstack{ASAS-SN, ATLAS \\ OSC, Swift, ZTF} & 119 \\ 
+\hline
+AT2018hco & Other & TDE & 0.09 & 58424.2 & 18.38 & r & 283 & \shortstack{UVW2,UVM2,UVW1 \\ U,g,c,r,o,i} & -44.8 & 664.2 & ATLAS, Swift, ZTF & \\ 
+\hline
+AT2018fyk & Other & TDE & 0.06 & 58387.0 & 17.06 & UVM2 & 50 & UVM2 & -3.3 & 201.0 & ASAS-SN, Swift & \\ 
+\hline
+AT2018bsi & Other & TDE & 0.051 & 59173.7 & 19.19 & r & 577 & \shortstack{UVW2,UVM2,UVW1 \\ U,B,g,r,i} & -969.5 & 839.6 & \shortstack{ASAS-SN, Swift \\ ZTF} & \\ 
+\hline
+AT2016fnl & Other & TDE & 0.0163 & 57631.5 & 17.17 & g & 225 & \shortstack{UVW2,UVM2,UVW1 \\ u,U,B,g,V,r,i} & -5.1 & 300.7 & ASAS-SN, OSC, Swift & 120 \\ 
+\hline
+[1]: \citet{2018Natur.554..497B}; [2]: \citet{2014Ap&SS.354...89B}; [3]: \citet{2016ATel.9526....1T}; [4]: \citet{2016ATel.9521....1N}; [5]: \citet{2016ATel.9536....1K}; [6]: \citet{2016arXiv161106451A}; [7]: \citet{2016ATel.8944....1C}; [8]: \citet{2014MNRAS.439.1807B}; [9]: \citet{2013MNRAS.433....2S}; [10]: \citet{2016ApJ...833..231T}; [11]: \citet{2015A&A...580A.142E}; [12]: \citet{2013ApJ...778L..19H}; [13]: \citet{2018arXiv180302571S}; [14]: \citet{2014ApJS..213...19B}; [15]: \citet{2017arXiv170707616S}; [16]: \citet{2009ApJ...696..870D}; [17]: \citet{2011MNRAS.413.2583S}; [18]: \citet{2011ApJ...741...97D}; [19]: \citet{2005PASP..117..132R}; [20]: \citet{2018ApJ...860...90V}; [21]: \citet{2011ApJ...728...14P}; [22]: \citet{2010A&A...512A..70Y}; [23]: \citet{2019MNRAS.490.2799D}; [24]: \citet{2012MNRAS.425.1789S}; [25]: \citet{2018arXiv180100340T}; [26]: \citet{2016ATel.8935....1M}; [27]: \citet{2015ApJ...807...59H}; [28]: \citet{2016MNRAS.461.2003Y}; [29]: \citet{2017ApJ...834..118M}; [30]: \citet{2015MNRAS.450.2373B}; [31]: \citet{2017ApJS..233....6H}; [32]: \citet{2013A&A...555A.142I}; [33]: \citet{2012MNRAS.422.1122I}; [34]: \citet{2014ApJ...786...67A}; [35]: \citet{2010ApJ...715..541A}; [36]: \citet{2011MNRAS.417..261I}; [37]: \citet{2013A&A...549A..79S}; [38]: \citet{2012ApJ...753..109G}; [39]: \citet{2009MNRAS.394.2266P}; [40]: \citet{2006lcvs.book53680T}; [41]: \citet{2014MNRAS.442..844F}; [42]: \citet{2008ApJ...675..644D}; [43]: \citet{2018arXiv180103167H}; [44]: \citet{2016ApJ...820...33R}; [45]: \citet{2016MNRAS.459.3939V}; [46]: \citet{2013ATel.5455....1C}; [47]: \citet{2014MNRAS.438..368T}; [48]: \citet{2011A&A...527A..61S}; [49]: \citet{2011ApJ...732..109M}; [50]: \citet{2006AJ....131.2245Z}; [51]: \citet{2020arXiv200405840N}; [52]: \citet{2016ATel.8790....1C}; [53]: \citet{2014ApJ...789..104O}; [54]: \citet{2013AJ....146....2F}; [55]: \citet{2011ApJ...730...34S}; [56]: \citet{2014ApJ...797..118F}; [57]: \citet{2012AJ....144..131Z}; [58]: \citet{2011AJ....142...45A}; [59]: \citet{2010arXiv1007.0011P}; [60]: \citet{2009MNRAS.398.1041B}; [61]: \citet{2011ApJ...741....7F}; [62]: \citet{2012ApJ...756..173S}; [63]: \citet{2010ApJ...725.1768F}; [64]: \citet{2012MNRAS.426.1905S}; [65]: \citet{2020MNRAS.497..318L}; [66]: \citet{2018arXiv180610609A}; [67]: \citet{2016ApJ...826...39N}; [68]: \citet{2016ApJ...828L..18N}; [69]: \citet{2018arXiv180902755N}; [70]: \citet{2019MNRAS.490.3882S}; [71]: \citet{2017arXiv171102474F}; [72]: \citet{2016ATel.8628....1F}; [73]: \citet{2016ATel.9049....1P}; [74]: \citet{2016ATel.8885....1B}; [75]: \citet{2018PASP..130f4101V}; [76]: \citet{2014CoSka..44...67T}; [77]: \citet{2014AJ....148....1Z}; [78]: \citet{2017MNRAS.466.3442J}; [79]: \citet{2014ApJ...784L..12G}; [80]: \citet{2014MNRAS.443.2887F}; [81]: \citet{2013ATel.5637....1Z}; [82]: \citet{2017MNRAS.472.3437G}; [83]: \citet{2015A&A...579A..40S}; [84]: \citet{2018arXiv180906381B}; [85]: \citet{2018arXiv180310095C}; [86]: \citet{2013NewA...20...30M}; [87]: \citet{2016ApJ...819...31G}; [88]: \citet{2014MNRAS.444.3258M}; [89]: \citet{2015MNRAS.446.3895F}; [90]: \citet{2014ApJ...784..105W}; [91]: \citet{2017arXiv170302402W}; [92]: \citet{2012JAVSO..40..872R}; [93]: \citet{2011Natur.480..344N}; [94]: \citet{2013ApJ...767..119M}; [95]: \citet{2013CoSka..43...94T}; [96]: \citet{2015ApJS..220....9F}; [97]: \citet{2016A&A...590A...5G}; [98]: \citet{2012ApJS..200...12H}; [99]: \citet{2012ApJ...749...18B}; [100]: \citet{2010AJ....139..519C}; [101]: \citet{2010ApJS..190..418G}; [102]: \citet{2009ApJ...700..331H}; [103]: \citet{2011PhDT........35K}; [104]: \citet{2017arXiv170807124M}; [105]: \citet{2016ATel.8907....1M}; [106]: \citet{2016ATel.8929....1V}; [107]: \citet{2018arXiv180802330D}; [108]: \citet{2016PASJ...68...68Y}; [109]: \citet{2014MNRAS.443.1663C}; [110]: \citet{2011MNRAS.410..585S}; [111]: \citet{2015A&A...573A...2S}; [112]: \citet{2013ApJ...767...57F}; [113]: \citet{2009AJ....138..376F}; [114]: \citet{2010AJ....140.1321F}; [115]: \citet{2008ApJ...680..580S}; [116]: \citet{2014arXiv1401.3317S}; [117]: \citet{2008AJ....136.2306H}; [118]: \citet{2020arXiv200602454N}; [119]: \citet{2020MNRAS.497.1925G}; [120]: \citet{2017ApJ...844...46B}; 

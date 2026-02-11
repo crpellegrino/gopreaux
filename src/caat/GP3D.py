@@ -634,8 +634,8 @@ class GP3D(GP):
                         filt=filt,
                         ax=ax,
                     )
-                    # if sn.name == "SN2016gkg" and filt == "V":
-                    #     plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/residuals_v2.pdf")
+                    # if sn.name == "SN2020vfu" and filt == "g":
+                        # plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/residuals_slsnii.pdf")
                     plt.show()
 
         return pd.DataFrame(residuals)
@@ -1143,7 +1143,6 @@ class GP3D(GP):
         for sn in self.collection.sne:
             if not hasattr(sn, "cube"):
                 continue
-
             residuals = self._subtract_data_from_grid(
                 sn,
                 self.filtlist,
@@ -1152,7 +1151,7 @@ class GP3D(GP):
                 mag_grid,
                 err_grid,
                 plot=False,  # TODO: are we sure we want to hard-code False for grid subtraction?
-                # plot=True if sn.name=="SN2016gkg" else False,
+                # plot=True if sn.name=="SN2020vfu" else False,
             )
 
             if len(residuals) == 0:
@@ -1187,13 +1186,14 @@ class GP3D(GP):
                     _, ax = plt.subplots(figsize=(6, 7))
                     min_inset = min(phase_residuals_linear)
                     max_inset = min_inset + 5
-                    axins = ax.inset_axes(
-                        [0.65, 0.1, 0.35, 0.8],
-                        xlim=(min_inset, max_inset),
-                        ylim=(-5, 2),
-                        # xticklabels=[],
-                        # yticklabels=[],
-                    )
+                    axins = None
+                    # axins = ax.inset_axes(
+                    #     [0.65, 0.1, 0.35, 0.8],
+                    #     xlim=(min_inset, max_inset),
+                    #     ylim=(-5, 2),
+                    #     # xticklabels=[],
+                    #     # yticklabels=[],
+                    # )
 
                 filts_fitted = []
 
@@ -1307,11 +1307,11 @@ class GP3D(GP):
                                 "Use this fit to construct a template? y/n"
                             )
                                 
-                ax.set_xlim(-20, 75)
-                ax.indicate_inset_zoom(axins, edgecolor='k')
-                if "2016gkg" in sn.name:
+                # ax.set_xlim(-20, 75)
+                # ax.indicate_inset_zoom(axins, edgecolor='k')
+                if "2020vfu" in sn.name:
                     plt.tight_layout()
-                    # plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/SN2016gkg_light_curve_fits.pdf")
+                    # plt.savefig("/Users/craigpellegrino/work/gopreaux_papers/paper_1/figures/SN2020vfu_light_curve_fits.pdf")
 
                 x, y, wl_inds_fitted, phase_inds_fitted, phase_offset = (
                     self._build_test_wavelength_phase_grid_from_photometry(
