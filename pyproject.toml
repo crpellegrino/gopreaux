@@ -30,6 +30,8 @@ sphinx_astropy = ">1.9.1"
 sphinx_automodapi = ">0.17.0"
 pydata-sphinx-theme = ">0.15.4"
 ruff = ">0.5.2"
+slsne = "^0.3"
+ipykernel = "^7.2.0"
 
 [build-system]
 requires = ["poetry-core"]
