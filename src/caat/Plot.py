@@ -283,11 +283,11 @@ class Plot:
             ax.set_ylabel("Shifted Magnitudes")
             plt.gca().invert_yaxis()
         if show:
-            plt.title(
-                "Lightcurves for collection of {} objects\nType:{}, Subtype:{}".format(
-                    len(sne), sn_class.type, sn_class.subtype
-                )
-            )
+            # plt.title(
+            #     "Lightcurves for collection of {} objects\nType:{}, Subtype:{}".format(
+            #         len(sne), sn_class.type, sn_class.subtype
+            #     )
+            # )
             plt.show()
 
     def plot_gp_predict_gp(
@@ -318,7 +318,7 @@ class Plot:
             mean_prediction + 1.96 * std_prediction,
             alpha=0.5,
             color="lightgray",
-            label="96\% Confidence Interval",
+            label="96% Confidence Interval",
             zorder=10,
         )
 

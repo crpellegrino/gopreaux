@@ -9,3 +9,5 @@ diagnostics/*
 data/test*
 data/tns_public_objects.csv
 .coverage
+.DS_Store
+**/.DS_Store

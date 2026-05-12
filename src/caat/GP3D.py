@@ -1146,6 +1146,7 @@ class GP3D(GP):
         interactive=False,
         run_diagnostics=False,
         save_individual_fits=False,
+        overwrite=False,
     ):
         """
         Run the Gaussian Process Regression fitting routine on each transient
@@ -1541,7 +1542,7 @@ class GP3D(GP):
                         norm_set=self.set_to_normalize,
                         log_transform=self.log_transform,
                     )
-                    snmodel.save_fits()
+                    snmodel.save_fits(force=overwrite)
 
         return gaussian_processes, mag_grid, phase_grid, wl_grid
 
