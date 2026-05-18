@@ -157,12 +157,12 @@ def _gopreaux_dense_prediction(model, wavelength: float, phase_min: float, phase
 
 
 def predict_gopreaux(
-        model,
-        obs: pd.DataFrame,
-        peak_filt: str | None = None,
-        z: float = 0.0,
-        plot: bool = True
-    ) -> pd.DataFrame:
+    model,
+    obs: pd.DataFrame,
+    peak_filt: str | None = None,
+    z: float = 0.0,
+    plot: bool = True
+) -> pd.DataFrame:
     """
     Evaluate the GOPREAUX model against observed photometry, normalised to
     the per-SN peak filter rather than a fixed g-band reference.
@@ -175,8 +175,8 @@ def predict_gopreaux(
     matches the observed MagFromPeak zero-point (0 at peak_filt peak).
 
     Returns obs with added columns (log10(flux) units, relative to peak_filt):
-        GOPREAUX_mag  – model prediction interpolated to each observed phase
-        GOPREAUX_err  – 1-sigma uncertainty interpolated to each observed phase
+        GOPREAUX_mag - model prediction interpolated to each observed phase
+        GOPREAUX_err - 1-sigma uncertainty interpolated to each observed phase
     """
     if obs.empty:
         return obs.assign(GOPREAUX_mag=np.nan, GOPREAUX_err=np.nan)
