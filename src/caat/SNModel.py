@@ -241,7 +241,12 @@ class SNModel:
 
                 residuals.append(mag - self.template[phase_ind, wl_ind])
 
-        x = np.vstack((np.log(phases_to_fit + self.log_transform), np.log10(wls_to_fit))).T
+        x = np.vstack(
+            (
+                np.log(phases_to_fit - min(phases_to_fit) + 0.1),
+                np.log10(wls_to_fit),
+            )
+        ).T
         y = residuals
         self.surface.alpha = errs_to_fit
         self.surface.fit(x, y)
@@ -334,7 +339,7 @@ class SNModel:
             norm_set_names = hdul[0].header["NORM_SET"]
 
             try:
-                self.kernel = surface.kernel_
+                self.kernel = surface.kernel if isinstance(surface, SurfaceArray) else surface.kernel_
             except:
                 print("No Kernel, need to implement")
 
@@ -421,16 +426,25 @@ class SNModel:
         else:
             template_lc = np.zeros(len(prediction))
 
-        plt.plot(linear_phases, prediction + template_lc)
+        if self.sn is not None:
+            closest_filt = list(WLE.keys())[np.argmin((abs(np.asarray(list(WLE.values())) - wavelength)))]
+            shifted_mags = convert_shifted_fluxes_to_shifted_mags(
+                prediction + template_lc, self.sn, self.sn.zps[closest_filt]
+            )
+
+        else:
+            shifted_mags = prediction + template_lc
+
+        plt.plot(linear_phases, shifted_mags)
         plt.plot(
             linear_phases,
-            prediction + template_lc - 1.96 * dev,
+            shifted_mags - 1.96 * dev,
             alpha=0.2,
             color="blue",
         )
         plt.plot(
             linear_phases,
-            prediction + template_lc + 1.96 * dev,
+            shifted_mags + 1.96 * dev,
             alpha=0.2,
             color="blue",
         )
@@ -570,10 +584,25 @@ class SNModel:
         else:
             template_lc = np.zeros(len(prediction))
 
+        if self.sn is not None:
+            shifted_mags = []
+            for i in range(len(wavelengths)):
+                wavelength = wavelengths[i]
+                closest_filt = list(WLE.keys())[np.argmin((abs(np.asarray(list(WLE.values())) - wavelength)))]
+                shifted_mags.append(
+                    convert_shifted_fluxes_to_shifted_mags(
+                        np.asarray(prediction[i] + template_lc[i]), self.sn, self.sn.zps[closest_filt]
+                    )
+                )
+            shifted_mags = np.asarray(shifted_mags)
+
+        else:
+            shifted_mags = prediction + template_lc
+
         if show:
             plt.errorbar(
                 phases,
-                prediction + template_lc,
+                shifted_mags,
                 yerr=dev,
                 fmt="o",
                 color=kwargs.get("color", "k"),
