@@ -269,11 +269,23 @@ def compute_metrics(residuals: np.ndarray, errors: np.ndarray) -> dict:
     errors[small_error_mask] = 0.05
 
     if len(residuals) == 0:
-        return {"n": 0, "bias": np.nan, "mad": np.nan, "iqr": np.nan, "chi2_reduced": np.nan}
+        return {
+            "n": 0,
+            "bias": np.nan,
+            "mad": np.nan,
+            "iqr": np.nan,
+            "chi2_reduced": np.nan
+        }
 
     bias = np.median(residuals)
     mad  = np.median(np.abs(residuals - bias))
     iqr  = np.subtract(*np.percentile(residuals, [75, 25]))
     chi2_reduced = np.mean((residuals / errors) ** 2)
 
-    return {"n": len(residuals), "bias": bias, "mad": mad, "iqr": iqr, "chi2_reduced": chi2_reduced}
+    return {
+        "n": len(residuals),
+        "bias": bias,
+        "mad": mad,
+        "iqr": iqr,
+        "chi2_reduced": chi2_reduced,
+    }
