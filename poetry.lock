@@ -50,7 +50,7 @@ version = "7.2.0"
 description = "Astronomy and astrophysics core library"
 optional = false
 python-versions = ">=3.11"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "astropy-7.2.0-cp311-abi3-macosx_10_9_x86_64.whl", hash = "sha256:efac04df4cc488efe630c2fff1992d6516dfb16a06e197fb68bc9e8e3b85def1"},
     {file = "astropy-7.2.0-cp311-abi3-macosx_11_0_arm64.whl", hash = "sha256:52e9a7d9c86b21f1af911a2930cd0c4a275fb302d455c89e11eedaffef6f2ad0"},
@@ -463,12 +463,27 @@ files = [
 markers = {dev = "sys_platform == \"win32\""}
 
 [[package]]
+name = "comm"
+version = "0.2.3"
+description = "Jupyter Python Comm implementation, for usage in ipykernel, xeus-python etc."
+optional = false
+python-versions = ">=3.8"
+groups = ["dev"]
+files = [
+    {file = "comm-0.2.3-py3-none-any.whl", hash = "sha256:c615d91d75f7f04f095b30d1c1711babd43bdc6419c1be9886a85f2f4e489417"},
+    {file = "comm-0.2.3.tar.gz", hash = "sha256:2dc8048c10962d55d7ad693be1e7045d891b7ce8d999c97963a5e3e99c055971"},
+]
+
+[package.extras]
+test = ["pytest"]
+
+[[package]]
 name = "contourpy"
 version = "1.3.3"
 description = "Python library for calculating contours of 2D quadrilateral grids"
 optional = false
 python-versions = ">=3.11"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "contourpy-1.3.3-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:709a48ef9a690e1343202916450bc48b9e51c049b089c7f79a267b46cffcdaa1"},
     {file = "contourpy-1.3.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:23416f38bfd74d5d28ab8429cc4d63fa67d5068bd711a85edb1c3fb0c3e2f381"},
@@ -655,9 +670,9 @@ files = [
 ]
 
 [[package]]
-name = "dust-extinction"
-version = "1.7"
-description = "Interstellar Dust Extinction Models"
+name = "docutils"
+version = "0.22.4"
+description = "Docutils -- Python Documentation Utilities"
 optional = false
 python-versions = ">=3.9"
 groups = ["main", "dev"]
@@ -665,6 +680,25 @@ files = [
     {file = "docutils-0.22.4-py3-none-any.whl", hash = "sha256:d0013f540772d1420576855455d050a2180186c91c15779301ac2ccb3eeb68de"},
     {file = "docutils-0.22.4.tar.gz", hash = "sha256:4db53b1fde9abecbb74d91230d32ab626d94f6badfc575d6db9194a49df29968"},
 ]
+
+[[package]]
+name = "dust-extinction"
+version = "1.7"
+description = "Interstellar Dust Extinction Models"
+optional = false
+python-versions = ">=3.10"
+groups = ["dev"]
+files = [
+    {file = "dust_extinction-1.7.tar.gz", hash = "sha256:c421eafc44c622e82e9a122ed444c01f0909434c7462b04715e180723aa81064"},
+]
+
+[package.dependencies]
+astropy = "*"
+scipy = "*"
+
+[package.extras]
+docs = ["graphviz", "matplotlib", "sphinx", "sphinx-automodapi"]
+test = ["matplotlib", "pytest", "pytest-cov", "pytest-doctestplus"]
 
 [[package]]
 name = "dustmaps"
@@ -688,6 +722,21 @@ requests = "*"
 scipy = "*"
 six = "*"
 tqdm = "*"
+
+[[package]]
+name = "executing"
+version = "2.2.1"
+description = "Get the currently executing AST node of a frame, and other information"
+optional = false
+python-versions = ">=3.8"
+groups = ["dev"]
+files = [
+    {file = "executing-2.2.1-py2.py3-none-any.whl", hash = "sha256:760643d3452b4d777d295bb167ccc74c64a81df23fb5e08eff250c425a4b2017"},
+    {file = "executing-2.2.1.tar.gz", hash = "sha256:3632cc370565f6648cc328b32435bd120a1e4ebb20c77e3fdde9a13cd1e533c4"},
+]
+
+[package.extras]
+tests = ["asttokens (>=2.1.0)", "coverage", "coverage-enable-subprocess", "ipython", "littleutils", "pytest", "rich ; python_version >= \"3.11\""]
 
 [[package]]
 name = "extinction"
@@ -1129,52 +1178,11 @@ test = ["flaky", "ipyparallel", "pre-commit", "pytest (>=7.0,<10)", "pytest-asyn
 
 [[package]]
 name = "ipython"
-version = "8.39.0"
-description = "IPython: Productive Interactive Computing"
-optional = false
-python-versions = ">=3.10"
-groups = ["dev"]
-markers = "python_version == \"3.10\""
-files = [
-    {file = "ipython-8.39.0-py3-none-any.whl", hash = "sha256:bb3c51c4fa8148ab1dea07a79584d1c854e234ea44aa1283bcb37bc75054651f"},
-    {file = "ipython-8.39.0.tar.gz", hash = "sha256:4110ae96012c379b8b6db898a07e186c40a2a1ef5d57a7fa83166047d9da7624"},
-]
-
-[package.dependencies]
-colorama = {version = "*", markers = "sys_platform == \"win32\""}
-decorator = "*"
-exceptiongroup = {version = "*", markers = "python_version < \"3.11\""}
-jedi = ">=0.16"
-matplotlib-inline = "*"
-pexpect = {version = ">4.3", markers = "sys_platform != \"win32\" and sys_platform != \"emscripten\""}
-prompt_toolkit = ">=3.0.41,<3.1.0"
-pygments = ">=2.4.0"
-stack_data = "*"
-traitlets = ">=5.13.0"
-typing_extensions = {version = ">=4.6", markers = "python_version < \"3.12\""}
-
-[package.extras]
-all = ["ipython[black,doc,kernel,matplotlib,nbconvert,nbformat,notebook,parallel,qtconsole]", "ipython[test,test-extra]"]
-black = ["black"]
-doc = ["docrepr", "exceptiongroup", "intersphinx_registry", "ipykernel", "ipython[test]", "matplotlib", "setuptools (>=18.5)", "sphinx (>=1.3)", "sphinx-rtd-theme", "sphinxcontrib-jquery", "tomli ; python_version < \"3.11\"", "typing_extensions"]
-kernel = ["ipykernel"]
-matplotlib = ["matplotlib"]
-nbconvert = ["nbconvert"]
-nbformat = ["nbformat"]
-notebook = ["ipywidgets", "notebook"]
-parallel = ["ipyparallel"]
-qtconsole = ["qtconsole"]
-test = ["packaging", "pickleshare", "pytest", "pytest-asyncio (<0.22)", "testpath"]
-test-extra = ["curio", "ipython[test]", "jupyter_ai", "matplotlib (!=3.2.0)", "nbformat", "numpy (>=1.23)", "pandas", "trio"]
-
-[[package]]
-name = "ipython"
 version = "9.13.0"
 description = "IPython: Productive Interactive Computing"
 optional = false
 python-versions = ">=3.11"
 groups = ["dev"]
-markers = "python_version >= \"3.11\""
 files = [
     {file = "ipython-9.13.0-py3-none-any.whl", hash = "sha256:57f9d4639e20818d328d287c7b549af3d05f12486ea8f2e7f73e52a36ec4d201"},
     {file = "ipython-9.13.0.tar.gz", hash = "sha256:7e834b6afc99f020e3f05966ced34792f40267d64cb1ea9043886dab0dde5967"},
@@ -1209,7 +1217,6 @@ description = "Defines a variety of Pygments lexers for highlighting IPython cod
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
-markers = "python_version >= \"3.11\""
 files = [
     {file = "ipython_pygments_lexers-1.1.1-py3-none-any.whl", hash = "sha256:a9462224a505ade19a605f71f8fa63c2048833ce50abc86768a0d81d876dc81c"},
     {file = "ipython_pygments_lexers-1.1.1.tar.gz", hash = "sha256:09c0138009e56b6854f9535736f4171d855c8c08a563a0dcd8022f78355c7e81"},
@@ -1887,7 +1894,7 @@ version = "2.4.6"
 description = "Fundamental package for array computing in Python"
 optional = false
 python-versions = ">=3.11"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "numpy-2.4.6-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:0280e0356c0829a18d9de1cb7eee50ec22ca639878d7240307ca0943d73cd2c4"},
     {file = "numpy-2.4.6-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:110f8b71aacb688ec69062bb7f6938a0f8acb01b7c1c4beb453c65b6d234584d"},
@@ -3054,7 +3061,7 @@ version = "1.17.1"
 description = "Fundamental algorithms for scientific computing in Python"
 optional = false
 python-versions = ">=3.11"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "scipy-1.17.1-cp311-cp311-macosx_10_14_x86_64.whl", hash = "sha256:1f95b894f13729334fb990162e911c9e5dc1ab390c58aa6cbecb389c5b5e28ec"},
     {file = "scipy-1.17.1-cp311-cp311-macosx_12_0_arm64.whl", hash = "sha256:e18f12c6b0bc5a592ed23d3f7b891f68fd7f8241d69b7883769eb5d5dfb52696"},
@@ -3712,4 +3719,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "d47f1b96e47a3f2d22d9fea9c7effcec85dc30538db5867781b392263bc1f87f"
+content-hash = "a00651c29ce022ee191e1f448428a8359286592772c0835e2e9ecee741f77301"
