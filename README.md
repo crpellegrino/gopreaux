@@ -12,7 +12,7 @@ Time-domain astronomy is entering a golden age of discovery, powered by wide-fie
 Dependencies are managed using `poetry`. The recommended installation is to create a new python environment for this repo and install `poetry` within that environment. Poetry can then be used to install the dependencies:
 
 ```
-> conda create -n gopreaux python=3.10
+> conda create -n gopreaux python=3.11
 > conda activate gopreaux
 > pip install poetry
 > poetry install
