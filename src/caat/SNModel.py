@@ -873,21 +873,29 @@ class SNModel:
         x = np.vstack((phases_to_fit, np.log10(residuals["Wavelength"].values))).T
         y = residuals["MagResidual"].values
 
-        gp = GaussianProcessRegressor(kernel=self.kernel, alpha=err, optimizer=None)
+        if keep_new_fit:
+            raw_kernel = self.kernel.kernel if hasattr(self.kernel, 'kernel') else self.kernel
+            gp = GaussianProcessRegressor(kernel=raw_kernel, alpha=err, n_restarts_optimizer=3)
+
+        else:
+            gp = GaussianProcessRegressor(
+                kernel=self.kernel, alpha=err, optimizer=None
+            )
+
+
         gp.fit(x, y)
 
         if keep_new_fit:
             self.surface = gp
+            self.sn = sn_to_fit
+            self.log_transform = abs(float(residuals["Phase"].min())) + 0.1
+            self.min_phase = float(residuals["Phase"].min())
+            self.max_phase = float(residuals["Phase"].max())
 
         ### Predict lightcurves given the GP fit
-        if not phase_min:
-            phase_min = min(residuals["Phase"].values)
-        if not phase_max:
-            phase_max = max(residuals["Phase"].values)
-
         _, ax = plt.subplots()
         for filt in list(set(residuals["Filter"].values)):
-            test_times_linear = np.arange(phase_min, phase_max, 1.0 / 24)
+            test_times_linear = np.arange(residuals["Phase"].min(), residuals["Phase"].max(), 1.0 / 24)
             test_times = np.log(test_times_linear - test_times_linear.min() + 0.1)
             test_waves = np.ones(len(test_times)) * np.log10(WLE[filt])
 
