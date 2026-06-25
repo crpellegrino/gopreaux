@@ -157,6 +157,8 @@ class SNModel:
 
             if sn:
                 self.sn = sn
+            else:
+                self.sn = None
             if sncollection:
                 self.collection = sncollection
             if norm_set:
@@ -396,6 +398,10 @@ class SNModel:
                 outside the fitted bounds of the Gaussian process.
             ValueError: If the input wavelength is outside the
                 fitted bounds of the Gaussian Process.
+
+        Returns:
+            tuple[np.ndarray, np.ndarray, np.ndarray]: The predicted phases,
+                magnitudes, and uncertainties of the light curve.
         """
         if phase_max > self.max_phase or phase_min < self.min_phase:
             raise ValueError("Phases need to be within the bounds of the GP")
@@ -435,24 +441,26 @@ class SNModel:
         else:
             shifted_mags = prediction + template_lc
 
-        plt.plot(linear_phases, shifted_mags)
-        plt.plot(
-            linear_phases,
-            shifted_mags - 1.96 * dev,
-            alpha=0.2,
-            color="blue",
-        )
-        plt.plot(
-            linear_phases,
-            shifted_mags + 1.96 * dev,
-            alpha=0.2,
-            color="blue",
-        )
-        plt.xlabel("Phase (days)")
-        plt.ylabel("Log10(Flux) Relative to Peak")
-        plt.title(f"Light curve at {wavelength} Angstroms")
         if show:
+            plt.plot(linear_phases, shifted_mags)
+            plt.plot(
+                linear_phases,
+                shifted_mags - 1.96 * dev,
+                alpha=0.2,
+                color="blue",
+            )
+            plt.plot(
+                linear_phases,
+                shifted_mags + 1.96 * dev,
+                alpha=0.2,
+                color="blue",
+            )
+            plt.xlabel("Phase (days)")
+            plt.ylabel("Log10(Flux) Relative to Peak")
+            plt.title(f"Light curve at {wavelength} Angstroms")
             plt.show()
+
+        return linear_phases, shifted_mags, dev
 
     def predict_sed(self, wavelength_min, wavelength_max, phase, show=True):
         """
@@ -477,6 +485,10 @@ class SNModel:
                 outside the fitted bounds of the Gaussian process.
             ValueError: If the input phase is outside the
                 fitted bounds of the Gaussian Process.
+
+        Returns:
+            tuple[np.ndarray, np.ndarray, np.ndarray]: The predicted phases,
+                magnitudes, and uncertainties of the SED.
         """
         if wavelength_max > self.max_wl or wavelength_min < self.min_wl:
             raise ValueError("Wavelengths need to be within the bounds of the GP")
@@ -506,19 +518,21 @@ class SNModel:
         else:
             template_lc = np.zeros(len(prediction))
 
-        plt.plot(linear_waves, prediction + template_lc)
-        plt.plot(
-            linear_waves, prediction + template_lc - 1.96 * dev, alpha=0.2, color="blue"
-        )
-        plt.plot(
-            linear_waves, prediction + template_lc + 1.96 * dev, alpha=0.2, color="blue"
-        )
-        plt.xlabel("Phase (days)")
-        plt.xlabel("Wavelength (Angstrom)")
-        plt.ylabel("Log10(Flux) Relative to Peak")
-        plt.title(f"SED at {phase} days")
         if show:
+            plt.plot(linear_waves, prediction + template_lc)
+            plt.plot(
+                linear_waves, prediction + template_lc - 1.96 * dev, alpha=0.2, color="blue"
+            )
+            plt.plot(
+                linear_waves, prediction + template_lc + 1.96 * dev, alpha=0.2, color="blue"
+            )
+            plt.xlabel("Phase (days)")
+            plt.xlabel("Wavelength (Angstrom)")
+            plt.ylabel("Log10(Flux) Relative to Peak")
+            plt.title(f"SED at {phase} days")
             plt.show()
+
+        return linear_waves, prediction + template_lc, dev
 
     def predict_photometry_points(
         self, wavelengths: np.ndarray, phases: np.ndarray, show: bool = False, **kwargs
