@@ -37,6 +37,8 @@ class DataCube:
         sn: SN = None,
         name: str | None = None,
         data: dict | None = None,
+        a_v: float | None = None,
+        r_v: float | None = None,
     ):
         """
         Initialize a DataCube object.
@@ -52,6 +54,13 @@ class DataCube:
                 if one exists. Defaults to None.
             data (dict | None, optional): A dictionary of data to load with
                 the SN object. Defaults to None.
+            a_v (float | None, optional): Host galaxy visual extinction, in magnitudes.
+                Provide if you would like to correct the SN photometry for host extinction;
+                otherwise leave out. Defaults to None.
+            r_v (float | None, optional): Host galaxy reddening law.
+                Provide if you would like to correct the SN photometry for host extinction
+                AND you would like to specify a non-3.1 reddening law; otherwise leave out. 
+                Defaults to None.
         """
         if sn:
             self.sn = sn
@@ -63,6 +72,11 @@ class DataCube:
             self.sn.load_json_data()
             self.sn.load_swift_data()
         self.sn.correct_for_galactic_extinction()
+        if a_v is not None:
+            if r_v is not None:
+                self.sn.correct_for_host_extinction(a_v, r_v)
+            else:
+                self.sn.correct_for_host_extinction(a_v)
         for filt in list(self.sn.data.keys()):
             self.sn.shift_to_max(filt)
             if filt not in self.sn.wle.keys():

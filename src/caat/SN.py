@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 from astropy.coordinates import SkyCoord
 from dustmaps.sfd import SFDQuery
+from extinction import ccm89 as ccm
 from extinction import fm07 as fm
 
 from caat.utils import ROOT_DIR, WLE, colors
@@ -491,6 +492,60 @@ class SN:
                         if not phot.get("ext_corrected", False):
                             phot["mag"] -= exts[filt][0]
                             phot["ext_corrected"] = True
+                        new_phot.append(phot)
+
+                    self.shifted_data[filt] = new_phot
+
+                else:
+                    self.shifted_data[filt] = []
+
+    def correct_for_host_extinction(self, a_v: float, r_v: float = 3.1):
+        """
+        Uses user-provided host galaxy V-band extinction estimate (in magnitudes)
+        and R_v value (defaults to 3.1) to correct for host extinction.
+        NOTE: This is not run by default, and is up to the user to run this function
+        on any photometry before constructing the SN datacube used for fitting.
+        NOTE: Must be run before convert_to_fluxes() is ran.
+        """
+        exts = {}
+        for filt in self.data.keys():
+            if filt in self.wle.keys():
+                try:
+                    exts[filt] = ccm(
+                        self.wle[filt] * (1 + self.info.get("z", 0)),
+                        a_v,
+                        r_v,
+                    )
+                except:
+                    ### First input needs to be an array
+                    exts[filt] = ccm(
+                        np.asarray([self.wle[filt] * (1 + self.info.get("z", 0))]),
+                        a_v,
+                        r_v,
+                    )
+
+        for filt in self.data.keys():
+            if filt in self.wle.keys():
+                new_phot = []
+                for phot in self.data[filt]:
+                    if not phot.get("host_ext_corrected", False):
+                        phot["mag"] -= exts[filt][0]
+                        phot["host_ext_corrected"] = True
+                    new_phot.append(phot)
+
+                self.data[filt] = new_phot
+
+            else:
+                self.data[filt] = []
+
+        if self.shifted_data:
+            for filt in self.shifted_data:
+                if filt in self.wle.keys():
+                    new_phot = []
+                    for phot in self.shifted_data[filt]:
+                        if not phot.get("host_ext_corrected", False):
+                            phot["mag"] -= exts[filt][0]
+                            phot["host_ext_corrected"] = True
                         new_phot.append(phot)
 
                     self.shifted_data[filt] = new_phot
