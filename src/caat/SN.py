@@ -183,10 +183,13 @@ class SN:
         """
         caat = CAAT().caat
         row = caat[caat["Name"] == self.name]
+        if len(row) == 0:
+            self.info = {}
+            return
         if (
-            np.isnan(row["Tmax"].values)
-            or np.isnan(row["Magmax"].values)
-            or not row["Filtmax"].values
+            np.isnan(row["Tmax"].values[0])
+            or np.isnan(row["Magmax"].values[0])
+            or not row["Filtmax"].values[0]
         ):
             self.info = {}
 
