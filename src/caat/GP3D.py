@@ -820,9 +820,9 @@ class GP3D(GP):
         ### Convert to mags from peak
         for i, col in enumerate(final_prediction[:,]):
             wl = 10 ** wl_grid[wl_inds_fitted][i]
-            zp = (10**-23 * 3e18 / wl) * 1e11
+            zp = (3631 * 10**-23 * 3e18 / wl**2)
             shifted_mags = -1 * (
-                (col + np.log10(zp * 1e-11) - np.log10(10**-23 * 3e18 / 5000)) / -0.4
+                (col + np.log10(zp) - np.log10(3631 * 10**-23 * 3e18 / 5000**2)) / -0.4
             )
             final_prediction[i] = shifted_mags
 
@@ -1361,11 +1361,6 @@ class GP3D(GP):
                                 - self.log_transform,
                             )
 
-                        if interactive:
-                            use_for_template = input(
-                                "Use this fit to construct a template? y/n"
-                            )
-
                 x, y, wl_inds_fitted, phase_inds_fitted, phase_offset = (
                     self._build_test_wavelength_phase_grid_from_photometry(
                         residuals["Wavelength"].values,
@@ -1403,14 +1398,13 @@ class GP3D(GP):
                 ### Convert to mags from peak
                 for i, col in enumerate(test_prediction_reshaped[:,]):
                     wl = 10 ** wl_grid[wl_inds_fitted][i]
-                    zp = (10**-23 * 3e18 / wl) * 1e11
+                    zp = (3631 * 10**-23 * 3e18 / wl**2)
                     shifted_peak_mag = np.log10(
                         sn.zps[sn.info["peak_filt"]]
-                        * 1e-11
                         * 10 ** (-0.4 * sn.info["peak_mag"])
                     )
                     shifted_mags = -1 * (
-                        (np.log10(10 ** (col + shifted_peak_mag) / (zp * 1e-11)) / -0.4)
+                        (np.log10(10 ** (col + shifted_peak_mag) / zp) / -0.4)
                         - sn.info["peak_mag"]
                     )
                     test_prediction_reshaped[i] = shifted_mags
@@ -1522,6 +1516,11 @@ class GP3D(GP):
                                 std_prediction_smoothed,
                                 [-15.0, 0.0, 50.0],
                             )
+                if interactive:
+                    use_for_template = input(
+                        "Use this fit to construct a template? y/n"
+                    )
+                
                 if not interactive:
                     use_for_template = "y"
 
@@ -1529,6 +1528,9 @@ class GP3D(GP):
                     for i in range(round(np.log(len(residuals)))):
                         random_sample = self._sample_predicted_sed(gp_grid, gp_grid_std)
                         gaussian_processes.append(random_sample)
+
+                else:
+                    self.collection.sne.remove(sn)
 
                 if save_individual_fits:
                     snmodel = SNModel(
@@ -1552,6 +1554,7 @@ class GP3D(GP):
         subtract_polynomial=False,
         run_diagnostics=False,
         fit_separately=True,
+        interactive=False,
     ):
         """
         Generate a Gaussian Process Regression model of the input transient sample.
@@ -1571,6 +1574,9 @@ class GP3D(GP):
                 as a group. Controls whether `run_gp_individually` or `run_gp_on_full_sample`
                 is called to generate the predictive Gaussian Process Regression model.
                 Defaults to True.
+            interactive (bool, optional): Interactively choose which fits to use in the
+                creation of the final Gaussian process model. If True, sets `plot` to True
+                as well. Defaults to False.
 
         Returns:
             SNModel: An SNModel object containing the final, 3-dimensional Gaussian Process
@@ -1613,6 +1619,7 @@ class GP3D(GP):
                     subtract_median=subtract_median,
                     subtract_polynomial=subtract_polynomial,
                     run_diagnostics=run_diagnostics,
+                    interactive=interactive,
                 )
             )
 
