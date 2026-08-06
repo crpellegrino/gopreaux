@@ -34,7 +34,7 @@ class SN:
 
     base_path = os.path.join(ROOT_DIR, "data/")
 
-    ### All ZPs for AB mags, in 1e-11 erg/s/cm**2/A
+    ### All ZPs for AB mags
     zps = {}
 
     wle = WLE
@@ -120,8 +120,9 @@ class SN:
         else:
             self.load_shifted_data()
 
+        # AB mag zeropoints
         for filt, wl in self.wle.items():
-            self.zps[filt] = (10**-23 * 3e18 / wl) * 1e11
+            self.zps[filt] = 3631 * 10**-23 * 3e18 / wl**2
 
     def __repr__(self):
         """
@@ -411,8 +412,8 @@ class SN:
             if filt in self.zps.keys():
                 for phot in self.data[filt]:
                     phot["flux"] = (
-                        self.zps[filt] * 1e-11 * 10 ** (-0.4 * phot["mag"])
-                    )  # * 1e15
+                        self.zps[filt] * 10 ** (-0.4 * phot["mag"])
+                    )
                     phot["fluxerr"] = phot["err"]  # 1.086 * phot['err'] * phot['flux']
                     new_phot.append(phot)
                 self.data[filt] = new_phot
@@ -427,12 +428,11 @@ class SN:
                 for phot in self.shifted_data[filt]:
                     unshifted_mag = phot["mag"] + self.info["peak_mag"]
                     shifted_flux = np.log10(
-                        self.zps[filt] * 1e-11 * 10 ** (-0.4 * unshifted_mag)
+                        self.zps[filt] * 10 ** (-0.4 * unshifted_mag)
                     ) - np.log10(
                         self.zps[self.info["peak_filt"]]
-                        * 1e-11
                         * 10 ** (-0.4 * self.info["peak_mag"])
-                    )  # * 1e15
+                    )
                     phot["flux"] = shifted_flux
                     phot["shiftedmag"] = -1 * phot["mag"]
                     # phot["flux"] = -1*phot["mag"]

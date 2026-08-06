@@ -179,10 +179,10 @@ def convert_shifted_fluxes_to_shifted_mags(
         zp_at_wl (float): The zeropoint of the filter at the given effective wavelength.
     """
     shifted_peak_mag = np.log10(
-        sn.zps[sn.info["peak_filt"]] * 1e-11 * 10 ** (-0.4 * sn.info["peak_mag"])
+        sn.zps[sn.info["peak_filt"]] * 10 ** (-0.4 * sn.info["peak_mag"])
     )
     shifted_mags = -1 * (
-        (np.log10(10 ** (fluxes + shifted_peak_mag) / (zp_at_wl * 1e-11)) / -0.4)
+        (np.log10(10 ** (fluxes + shifted_peak_mag) / zp_at_wl) / -0.4)
         - sn.info["peak_mag"]
     )
     return shifted_mags

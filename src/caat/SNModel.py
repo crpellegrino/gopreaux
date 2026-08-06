@@ -296,7 +296,7 @@ class SNModel:
 
         model_hdu.header["FILTERS_FIT"] = ",".join(self.filters)
         model_hdu.header["LOG_TRANSFORM"] = self.log_transform
-        if hasattr(self, "sn"):
+        if getattr(self, "sn", None):
             model_hdu.header["OBJECTS"] = self.sn.name
         else:
             model_hdu.header["OBJECTS"] = ",".join(
@@ -340,10 +340,7 @@ class SNModel:
             object_names = hdul[0].header["OBJECTS"]
             norm_set_names = hdul[0].header["NORM_SET"]
 
-            try:
-                self.kernel = surface.kernel if isinstance(surface, SurfaceArray) else surface.kernel_
-            except:
-                print("No Kernel, need to implement")
+            self.kernel = surface.kernel_
 
             template = hdul[1].data
             phase_grid = hdul[2].data
@@ -804,10 +801,9 @@ class SNModel:
             
             def calc_shifted_flux(row):
                 return np.log10(
-                    sn_to_fit.zps[row["Filter"]] * 1e-11 * 10 ** (-0.4 * (sn_to_fit.info["peak_mag"] - row["Mag"]))
+                    sn_to_fit.zps[row["Filter"]] * 10 ** (-0.4 * (sn_to_fit.info["peak_mag"] - row["Mag"]))
                 ) - np.log10(
                     sn_to_fit.zps[sn_to_fit.info["peak_filt"]]
-                    * 1e-11
                     * 10 ** (-0.4 * sn_to_fit.info["peak_mag"])
                 )
         
