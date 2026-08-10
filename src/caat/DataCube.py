@@ -69,8 +69,8 @@ class DataCube:
             self.sn = sn
 
         if not self.sn.data:
-            self.sn.load_json_data()
             self.sn.load_swift_data()
+            self.sn.load_json_data()
         self.sn.correct_for_galactic_extinction()
         if a_v is not None:
             if r_v is not None:
