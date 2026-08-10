@@ -302,6 +302,9 @@ class SN:
             os.path.join(self.base_path, self.classification, self.subtype, self.name)
         )
 
+        # This will ensure OpenSN data files come after data release files
+        dirfiles.sort()
+
         for f in dirfiles:
             ### Trying to filter out info file and shifted data file, should do this better
             if ".json" in f and "_info.json" not in f and "_shifted_data.json" not in f:
@@ -314,16 +317,20 @@ class SN:
                     d = json.load(jsonf)
 
                 for filt, mag_list in d.items():
-                    self.data.setdefault(filt, []).extend(
-                        [mag for mag in mag_list if mag["err"] < 9999]
-                    )
-                    self.data.setdefault(filt, []).extend(
-                        [
-                            mag | {"err": 0.1, "nondetection": True}
-                            for mag in mag_list
-                            if mag["err"] == 9999 and not np.isnan(mag["mag"])
-                        ]
-                    )
+                    # We don't want to include duplicate data from the OpenSN catalog if
+                    # we are processing it ourselves
+                    # This includes Swift, CfA data releases
+                    if ("opensn" in f and filt not in self.data.keys()) or "opensn" not in f:
+                        self.data.setdefault(filt, []).extend(
+                            [mag for mag in mag_list if mag["err"] < 9999]
+                        )
+                        self.data.setdefault(filt, []).extend(
+                            [
+                                mag | {"err": 0.1, "nondetection": True}
+                                for mag in mag_list
+                                if mag["err"] == 9999 and not np.isnan(mag["mag"])
+                            ]
+                        )
 
     def write_json_data(self, dry_run=True):
         """
@@ -927,8 +934,8 @@ class SN:
             force (bool, optional): Overwrite the existing peak information in the
                 CAAT file. Defaults to False.
         """
-        self.load_json_data()
         self.load_swift_data()
+        self.load_json_data()
         self.shifted_data = {}
 
         if not filt:

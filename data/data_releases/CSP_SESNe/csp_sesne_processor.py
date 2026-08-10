@@ -17,16 +17,26 @@ class CSPProcessor:
     """
     def __init__(
         self,
-        save: bool = False,
+        save_caat: bool = False,
+        save_phot: bool = False,
         force: bool = False
     ):
         self.force = force
-        self.save = save
+        self.save_caat = save_caat
+        self.save_phot = save_phot
         
         self.caat = CAAT().caat
         self.base_path = os.path.dirname(os.path.realpath(__file__))
         self.data_file = 'table6.txt'
         self.object_file = 'table1.txt'
+
+        # From https://ui.adsabs.harvard.edu/abs/2003AJ....126.1090C/abstract
+        # for 2MASS (aka PAIRITEL)
+        self.vega_to_ab = {
+            "J": 0.894,
+            "H": 1.374,
+            "Ks": 1.84,
+        }
 
     def _parse_objects(self):
         """
@@ -82,8 +92,8 @@ class CSPProcessor:
                 else:
                     print(f"Metadata for {name} already exists. Use force to overwrite its row in the CAAT file") 
 
-        if self.save:
-            CAAT().save_db_file(os.path.join(ROOT_DIR, "data/", "caat.csv"), self.caat, force=self.save)
+        if self.save_caat:
+            CAAT().save_db_file(os.path.join(ROOT_DIR, "data/", "caat.csv"), self.caat, force=self.force)
         else:
             print(self.caat)       
 
@@ -118,7 +128,7 @@ class CSPProcessor:
                 for i, row in df_for_filt.iterrows():
                     phot = {}
                     phot["mjd"] = row["MJD"]
-                    phot["mag"] = row["Mag"]
+                    phot["mag"] = row["Mag"] + self.vega_to_ab.get(filt, 0.0)
                     phot["err"] = row["Err"]
                     data[filt.replace('\'', '')].append(phot)
 
@@ -128,9 +138,9 @@ class CSPProcessor:
                 sntype = info_row["Type"].values[0]
                 snsubtype = info_row["Subtype"].values[0]
                 sn_path = os.path.join(ROOT_DIR, "data/", sntype, snsubtype, "SN"+sn)
-                if not os.path.exists(sn_path) and self.save:
+                if not os.path.exists(sn_path) and self.save_phot:
                     os.mkdir(sn_path)
-                if self.save:
+                if self.save_phot:
                     filepath = os.path.join(sn_path, "SN"+sn+"_cfa_data_release.json")
                     if self.force or not os.path.exists(filepath):
                         with open(filepath, 'w+') as f:
@@ -150,5 +160,5 @@ class CSPProcessor:
         self._parse_data()
 
 
-processor = CSPProcessor(save=True)
+processor = CSPProcessor(save_caat=False, save_phot=False, force=False)
 processor.process()
