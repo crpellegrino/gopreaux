@@ -186,3 +186,69 @@ def convert_shifted_fluxes_to_shifted_mags(
         - sn.info["peak_mag"]
     )
     return shifted_mags
+
+
+def ab_zero_point(wavelengths: np.ndarray):
+    """
+    The AB flux zero point (erg/s/cm^2/A) at the given wavelengths.
+
+    Args:
+        wavelengths (np.ndarray): The wavelengths, in Angstroms.
+    """
+    return 3631 * 10**-23 * 3e18 / np.asarray(wavelengths) ** 2
+
+
+def filter_zero_point_function(
+    zps: dict, filters: np.ndarray, wavelengths: np.ndarray
+):
+    """
+    Build a flux zero point as a function of wavelength that reproduces each filter's
+    own zero point, `zps[filt]`, at the wavelength where that filter's flux sits in the
+    shifted frame (the median wavelength of its photometry).
+
+    The fluxes in the shifted frame are built with the zero point of each filter at the
+    shifted wavelength of each point, so converting a model of them back to magnitudes
+    with this zero point is consistent with the photometry. Between filters, the log
+    zero point is interpolated linearly in log wavelength. Beyond the first and last
+    filter, it continues with the AB slope (zero point proportional to wavelength**-2).
+
+    Args:
+        zps (dict): The zero point of each filter, e.g. `sn.zps`.
+        filters (np.ndarray): The filter of each photometry point.
+        wavelengths (np.ndarray): The wavelength of each photometry point, in Angstroms.
+            Must be aligned with `filters`.
+
+    Returns:
+        callable: `zero_point(wavelengths)` returning the zero point at the given
+            wavelengths (in Angstroms). If fewer than two of the filters have a
+            zero point in `zps`, it is the AB zero point.
+    """
+    filters = np.asarray(filters)
+    log_wavelengths = np.log10(np.asarray(wavelengths, dtype=float))
+
+    nodes = sorted(
+        (np.median(log_wavelengths[filters == filt]), np.log10(zps[filt]))
+        for filt in np.unique(filters)
+        if filt in zps
+    )
+    if len(nodes) < 2:
+        return ab_zero_point
+
+    node_log_wls, node_log_zps = (np.asarray(v) for v in zip(*nodes))
+
+    def zero_point(wavelengths):
+        log_wl = np.log10(wavelengths)
+        log_zp = np.interp(log_wl, node_log_wls, node_log_zps)
+        log_zp = np.where(
+            log_wl < node_log_wls[0],
+            node_log_zps[0] - 2 * (log_wl - node_log_wls[0]),
+            log_zp,
+        )
+        log_zp = np.where(
+            log_wl > node_log_wls[-1],
+            node_log_zps[-1] - 2 * (log_wl - node_log_wls[-1]),
+            log_zp,
+        )
+        return 10**log_zp
+
+    return zero_point

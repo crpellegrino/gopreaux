@@ -10,7 +10,14 @@ from scipy.interpolate import RegularGridInterpolator
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, Matern, WhiteKernel
 
-from caat.utils import ROOT_DIR, WLE, colors, convert_shifted_fluxes_to_shifted_mags
+from caat.utils import (
+    ROOT_DIR,
+    WLE,
+    ab_zero_point,
+    colors,
+    convert_shifted_fluxes_to_shifted_mags,
+    filter_zero_point_function,
+)
 
 from .DataCube import DataCube
 from .Plot import Plot
@@ -98,6 +105,14 @@ class SNModel:
     Provides routines for saving and loading the final GP fits, as well as
     for extracting 2D light curves or SEDs from the interpolated surfaces.
     """
+
+    # The SN (or mock SN) of the last `fit_photometry` call with `keep_new_fit=True`
+    _fit_sn = None
+
+    # The flux zero point as a function of wavelength, used to convert the predictions of a
+    # Gaussian process on residuals to magnitudes. Built from the photometry that the
+    # surface was fit to. If it is None, the AB zero point is used.
+    _zero_point = None
 
     def __init__(
         self,
@@ -237,6 +252,17 @@ class SNModel:
             errs_to_fit = filtered_df["ShiftedFluxerr"].values
             residuals = []
 
+            detections = (
+                filtered_df[filtered_df["Nondetection"] == False]
+                if "Nondetection" in filtered_df.columns
+                else filtered_df
+            )
+            self._zero_point = filter_zero_point_function(
+                self.sn.zps,
+                detections["ShiftedFilter"].values,
+                detections["ShiftedWavelength"].values,
+            )
+
             for phase, wl, mag in zip(phases_to_fit, wls_to_fit, shifted_mags):
                 phase_ind = np.argmin(abs(phase - self.phase_grid))
                 wl_ind = np.argmin(abs(wl - self.wl_grid))
@@ -366,6 +392,71 @@ class SNModel:
 
         self.norm_set = SNCollection(names=norm_set_names.split(","))
 
+    def _template_at(self, phases: np.ndarray, wavelengths: np.ndarray):
+        """The template (log flux relative to peak) at the nearest grid points"""
+        if self.template is None:
+            return np.zeros(len(phases))
+
+        phase_inds = np.argmin(abs(self.phase_grid[None, :] - np.asarray(phases)[:, None]), axis=1)
+        wl_inds = np.argmin(abs(self.wl_grid[None, :] - np.asarray(wavelengths)[:, None]), axis=1)
+        return np.asarray(self.template)[phase_inds, wl_inds]
+
+    def _log_flux_to_mags(self, log_fluxes: np.ndarray, wavelengths: np.ndarray):
+        """
+        Convert log10 fluxes relative to peak to magnitudes relative to peak.
+
+        Uses the zero points of the SN that was fit in the last `fit_photometry` call
+        with `keep_new_fit=True` or, if there was none, of the SN this model belongs to.
+        The zero point at each wavelength is interpolated between the zero points of the
+        filters of the photometry that was fit (see `caat.utils.filter_zero_point_function`),
+        so that it matches the way the fluxes were built. The AB zero point is used if there
+        is no such photometry.
+
+        Raises:
+            ValueError: If there is no SN to convert with.
+        """
+        sn = self._fit_sn if self._fit_sn is not None else self.sn
+        if sn is None:
+            raise ValueError(
+                "Cannot convert the predicted log fluxes to magnitudes, because this model "
+                "has no SN to convert with. The surface is a Gaussian process on residuals "
+                "but the model was not made for a single SN, and `fit_photometry` has not "
+                "been called with `keep_new_fit=True`."
+            )
+
+        zero_point = self._zero_point if self._zero_point is not None else ab_zero_point
+        return convert_shifted_fluxes_to_shifted_mags(
+            log_fluxes, sn, zero_point(np.asarray(wavelengths, dtype=float))
+        )
+
+    def _predict_mags_from_peak(self, phases: np.ndarray, wavelengths: np.ndarray):
+        """
+        Predict magnitudes relative to peak, and their uncertainties, at the given
+        phases (in days) and wavelengths (in Angstroms).
+
+        A `SurfaceArray` surface is the final median-combined model. It was built from the
+        Gaussian process prediction plus the template, and converted to magnitudes
+        relative to peak, so it is returned as it is. Any other surface is a Gaussian
+        process on the residuals from the template in log flux, so the template is added
+        back and the result converted to magnitudes. The uncertainty is then
+        2.5 * the uncertainty in log flux.
+        """
+        phases = np.atleast_1d(np.asarray(phases, dtype=float))
+        wavelengths = np.atleast_1d(np.asarray(wavelengths, dtype=float)) * np.ones(len(phases))
+
+        prediction, dev = self.surface.predict(
+            np.vstack((np.log(phases + self.log_transform), np.log10(wavelengths))).T,
+            return_std=True,
+        )
+
+        if isinstance(self.surface, SurfaceArray):
+            return prediction, dev
+
+        mags = self._log_flux_to_mags(
+            prediction + self._template_at(phases, wavelengths), wavelengths
+        )
+        return mags, 2.5 * dev
+
     def predict_lightcurve(
         self,
         phase_min: float | int,
@@ -376,9 +467,9 @@ class SNModel:
         """
         Predict a light curve using the stored surface model.
         Utilizes the `predict()` method on `self.surface` to predict
-        relative magnitudes given phase bounds and wavelength.
-        Works for both stored and initialized `GaussianProcessRegressor`
-        objects as well as `SurfaceArray` objects.
+        magnitudes relative to the light curve peak given phase bounds
+        and wavelength. Works for both stored and initialized
+        `GaussianProcessRegressor` objects as well as `SurfaceArray` objects.
 
         Args:
             phase_min (float | int): The minimum phase to predict,
@@ -395,10 +486,13 @@ class SNModel:
                 outside the fitted bounds of the Gaussian process.
             ValueError: If the input wavelength is outside the
                 fitted bounds of the Gaussian Process.
+            ValueError: If the surface is a Gaussian process on residuals and there
+                is no SN to convert the prediction to magnitudes with.
 
         Returns:
             tuple[np.ndarray, np.ndarray, np.ndarray]: The predicted phases,
-                magnitudes, and uncertainties of the light curve.
+                magnitudes relative to peak, and uncertainties (in magnitudes)
+                of the light curve.
         """
         if phase_max > self.max_phase or phase_min < self.min_phase:
             raise ValueError("Phases need to be within the bounds of the GP")
@@ -410,62 +504,36 @@ class SNModel:
             phase_max,
             int(max(min(len(self.phase_grid) / 2, len(self.wl_grid) / 2), 40)),
         )
-        phases = np.log(linear_phases + self.log_transform)
-        waves = np.ones(len(phases)) * np.log10(wavelength)
-
-        prediction, dev = self.surface.predict(
-            np.vstack((phases, waves)).T, return_std=True
-        )
-
-        # Add back on template mag for the correct phase and wavelength inds
-        if self.template is not None:
-            template_lc = []
-            wl_ind = np.argmin((abs(self.wl_grid - wavelength)))
-            for i in range(len(phases)):
-                phase_ind = np.argmin((abs(self.phase_grid - linear_phases[i])))
-                template_lc.append(self.template[phase_ind, wl_ind])
-            template_lc = np.asarray(template_lc)
-
-        else:
-            template_lc = np.zeros(len(prediction))
-
-        if self.sn is not None:
-            closest_filt = list(WLE.keys())[np.argmin((abs(np.asarray(list(WLE.values())) - wavelength)))]
-            shifted_mags = convert_shifted_fluxes_to_shifted_mags(
-                prediction + template_lc, self.sn, self.sn.zps[closest_filt]
-            )
-
-        else:
-            shifted_mags = prediction + template_lc
+        mags, dev = self._predict_mags_from_peak(linear_phases, wavelength)
 
         if show:
-            plt.plot(linear_phases, shifted_mags)
+            plt.plot(linear_phases, mags)
             plt.plot(
                 linear_phases,
-                shifted_mags - 1.96 * dev,
+                mags - 1.96 * dev,
                 alpha=0.2,
                 color="blue",
             )
             plt.plot(
                 linear_phases,
-                shifted_mags + 1.96 * dev,
+                mags + 1.96 * dev,
                 alpha=0.2,
                 color="blue",
             )
             plt.xlabel("Phase (days)")
-            plt.ylabel("Log10(Flux) Relative to Peak")
+            plt.ylabel("Magnitude Relative to Peak")
             plt.title(f"Light curve at {wavelength} Angstroms")
             plt.show()
 
-        return linear_phases, shifted_mags, dev
+        return linear_phases, mags, dev
 
     def predict_sed(self, wavelength_min, wavelength_max, phase, show=True):
         """
         Predict a spectral energy distribution (SED) using the stored surface model.
         Utilizes the `predict()` method on `self.surface` to predict
-        relative magnitudes given wavelength bounds and phase.
-        Works for both stored and initialized `GaussianProcessRegressor`
-        objects as well as `SurfaceArray` objects.
+        magnitudes relative to the light curve peak given wavelength bounds
+        and phase. Works for both stored and initialized
+        `GaussianProcessRegressor` objects as well as `SurfaceArray` objects.
 
         Args:
             wavelength_min (float | int): The minimum wavelength to predict,
@@ -482,10 +550,13 @@ class SNModel:
                 outside the fitted bounds of the Gaussian process.
             ValueError: If the input phase is outside the
                 fitted bounds of the Gaussian Process.
+            ValueError: If the surface is a Gaussian process on residuals and there
+                is no SN to convert the prediction to magnitudes with.
 
         Returns:
-            tuple[np.ndarray, np.ndarray, np.ndarray]: The predicted phases,
-                magnitudes, and uncertainties of the SED.
+            tuple[np.ndarray, np.ndarray, np.ndarray]: The predicted wavelengths,
+                magnitudes relative to peak, and uncertainties (in magnitudes)
+                of the SED.
         """
         if wavelength_max > self.max_wl or wavelength_min < self.min_wl:
             raise ValueError("Wavelengths need to be within the bounds of the GP")
@@ -497,39 +568,20 @@ class SNModel:
             wavelength_max,
             int(min(len(self.phase_grid) / 2, len(self.wl_grid) / 2)),
         )
-        waves = np.log10(linear_waves)
-        phases = np.ones(len(waves)) * np.log(phase + self.log_transform)
-
-        prediction, dev = self.surface.predict(
-            np.vstack((phases, waves)).T, return_std=True
+        mags, dev = self._predict_mags_from_peak(
+            np.full(len(linear_waves), float(phase)), linear_waves
         )
 
-        # Add back on template mag for the correct phase and wavelength inds
-        if self.template is not None:
-            template_lc = []
-            phase_ind = np.argmin((abs(self.phase_grid - phase)))
-            for i in range(len(waves)):
-                wl_ind = np.argmin((abs(self.wl_grid - linear_waves[i])))
-                template_lc.append(self.template[phase_ind, wl_ind])
-            template_lc = np.asarray(template_lc)
-        else:
-            template_lc = np.zeros(len(prediction))
-
         if show:
-            plt.plot(linear_waves, prediction + template_lc)
-            plt.plot(
-                linear_waves, prediction + template_lc - 1.96 * dev, alpha=0.2, color="blue"
-            )
-            plt.plot(
-                linear_waves, prediction + template_lc + 1.96 * dev, alpha=0.2, color="blue"
-            )
-            plt.xlabel("Phase (days)")
+            plt.plot(linear_waves, mags)
+            plt.plot(linear_waves, mags - 1.96 * dev, alpha=0.2, color="blue")
+            plt.plot(linear_waves, mags + 1.96 * dev, alpha=0.2, color="blue")
             plt.xlabel("Wavelength (Angstrom)")
-            plt.ylabel("Log10(Flux) Relative to Peak")
+            plt.ylabel("Magnitude Relative to Peak")
             plt.title(f"SED at {phase} days")
             plt.show()
 
-        return linear_waves, prediction + template_lc, dev
+        return linear_waves, mags, dev
 
     def predict_photometry_points(
         self, wavelengths: np.ndarray, phases: np.ndarray, show: bool = False, **kwargs
@@ -537,9 +589,9 @@ class SNModel:
         """
         Predict a series of photometry points given arrays of wavelength and phase.
         Utilizes the `predict()` method on `self.surface` to predict
-        relative magnitudes at discrete points of wavelength and phase.
-        Works for both stored and initialized `GaussianProcessRegressor`
-        objects as well as `SurfaceArray` objects.
+        magnitudes relative to the light curve peak at discrete points of
+        wavelength and phase. Works for both stored and initialized
+        `GaussianProcessRegressor` objects as well as `SurfaceArray` objects.
 
         Example:
             To predict points in two filters at each of three phases,
@@ -560,70 +612,39 @@ class SNModel:
                 the bounds of the Gaussian process fit.
             ValueError: If any input phase values are outside
                 the bounds of the Gaussian process fit.
+            ValueError: If the surface is a Gaussian process on residuals and there
+                is no SN to convert the prediction to magnitudes with.
 
         Returns:
-            tuple[np.ndarray, np.ndarray, np.ndarray]: The predicted phases,
-                magnitudes, and uncertainties of the photometry points.
+            tuple[np.ndarray, np.ndarray, np.ndarray]: The input phases, the predicted
+                magnitudes relative to peak, and their uncertainties (in magnitudes).
+                Each magnitude is a random draw from a Gaussian with the predicted value
+                as its mean and the uncertainty as its standard deviation.
         """
         if any(wavelengths > max(self.wl_grid)) or any(wavelengths < min(self.wl_grid)):
             raise ValueError("Wavelengths need to be within the bounds of the GP")
         if any(phases < self.min_phase) or any(phases > self.max_phase):
             raise ValueError("Phase needs to be within the bounds of the GP")
 
-        log_phases = np.log(phases + self.log_transform)
-        log_waves = np.log10(wavelengths)
-
-        predicted_lc, dev = self.surface.predict(
-            np.vstack((log_phases, log_waves)).T, return_std=True
-        )
+        predicted_mags, dev = self._predict_mags_from_peak(phases, wavelengths)
 
         # For each predicted point, define a Gaussian distribution with uncertainty=dev and sample from it
-        prediction = []
-        for i in range(len(predicted_lc)):
-            prediction.append(np.random.normal(predicted_lc[i], dev[i], 1)[0])
-        prediction = np.asarray(prediction)
-
-        # Add back on template mag for the correct phase and wavelength inds
-        if self.template is not None:
-            template_lc = []
-            for i in range(len(phases)):
-                phase_ind = np.argmin((abs(self.phase_grid - phases[i])))
-                wl_ind = np.argmin((abs(self.wl_grid - wavelengths[i])))
-                template_lc.append(self.template[phase_ind, wl_ind])
-            template_lc = np.asarray(template_lc)
-
-        else:
-            template_lc = np.zeros(len(prediction))
-
-        if self.sn is not None:
-            shifted_mags = []
-            for i in range(len(wavelengths)):
-                wavelength = wavelengths[i]
-                closest_filt = list(WLE.keys())[np.argmin((abs(np.asarray(list(WLE.values())) - wavelength)))]
-                shifted_mags.append(
-                    convert_shifted_fluxes_to_shifted_mags(
-                        np.asarray(prediction[i] + template_lc[i]), self.sn, self.sn.zps[closest_filt]
-                    )
-                )
-            shifted_mags = np.asarray(shifted_mags)
-
-        else:
-            shifted_mags = prediction + template_lc
+        mags = np.random.normal(predicted_mags, dev)
 
         if show:
             plt.errorbar(
                 phases,
-                shifted_mags,
+                mags,
                 yerr=dev,
                 fmt="o",
                 color=kwargs.get("color", "k"),
             )
             plt.xlabel("Phase (days)")
-            plt.ylabel("Log10(Flux) Relative to Peak")
+            plt.ylabel("Magnitude Relative to Peak")
             plt.title("Predicted Photometry Points")
             plt.show()
 
-        return phases, prediction + template_lc, dev
+        return phases, mags, dev
 
     def compare_lightcurve_with_photometry(self, sn: SN, filt: str, show: bool = True):
         """
@@ -876,6 +897,13 @@ class SNModel:
 
         if keep_new_fit:
             self.surface = gp
+            # Needed to convert predictions from this fit to magnitudes
+            self._fit_sn = sn_to_fit
+            self._zero_point = filter_zero_point_function(
+                sn_to_fit.zps,
+                residuals["Filter"].values,
+                residuals["Wavelength"].values,
+            )
 
         ### Predict lightcurves given the GP fit
         _, ax = plt.subplots()

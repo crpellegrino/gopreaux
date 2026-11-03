@@ -40,12 +40,17 @@ Code Example
         surface="SESNe_SNIIb_GP_model.fits"
     )
 
-    # Predict a light curve from -20 to 45 days at 5000 Angstroms
-    model.predict_lightcurve(-20.0, 45.0, 5000, show=False)
+    # Predict a light curve from -20 to 45 days at 5000 Angstroms. This returns the
+    # phases (days), the magnitudes relative to the light curve peak, and their uncertainties
+    phases, mags, mag_errs = model.predict_lightcurve(-20.0, 45.0, 5000, show=False)
 
     # Compare the prediction to real photometry from a supernova
     gkg = SN(name="SN2016gkg")
     model.compare_lightcurve_with_photometry(gkg, filt="V")
+
+The ``predict_lightcurve``, ``predict_sed`` and ``predict_photometry_points`` methods all return
+magnitudes relative to the light curve peak (so a value of -2 is two magnitudes fainter than peak),
+with uncertainties in magnitudes.
 
 More examples can be found as Jupyter notebooks in :doc:`Tutorials </tutorials>`.
 
