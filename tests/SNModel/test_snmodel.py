@@ -13,6 +13,7 @@ from caat.utils import (
     WLE,
     ab_zero_point,
     convert_shifted_fluxes_to_shifted_mags,
+    MIN_PHOTOMETRY_ERROR,
     filter_zero_point_function,
 )
 
@@ -62,15 +63,19 @@ def _surface_array_model(template_scale=1.0, iqr=0.0):
     )
 
 
+FIT_PHASE_MIN = -5.0
+
+
 def _residual_gp_model():
-    """A per-SN style model: a GP on residuals in log flux, with an SN to convert to magnitudes"""
+    """A per-SN style model: a GP on residuals in log flux, fit in log(phase - first phase + 0.1), with an SN to convert to magnitudes"""
     rng = np.random.default_rng(0)
+    phases = np.append(rng.uniform(FIT_PHASE_MIN, 45, 19), FIT_PHASE_MIN)
     x = np.column_stack(
-        (np.log(rng.uniform(-5, 45, 20) + LOG_TRANSFORM), np.log10(rng.uniform(3500, 8500, 20)))
+        (np.log(phases - FIT_PHASE_MIN + 0.1), np.log10(rng.uniform(3500, 8500, 20)))
     )
     y = 0.05 * rng.normal(size=20)
     gp = GaussianProcessRegressor(kernel=RBF([1.0, 0.3]), alpha=0.01, optimizer=None).fit(x, y)
-    return SNModel(
+    model = SNModel(
         surface=gp,
         template_mags=_template_grid(),
         phase_grid=PHASES,
@@ -79,6 +84,8 @@ def _residual_gp_model():
         sn=_mock_sn(),
         log_transform=LOG_TRANSFORM,
     )
+    model._fit_phase_min = FIT_PHASE_MIN
+    return model
 
 
 def _expected_surface(phases, wavelengths):
@@ -132,7 +139,9 @@ class TestResidualGPModelReturnsMagnitudes:
 
     @staticmethod
     def _expected(model, phases, wavelengths):
-        X = np.column_stack((np.log(np.asarray(phases) + LOG_TRANSFORM), np.log10(wavelengths)))
+        X = np.column_stack(
+            (np.log(np.maximum(np.asarray(phases) - model._fit_phase_min + 0.1, 0.1)), np.log10(wavelengths))
+        )
         residual, std = model.surface.predict(X, return_std=True)
         template = np.asarray(
             [
@@ -189,6 +198,46 @@ class TestResidualGPModelReturnsMagnitudes:
                 call()
 
 
+    def test_raises_without_a_phase_reference(self):
+        model = _residual_gp_model()
+        model._fit_phase_min = None
+        for call in (
+            lambda: model.predict_lightcurve(0.0, 40.0, 5000.0, show=False),
+            lambda: model.predict_sed(3500.0, 8500.0, 10.0, show=False),
+            lambda: model.predict_photometry_points(np.asarray([5000.0]), np.asarray([10.0])),
+        ):
+            with pytest.raises(ValueError, match="phase"):
+                call()
+
+
+class TestGPPhaseCoordinate:
+    """A GP on residuals is fit in log(phase - first phase + 0.1); a SurfaceArray is on a log(phase + log_transform) grid"""
+
+    def test_values(self):
+        model = _residual_gp_model()
+        phases = np.asarray([-5.0, 0.0, 20.0])
+        assert np.allclose(model._gp_phase_coordinate(phases), np.log(phases - FIT_PHASE_MIN + 0.1))
+
+    def test_phases_at_or_before_the_first_epoch_map_to_the_first_epoch(self):
+        model = _residual_gp_model()
+        coordinate = model._gp_phase_coordinate(np.asarray([FIT_PHASE_MIN, FIT_PHASE_MIN - 3.0, FIT_PHASE_MIN - 30.0]))
+        assert np.all(np.isfinite(coordinate))
+        assert np.allclose(coordinate, np.log(0.1))
+
+    def test_raises_without_a_phase_reference(self):
+        model = _residual_gp_model()
+        model._fit_phase_min = None
+        with pytest.raises(ValueError, match="phase"):
+            model._gp_phase_coordinate(np.asarray([0.0]))
+
+    def test_surface_array_models_do_not_depend_on_it(self):
+        model = _surface_array_model()
+        _, mags, _ = model.predict_lightcurve(0.0, 40.0, 5000.0, show=False)
+        model._fit_phase_min = 123.0
+        _, mags_other, _ = model.predict_lightcurve(0.0, 40.0, 5000.0, show=False)
+        assert np.allclose(mags, mags_other)
+
+
 class TestFitPhotometryKeepsTheFitSN:
     PHOTOMETRY = {
         "Filter": ["B", "B", "B", "V", "V", "V"],
@@ -208,7 +257,9 @@ class TestFitPhotometryKeepsTheFitSN:
         model.fit_photometry(photometry=dict(self.PHOTOMETRY), keep_new_fit=True, show=False)
         phases, mags, dev = model.predict_lightcurve(-5.0, 20.0, WLE["V"], show=False)
 
-        X = np.column_stack((np.log(phases + LOG_TRANSFORM), np.full(len(phases), np.log10(WLE["V"]))))
+        X = np.column_stack(
+            (np.log(phases - model._fit_phase_min + 0.1), np.full(len(phases), np.log10(WLE["V"])))
+        )
         residual, std = model.surface.predict(X, return_std=True)
         template = np.asarray(
             [model.template[np.argmin(abs(PHASES - p)), np.argmin(abs(WAVELENGTHS - WLE["V"]))] for p in phases]
@@ -218,6 +269,37 @@ class TestFitPhotometryKeepsTheFitSN:
         expected = 2.5 * (residual + template + np.log10(sn.zps[sn.info["peak_filt"]] / zp))
         assert np.allclose(mags, expected)
         assert np.allclose(dev, 2.5 * std)
+
+    def test_keep_new_fit_stores_the_first_phase_and_fits_in_the_shifted_coordinate(self):
+        model = _surface_array_model()
+        model.fit_photometry(photometry=dict(self.PHOTOMETRY), keep_new_fit=True, show=False)
+        first = min(self.PHOTOMETRY["Phase"])
+        assert model._fit_phase_min == first
+        assert np.allclose(
+            np.sort(model.surface.X_train_[:, 0]),
+            np.sort(np.log(np.asarray(self.PHOTOMETRY["Phase"]) - first + 0.1)),
+        )
+
+    def test_noise_of_the_fit_is_the_floored_variance(self):
+        photometry = dict(self.PHOTOMETRY)
+        photometry["MagErr"] = [0.0, 0.005, 0.1, 0.2, 0.0, 0.1]
+        model = _surface_array_model()
+        model.fit_photometry(photometry=photometry, keep_new_fit=True, show=False)
+        # The residuals are in the order of the filters in `filters_to_fit`, so compare as sets
+        expected = np.maximum(np.asarray(photometry["MagErr"]), MIN_PHOTOMETRY_ERROR) ** 2
+        assert np.allclose(np.sort(model.surface.alpha), np.sort(expected))
+
+    def test_duplicate_points_without_a_reported_error_do_not_make_the_fit_singular(self):
+        photometry = {
+            "Filter": ["B", "B", "B", "V", "V", "V"],
+            "Phase": [0.0, 0.0, 10.0, 0.0, 0.0, 10.0],
+            "Mag": [-0.5, -0.5, -0.2, -0.4, -0.4, -0.1],
+            "MagErr": [0.0] * 6,
+        }
+        model = _surface_array_model()
+        model.fit_photometry(photometry=photometry, keep_new_fit=True, show=False)
+        _, mags, dev = model.predict_lightcurve(-5.0, 20.0, WLE["V"], show=False)
+        assert np.all(np.isfinite(mags)) and np.all(np.isfinite(dev))
 
     def test_no_fit_sn_is_stored_without_keep_new_fit(self):
         model = _surface_array_model()
@@ -283,6 +365,7 @@ class TestZeroPointOfTheConversion:
             for f, wl in (("B", 4000.0), ("V", 5600.0))
             for p in (0.0, 10.0, 20.0, 30.0)
         ]
+        rows[0]["ShiftedFluxerr"] = 0.0  # a detection with no reported uncertainty
         # A non-detection of another filter must not create a node
         rows.append(dict(Phase=15.0, ShiftedFilter="r", ShiftedWavelength=7000.0, ShiftedFlux=-0.5, ShiftedFluxerr=0.1, Nondetection=True))
         pd.DataFrame(rows).to_csv(tmp_path / "Other" / "TDE" / sn.name / f"{sn.name}_datacube_mangled.csv")
@@ -291,6 +374,10 @@ class TestZeroPointOfTheConversion:
         model.sn = sn
         model._initialize_surface_fit()
 
+        # The noise is the variance (0.1**2), and the point without an uncertainty has the floor
+        assert np.allclose(np.sort(np.unique(model.surface.alpha)), np.sort(np.unique([0.1**2, MIN_PHOTOMETRY_ERROR**2])))
+        assert model._fit_phase_min == 0.0
+        assert np.isclose(model.surface.X_train_[:, 0].min(), np.log(0.1))
         assert np.isclose(model._zero_point(4000.0), sn.zps["B"])
         assert np.isclose(model._zero_point(5600.0), sn.zps["V"])
         # With only B and V as nodes, the red end continues with the AB slope from V (not from r)

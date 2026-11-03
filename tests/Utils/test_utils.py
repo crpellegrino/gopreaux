@@ -1,6 +1,11 @@
 import numpy as np
 
-from caat.utils import ab_zero_point, filter_zero_point_function
+from caat.utils import (
+    MIN_PHOTOMETRY_ERROR,
+    ab_zero_point,
+    filter_zero_point_function,
+    floor_photometry_errors,
+)
 
 # Zero points that are deliberately not exactly AB, so the nodes matter
 ZPS = {"U": 8.0e-9, "B": 6.0e-9, "V": 3.0e-9, "r": 2.5e-9}
@@ -71,3 +76,28 @@ class TestFilterZeroPointFunction:
         assert np.allclose(one_filter(wl), ab_zero_point(wl))
         no_known_filter = filter_zero_point_function(ZPS, np.asarray(["zz", "yy"]), np.asarray([3990.0, 4010.0]))
         assert np.allclose(no_known_filter(wl), ab_zero_point(wl))
+
+
+class TestFloorPhotometryErrors:
+    def test_raises_small_and_zero_errors_to_the_floor(self):
+        floored = floor_photometry_errors(np.asarray([0.0, 0.005, MIN_PHOTOMETRY_ERROR / 2]))
+        assert np.allclose(floored, MIN_PHOTOMETRY_ERROR)
+
+    def test_keeps_errors_above_the_floor(self):
+        errors = np.asarray([0.05, 0.1, 0.3])
+        assert np.allclose(floor_photometry_errors(errors), errors)
+
+    def test_sets_missing_errors_to_the_floor(self):
+        assert np.allclose(floor_photometry_errors(np.asarray([np.nan, 0.1])), [MIN_PHOTOMETRY_ERROR, 0.1])
+
+    def test_does_not_modify_the_input(self):
+        errors = np.asarray([0.0, 0.1])
+        floor_photometry_errors(errors)
+        assert np.allclose(errors, [0.0, 0.1])
+
+    def test_uses_a_given_floor(self):
+        assert np.allclose(floor_photometry_errors(np.asarray([0.0, 0.2]), floor=0.1), [0.1, 0.2])
+
+    def test_floor_is_small_compared_with_typical_uncertainties(self):
+        assert 0.0 < MIN_PHOTOMETRY_ERROR <= 0.05
+

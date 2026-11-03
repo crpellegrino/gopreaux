@@ -252,3 +252,23 @@ def filter_zero_point_function(
         return 10**log_zp
 
     return zero_point
+
+
+# The smallest photometric uncertainty (in magnitudes) used as noise when fitting a Gaussian process.
+# Some photometry has a reported uncertainty of exactly 0, which would make the noise term
+# of the Gaussian process zero and the fit numerically unstable.
+MIN_PHOTOMETRY_ERROR = 0.02
+
+
+def floor_photometry_errors(errors: np.ndarray, floor: float = MIN_PHOTOMETRY_ERROR):
+    """
+    Raise photometric uncertainties to a minimum value.
+
+    Args:
+        errors (np.ndarray): The uncertainties. Missing (NaN) values are set to the floor.
+        floor (float, optional): The minimum uncertainty. Defaults to `MIN_PHOTOMETRY_ERROR`.
+
+    Returns:
+        np.ndarray: A new array of the uncertainties, none smaller than `floor`.
+    """
+    return np.fmax(np.asarray(errors, dtype=float), floor)

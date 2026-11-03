@@ -17,6 +17,7 @@ from caat.utils import (
     colors,
     convert_shifted_fluxes_to_shifted_mags,
     filter_zero_point_function,
+    floor_photometry_errors,
 )
 
 from .DataCube import DataCube
@@ -108,6 +109,11 @@ class SNModel:
 
     # The SN (or mock SN) of the last `fit_photometry` call with `keep_new_fit=True`
     _fit_sn = None
+
+    # The first phase of the photometry that a Gaussian process on residuals was fit to. That
+    # Gaussian process is fit in log(phase - first phase + 0.1), the same coordinate that
+    # the kernel hyperparameters are optimized in. It is None for a `SurfaceArray` surface.
+    _fit_phase_min = None
 
     # The flux zero point as a function of wavelength, used to convert the predictions of a
     # Gaussian process on residuals to magnitudes. Built from the photometry that the
@@ -269,14 +275,16 @@ class SNModel:
 
                 residuals.append(mag - self.template[phase_ind, wl_ind])
 
+        self._fit_phase_min = float(min(phases_to_fit))
         x = np.vstack(
             (
-                np.log(phases_to_fit - min(phases_to_fit) + 0.1),
+                np.log(phases_to_fit - self._fit_phase_min + 0.1),
                 np.log10(wls_to_fit),
             )
         ).T
         y = residuals
-        self.surface.alpha = errs_to_fit
+        # The noise of the Gaussian process is the variance, with a floor on the uncertainty
+        self.surface.alpha = floor_photometry_errors(errs_to_fit) ** 2
         self.surface.fit(x, y)
 
     def save_fits(self, filename: str = None, force: bool = False):
@@ -429,6 +437,28 @@ class SNModel:
             log_fluxes, sn, zero_point(np.asarray(wavelengths, dtype=float))
         )
 
+    def _gp_phase_coordinate(self, phases: np.ndarray):
+        """
+        The phase coordinate of a Gaussian process on residuals, log(phase - first phase + 0.1),
+        where the first phase is that of the photometry it was fit to. This is the coordinate that
+        the per-SN Gaussian processes and the kernel hyperparameters are fit in. Phases at or
+        before the first phase are mapped to the coordinate of the first phase, so the prediction
+        is constant before it.
+
+        Raises:
+            ValueError: If the first phase of the fit is not known.
+        """
+        if self._fit_phase_min is None:
+            raise ValueError(
+                "Cannot predict with this Gaussian process on residuals, because the first "
+                "phase of the photometry it was fit to is not known. Load a saved model of a "
+                "single SN, or call `fit_photometry` with `keep_new_fit=True`."
+            )
+
+        return np.log(
+            np.maximum(np.asarray(phases, dtype=float) - self._fit_phase_min + 0.1, 0.1)
+        )
+
     def _predict_mags_from_peak(self, phases: np.ndarray, wavelengths: np.ndarray):
         """
         Predict magnitudes relative to peak, and their uncertainties, at the given
@@ -439,13 +469,20 @@ class SNModel:
         relative to peak, so it is returned as it is. Any other surface is a Gaussian
         process on the residuals from the template in log flux, so the template is added
         back and the result converted to magnitudes. The uncertainty is then
-        2.5 * the uncertainty in log flux.
+        2.5 * the uncertainty in log flux. The phase coordinate of such a Gaussian process
+        is relative to the first phase of the photometry it was fit to (see
+        `_gp_phase_coordinate`).
         """
         phases = np.atleast_1d(np.asarray(phases, dtype=float))
         wavelengths = np.atleast_1d(np.asarray(wavelengths, dtype=float)) * np.ones(len(phases))
 
+        if isinstance(self.surface, SurfaceArray):
+            phase_coordinate = np.log(phases + self.log_transform)
+        else:
+            phase_coordinate = self._gp_phase_coordinate(phases)
+
         prediction, dev = self.surface.predict(
-            np.vstack((np.log(phases + self.log_transform), np.log10(wavelengths))).T,
+            np.vstack((phase_coordinate, np.log10(wavelengths))).T,
             return_std=True,
         )
 
@@ -886,19 +923,22 @@ class SNModel:
 
         ### Fit the photometry with the GP model
         err = residuals["MagErr"].values
-        phases_to_fit = np.log(
-            residuals["Phase"].values + self.log_transform
-        )
+        fit_phase_min = float(np.min(residuals["Phase"].values))
+        phases_to_fit = np.log(residuals["Phase"].values - fit_phase_min + 0.1)
         x = np.vstack((phases_to_fit, np.log10(residuals["Wavelength"].values))).T
         y = residuals["MagResidual"].values
 
-        gp = GaussianProcessRegressor(kernel=self.kernel, alpha=err, optimizer=None)
+        # The noise of the Gaussian process is the variance, with a floor on the uncertainty
+        gp = GaussianProcessRegressor(
+            kernel=self.kernel, alpha=floor_photometry_errors(err) ** 2, optimizer=None
+        )
         gp.fit(x, y)
 
         if keep_new_fit:
             self.surface = gp
             # Needed to convert predictions from this fit to magnitudes
             self._fit_sn = sn_to_fit
+            self._fit_phase_min = fit_phase_min
             self._zero_point = filter_zero_point_function(
                 sn_to_fit.zps,
                 residuals["Filter"].values,
@@ -913,7 +953,7 @@ class SNModel:
                 max(residuals["Phase"].values),
                 1.0 / 24
             )
-            test_times = np.log(test_times_linear + self.log_transform)
+            test_times = np.log(test_times_linear - fit_phase_min + 0.1)
             test_waves = np.ones(len(test_times)) * np.log10(WLE[filt])
 
             wl_ind = np.argmin(abs(self.wl_grid - WLE[filt]))
