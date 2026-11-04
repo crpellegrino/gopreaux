@@ -26,6 +26,16 @@ class Plot:
         fig, ax = plt.subplots()
         return fig, ax
 
+    def create_overlay_subplots(self):
+        """
+        Create a light curve panel with a smaller residual panel beneath it,
+        sharing the x-axis. Used by `plot_run_gp_overlay`.
+        """
+        fig, (ax, ax_resid) = plt.subplots(
+            2, 1, sharex=True, gridspec_kw={"height_ratios": [3, 1]}
+        )
+        return fig, ax, ax_resid
+
     def plot_sn_data(
         self,
         sn_class,
@@ -427,7 +437,27 @@ class Plot:
         log_transform,
         filt,
         sn=None,
+        adjusted_mags=None,
+        moved=None,
+        residual_ax=None,
+        residual_mags=None,
     ):
+        """
+        Overlay a GP light curve slice (a single wavelength) on the photometry.
+
+        Args:
+            adjusted_mags (np.ndarray, optional): Magnitudes to plot for the photometry
+                in place of `residuals["Mag"]`, e.g. photometry moved to the wavelength
+                of the light curve slice. Defaults to None.
+            moved (np.ndarray, optional): Boolean mask, aligned with `residuals`, marking
+                the points in `adjusted_mags` that were moved. These are drawn as open markers.
+                Defaults to None (no points moved).
+            residual_ax (matplotlib.axes.Axes, optional): If given, plot `residual_mags`
+                (photometry minus the model at each point's own wavelength) on this axis,
+                along with the GP uncertainty on the light curve slice. Defaults to None.
+            residual_mags (np.ndarray, optional): Photometry minus model, aligned with
+                `residuals`. Required if `residual_ax` is given.
+        """
         if sn is not None:
             # Convert between log fluxes to shifted magnitudes
             log_fluxes = test_prediction + template_mags
@@ -469,20 +499,67 @@ class Plot:
                 color=colors.get(filt, "k"),
             )
 
+        color = colors.get(filt, "k")
+        phases = np.exp(residuals["Phase"].values) - log_transform
+        errs = residuals["MagErr"].values
+        mags = residuals["Mag"].values if adjusted_mags is None else adjusted_mags
+        moved = np.zeros(len(phases), dtype=bool) if moved is None else np.asarray(moved)
+
         ax.errorbar(
-            np.exp(residuals["Phase"].values) - log_transform,
-            residuals["Mag"].values,
-            yerr=residuals["MagErr"].values,
+            phases[~moved],
+            mags[~moved],
+            yerr=errs[~moved],
             fmt="o",
-            color=colors.get(filt, "k"),
+            color=color,
             mec="k",
         )
+        if moved.any():
+            ax.errorbar(
+                phases[moved],
+                mags[moved],
+                yerr=errs[moved],
+                fmt="o",
+                color=color,
+                mfc="none",
+            )
 
-        ax.set_xlabel("Normalized Time [days]")
+        if residual_ax is not None:
+            if sn is not None:
+                # Uncertainty on the light curve slice, relative to the slice itself
+                residual_ax.fill_between(
+                    test_times,
+                    shifted_mags_lower_unc - shifted_mags,
+                    shifted_mags_upper_unc - shifted_mags,
+                    alpha=0.2,
+                    color=color,
+                )
+            residual_ax.errorbar(
+                phases[~moved],
+                residual_mags[~moved],
+                yerr=errs[~moved],
+                fmt="o",
+                color=color,
+                mec="k",
+            )
+            if moved.any():
+                residual_ax.errorbar(
+                    phases[moved],
+                    residual_mags[moved],
+                    yerr=errs[moved],
+                    fmt="o",
+                    color=color,
+                    mfc="none",
+                )
+            residual_ax.axhline(0.0, color="k", lw=0.5)
+            residual_ax.set_xlabel("Normalized Time [days]")
+            residual_ax.set_ylabel("Data - Model [mag]")
+        else:
+            ax.set_xlabel("Normalized Time [days]")
+
         ax.set_ylabel("Flux Relative to Peak")
         if sn is not None:
-            plt.title(sn.name)
-        plt.legend()
+            ax.set_title(sn.name)
+        ax.legend()
 
     def plot_run_gp_surface(self, gp_class, x, y, test_prediction_reshaped):
         fig = plt.figure()
