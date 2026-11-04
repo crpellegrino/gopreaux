@@ -1,7 +1,14 @@
+import inspect
+
 import numpy as np
 import pandas as pd
 import pytest
 from unittest.mock import Mock, patch
+
+from sklearn.gaussian_process.kernels import RBF
+
+from caat import GP3D, Kernel
+from caat.utils import MIN_PHOTOMETRY_ERROR, ab_zero_point, filter_zero_point_function
 
 
 class TestGP3D:
@@ -117,56 +124,198 @@ class TestGP3D:
         assert isinstance(phase_inds_fitted, list | np.ndarray)
         assert isinstance(min_phase, float | None)
 
-    def test_optimize_hyperparameters(self):
-        """Test optimize_hyperparameters method"""
-        class MockGaussianProcessRegressor:
-            class kernel_:
-                theta = [1.0, 1.0]
-            
-            def fit(*args, **kwargs):
-                pass
-
+    def _optimize_hyperparams_with_residuals(self, residuals):
+        """Run optimize_hyperparams with the grid construction and subtraction mocked"""
         with patch(
             "caat.GP3D.GP3D._construct_polynomial_grid", Mock(
                 return_value=(
-                    self.phase_grid, 
+                    self.phase_grid,
                     self.wl_grid,
                     np.random.random((len(self.phase_grid), len(self.wl_grid))),
                     np.ones((len(self.phase_grid), len(self.wl_grid))) * 0.01,
                 )
             )
         ), patch(
-            "caat.GP3D.GP3D._subtract_data_from_grid", Mock(
-                return_value=pd.DataFrame(
-                    [
-                        {
-                            "Filter": "B",
-                            "Phase": -15.0,
-                            "Wavelength": 5000.0,
-                            "MagResidual": 0.1,
-                            "MagErr": 0.1,
-                            "Mag": -0.5,
-                            "Nondetection": False,
-                        },
-                        {
-                            "Filter": "B",
-                            "Phase": -15.0,
-                            "Wavelength": 5000.0,
-                            "MagResidual": 0.1,
-                            "MagErr": 0.1,
-                            "Mag": -0.5,
-                            "Nondetection": False,
-                        }
-                    ]
+            "caat.GP3D.GP3D._subtract_data_from_grid", Mock(return_value=residuals)
+        ):
+            return self.gp.optimize_hyperparams(subtract_polynomial=True)
+
+    @staticmethod
+    def _mock_residuals():
+        return pd.DataFrame(
+            [
+                {
+                    "Filter": "B",
+                    "Phase": phase,
+                    "Wavelength": wl,
+                    "MagResidual": residual,
+                    "MagErr": 0.1,
+                    "Mag": -0.5,
+                    "Nondetection": False,
+                }
+                for phase, wl, residual in [
+                    (np.log(30.0), 3.70, 0.1),
+                    (np.log(35.0), 3.72, 0.2),
+                    (np.log(42.0), 3.70, -0.1),
+                    (np.log(55.0), 3.72, 0.0),
+                ]
+            ]
+        )
+
+    def test_optimize_hyperparameters(self):
+        """optimize_hyperparams should fix the kernel at the exponentiated median theta"""
+        kernel_params = self._optimize_hyperparams_with_residuals(self._mock_residuals())
+
+        assert isinstance(kernel_params, list)
+        # kernel_params are the log-transformed thetas, not the hyperparameters themselves
+        expected_hyperparams = np.exp(np.median(np.asarray(kernel_params), axis=0))
+        assert np.allclose(self.gp.kernel.length_scale, expected_hyperparams)
+        assert self.gp.kernel.length_scale_bounds == "fixed"
+        assert len(self.gp.kernel.theta) == 0
+
+    def test_optimize_hyperparameters_modifies_kernel_object_in_place(self):
+        """A Kernel object should be modified in place, so other references see the change"""
+        kernel = Kernel(RBF())
+        self.gp.kernel = kernel
+        kernel_params = self._optimize_hyperparams_with_residuals(self._mock_residuals())
+
+        assert self.gp.kernel is kernel
+        expected_hyperparams = np.exp(np.median(np.asarray(kernel_params), axis=0))
+        assert np.allclose(kernel.kernel.length_scale, expected_hyperparams)
+        assert len(kernel.kernel.theta) == 0
+
+    def test_optimize_hyperparameters_raises_for_fixed_kernel(self):
+        """optimize_hyperparams should raise if the kernel has no free hyperparameters"""
+        self.gp.kernel = Kernel(RBF(1.0, "fixed"))
+        with pytest.raises(ValueError, match=r"no free hyperparameters"):
+            self._optimize_hyperparams_with_residuals(self._mock_residuals())
+
+    def test_optimize_hyperparameters_raises_when_called_twice(self):
+        """The first call fixes the hyperparameters, so a second call should raise"""
+        self._optimize_hyperparams_with_residuals(self._mock_residuals())
+        with pytest.raises(ValueError, match=r"no free hyperparameters"):
+            self._optimize_hyperparams_with_residuals(self._mock_residuals())
+
+    def test_optimize_hyperparameters_raises_without_fittable_data(self):
+        """optimize_hyperparams should raise if no transient had data to fit"""
+        with pytest.raises(ValueError, match=r"enough data"):
+            self._optimize_hyperparams_with_residuals(pd.DataFrame())
+
+    def test_build_gaussian_process_uses_the_noise_and_kernel(self):
+        gp = self.gp._build_gaussian_process(np.asarray([0.01, 0.04]))
+        assert np.allclose(gp.alpha, [0.01, 0.04])
+        assert gp.n_restarts_optimizer == 10
+        assert gp.kernel is self.gp.kernel
+
+    def test_build_gaussian_process_uses_the_inner_kernel_of_a_kernel_object(self):
+        kernel = Kernel(RBF())
+        self.gp.kernel = kernel
+        assert self.gp._build_gaussian_process(np.asarray([0.01])).kernel is kernel.kernel
+
+    def test_optimize_hyperparameters_floors_the_noise(self):
+        """A point without a reported uncertainty must still have noise, as a variance"""
+        residuals = self._mock_residuals()
+        residuals.loc[0, "MagErr"] = 0.0
+        with patch.object(
+            self.gp, "_build_gaussian_process", wraps=self.gp._build_gaussian_process
+        ) as build:
+            self._optimize_hyperparams_with_residuals(residuals)
+
+        alphas = [call.args[0] for call in build.call_args_list]
+        assert len(alphas) > 0
+        for alpha in alphas:
+            assert np.isclose(alpha[0], MIN_PHOTOMETRY_ERROR**2)
+            assert np.allclose(alpha[1:], 0.1**2)
+
+    def _run_individually(self, mock_sn, residuals, **kwargs):
+        """
+        Run run_gp_individually on mocked grids and residuals. The warp, smoothing and random
+        sampling are replaced so that the returned grid is the converted surface itself
+        (the mean prediction in magnitudes from peak), at the fitted wavelengths and phases.
+        """
+        mock_sn.zps = {"B": 6.0e-9, "V": 3.0e-9}
+        mock_sn.info = {**mock_sn.info, "peak_filt": "B", "peak_mag": 16.0}
+        np.random.seed(0)
+        with patch(
+            "caat.GP3D.GP3D._construct_polynomial_grid", Mock(
+                return_value=(
+                    self.phase_grid,
+                    self.wl_grid,
+                    np.zeros((len(self.phase_grid), len(self.wl_grid))),
+                    np.ones((len(self.phase_grid), len(self.wl_grid))) * 0.01,
                 )
             )
         ), patch(
-            "sklearn.gaussian_process.GaussianProcessRegressor", MockGaussianProcessRegressor
+            "caat.GP3D.GP3D._subtract_data_from_grid", Mock(return_value=residuals)
+        ), patch(
+            "caat.GP3D.GP3D._iteratively_warp_sed", lambda self, _res, pred, *a, **k: pred
+        ), patch(
+            "caat.GP3D.GP3D._smooth_predicted_model", lambda self, pred, *a, **k: pred
+        ), patch(
+            "caat.GP3D.GP3D._sample_predicted_sed", lambda self, grid, std: grid.copy()
         ):
-            self.gp.kernel.set_params = Mock()
-            kernel_params = self.gp.optimize_hyperparams(subtract_polynomial=True)
-            assert isinstance(kernel_params, list)
-            self.gp.kernel.set_params.assert_called_once()
+            return self.gp.run_gp_individually(subtract_polynomial=True, **kwargs)
+
+    def _two_filter_residuals(self):
+        """Residuals in two filters, at wavelengths that sit exactly on rows of the wavelength grid"""
+        return pd.DataFrame(
+            [
+                {
+                    "Filter": filt,
+                    "Phase": np.log(phase + 22),
+                    "Wavelength": np.log10(wl),
+                    "MagResidual": 0.1 * i,
+                    "MagErr": 0.1,
+                    "Mag": -0.5,
+                    "Nondetection": False,
+                }
+                for filt, wl in (("B", 5000.0), ("V", 6000.0))
+                for i, phase in enumerate((5.0, 10.0, 20.0, 30.0))
+            ]
+        )
+
+    def test_filter_zero_points_are_the_default_for_fitting_individually(self):
+        for method in (GP3D.run_gp_individually, GP3D.predict):
+            assert inspect.signature(method).parameters["use_filter_zero_points"].default is True
+
+    def test_run_gp_individually_converts_with_the_filter_zero_points_by_default(self, mock_sn):
+        """
+        By default, the surface should be converted with a zero point that reproduces each
+        filter's own zero point at the wavelength of its photometry, not the AB zero point.
+        The two conversions differ by -2.5 log10(zp_filter / zp_AB) at each wavelength.
+        """
+        residuals = self._two_filter_residuals()
+        default, _, _, wl_grid = self._run_individually(mock_sn, residuals)
+        filter_zps, _, _, _ = self._run_individually(mock_sn, residuals, use_filter_zero_points=True)
+        ab_zps, _, _, _ = self._run_individually(mock_sn, residuals, use_filter_zero_points=False)
+
+        assert len(default) > 0
+        assert np.allclose(default[0], filter_zps[0], equal_nan=True)
+
+        for filt, wl in (("B", 5000.0), ("V", 6000.0)):
+            row = int(np.argmin(abs(10**wl_grid - wl)))
+            assert np.isclose(10**wl_grid[row], wl)
+            shift = default[0][row] - ab_zps[0][row]
+            expected = -2.5 * np.log10(mock_sn.zps[filt] / ab_zero_point(wl))
+            # The grid is only filled at the fitted phases, and it is filled in the same places
+            assert np.array_equal(np.isfinite(default[0][row]), np.isfinite(ab_zps[0][row]))
+            filled = np.isfinite(shift)
+            assert filled.sum() > 0
+            assert np.allclose(shift[filled], expected)
+
+    def test_run_gp_individually_uses_the_ab_zero_point_when_asked(self, mock_sn):
+        residuals = self._two_filter_residuals()
+        with patch("caat.GP3D.ab_zero_point", wraps=ab_zero_point) as ab, patch(
+            "caat.GP3D.filter_zero_point_function", wraps=filter_zero_point_function
+        ) as filter_zp:
+            self._run_individually(mock_sn, residuals, use_filter_zero_points=False)
+            assert ab.called
+            assert not filter_zp.called
+
+            ab.reset_mock()
+            self._run_individually(mock_sn, residuals)
+            assert filter_zp.called
+            assert not ab.called
 
     # def test_run_gp3d(self):
 

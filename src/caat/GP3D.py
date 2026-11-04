@@ -11,15 +11,21 @@ from scipy.signal import medfilt, savgol_filter
 from scipy.stats import truncnorm
 from sklearn.gaussian_process import GaussianProcessRegressor
 
-from .DataCube import DataCube
 from .Diagnostics import Diagnostic
 from .GP import GP
-from .Kernels import Kernel
+from .Kernels import Kernel, fix_kernel_from_theta
 from .Plot import Plot
 from .SN import SN
 from .SNCollection import SNCollection, SNType
 from .SNModel import SNModel, SurfaceArray
-from .utils import colors
+from .utils import (
+    MIN_PHOTOMETRY_ERROR,
+    ab_zero_point,
+    colors,
+    convert_shifted_fluxes_to_shifted_mags,
+    filter_zero_point_function,
+    floor_photometry_errors,
+)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -103,10 +109,7 @@ class GP3D(GP):
                 if os.path.exists(data_cube_filename):
                     cube = pd.read_csv(data_cube_filename)
                 else:
-                    # For now, we'll just construct it
-                    datacube = DataCube(sn=sn)
-                    datacube.construct_cube()
-                    cube = datacube.cube
+                    continue
 
                 # Drop rows that are out of the phase range
                 inds_to_drop_phase = cube.loc[
@@ -331,12 +334,14 @@ class GP3D(GP):
             all_template_mags = all_mags
             all_template_errs = all_errs
 
+        valid_inds = np.isfinite(all_template_mags)
+        
         template_df = pd.DataFrame(
             {
-                "Phase": all_template_phases,
-                "Wavelength": all_template_wls,
-                "Mag": all_template_mags,
-                "MagErr": all_template_errs,
+                "Phase": all_template_phases[valid_inds],
+                "Wavelength": all_template_wls[valid_inds],
+                "Mag": all_template_mags[valid_inds],
+                "MagErr": all_template_errs[valid_inds],
             }
         )
 
@@ -786,14 +791,11 @@ class GP3D(GP):
                 raw_mags = np.concatenate([raw_mags, residuals["Mag"].values])
                 err = np.concatenate([err, residuals["MagErr"].values])
 
-        if isinstance(self.kernel, Kernel):
-            gaussian_process = GaussianProcessRegressor(
-                kernel=self.kernel.kernel, alpha=err, n_restarts_optimizer=10
-            )
-        else:
-            gaussian_process = GaussianProcessRegressor(
-                kernel=self.kernel, alpha=err, n_restarts_optimizer=10
-            )
+        # NOTE: this path uses the uncertainty itself as the variance. The floor is the variance
+        # of the smallest uncertainty used in the other paths (MIN_PHOTOMETRY_ERROR**2)
+        gaussian_process = self._build_gaussian_process(
+            np.fmax(err, MIN_PHOTOMETRY_ERROR**2)
+        )
 
         gaussian_process.fit(x_input, y_input)
 
@@ -866,13 +868,29 @@ class GP3D(GP):
         plt.show()
         return [gp_grid, gp_grid_std], mag_grid, phase_grid, wl_grid
 
+    def _build_gaussian_process(self, alpha: np.ndarray):
+        """
+        Build the (unfit) Gaussian process regressor used to fit residuals from the template.
+
+        Args:
+            alpha (np.ndarray): The noise (variance) of each point, added to the
+                diagonal of the kernel matrix. Use `floor_photometry_errors(err) ** 2`
+                for photometric uncertainties `err`, so that points with a reported
+                uncertainty of 0 do not make the fit unstable.
+        """
+        kernel = self.kernel.kernel if isinstance(self.kernel, Kernel) else self.kernel
+        return GaussianProcessRegressor(
+            kernel=kernel, alpha=alpha, n_restarts_optimizer=10
+        )
+
     def optimize_hyperparams(self, subtract_median=False, subtract_polynomial=False):
         """
         Optimize the Gaussian Process Regression kernel hyperparameters by fitting
         each transient in the sample individually.
         This is normally run before the `predict` method to retrieve the optimized
-        kernel hyperparameters for the input sample. These hyperparameters are normally
-        then fixed in the kernel, and the `predict` method is run using the fixed kernel.
+        kernel hyperparameters for the input sample. The median of the optimized
+        hyperparameters is then fixed in the kernel (in place, if the kernel is a `Kernel`
+        object), and the `predict` method is run using the fixed kernel.
 
         Args:
             subtract_median (bool, optional):  Fit and subtract off a median function
@@ -884,10 +902,23 @@ class GP3D(GP):
         Raises:
             Exception: Must toggle either subtract_median or subtract_polynomial as True
             to run GP3D.
+            ValueError: If the kernel has no free hyperparameters to optimize, e.g.
+                because they were already fixed by a previous call.
+            ValueError: If no transient in the sample had enough data to be fit.
 
         Returns:
-            list: List of optimized kernel hyperparameters.
+            list: List of the optimized kernel hyperparameters of each fitted transient.
+                These are the log-transformed `theta` values from sklearn, not the
+                hyperparameters themselves (use `np.exp` to get e.g. the length scales).
         """
+
+        base_kernel = self.kernel.kernel if isinstance(self.kernel, Kernel) else self.kernel
+        if len(base_kernel.theta) == 0:
+            raise ValueError(
+                "The kernel has no free hyperparameters to optimize. Its hyperparameters "
+                "may already be fixed, e.g. by a previous call to `optimize_hyperparams`. "
+                "Use a kernel with unfixed bounds."
+            )
 
         template_df = self._process_dataset(set_to_normalize=self.set_to_normalize)
         kernel_params = []
@@ -943,36 +974,29 @@ class GP3D(GP):
                     # We have enough points to fit
                     err = residuals["MagErr"].values
 
-                    if isinstance(self.kernel, Kernel):
-                        gaussian_process = GaussianProcessRegressor(
-                            kernel=self.kernel.kernel,
-                            alpha=err,
-                            n_restarts_optimizer=10,
-                        )
-                    else:
-                        gaussian_process = GaussianProcessRegressor(
-                            kernel=self.kernel, alpha=err, n_restarts_optimizer=10
-                        )
+                    gaussian_process = self._build_gaussian_process(
+                        floor_photometry_errors(err) ** 2
+                    )
 
                     gaussian_process.fit(x, y)
 
                     kernel_params.append(gaussian_process.kernel_.theta)
 
-        optimized_kernel_hyperparams = np.asarray(
-            [
-                np.median([k[i] for k in kernel_params])
-                for i in range(len(kernel_params[0]))
-            ]
-        )
-        if isinstance(self.kernel, Kernel):
-            self.kernel.recursively_set_params(optimized_kernel_hyperparams, "fixed")
-        else:
-            self.kernel.set_params(
-                **{
-                    "length_scale": optimized_kernel_hyperparams,
-                    "length_scale_bounds": "fixed",
-                }
+        if len(kernel_params) == 0:
+            raise ValueError(
+                "No transient in the sample had enough data to optimize the kernel."
             )
+
+        ### The thetas are log-transformed hyperparameters, so set the kernel from them
+        ### with sklearn's own conversion instead of using them as the hyperparameters
+        median_theta = np.median(np.asarray(kernel_params), axis=0)
+        fixed_kernel = fix_kernel_from_theta(base_kernel, median_theta)
+        if isinstance(self.kernel, Kernel):
+            # Modify in place, so that other references to this `Kernel` see the change
+            self.kernel.kernel = fixed_kernel
+        else:
+            self.kernel = fixed_kernel
+
         return kernel_params
 
     def _iteratively_warp_sed(
@@ -1112,6 +1136,54 @@ class GP3D(GP):
 
         return test_prediction_reshaped
 
+    def _model_mags_at(
+        self,
+        gaussian_process,
+        sn,
+        filt,
+        phases_linear,
+        log_wls,
+        min_phase_linear,
+        mag_grid,
+        phase_grid,
+        wl_grid,
+    ):
+        """
+        Evaluate the individual-SN model (GP + template grid)
+        at the given phases and log wavelengths, in magnitudes relative to peak.
+        Uses the same phase coordinate and template lookup as the GP fit.
+
+        Args:
+            phases_linear (np.ndarray): Phases, in days, at which to evaluate the model.
+            log_wls (np.ndarray): Log wavelengths at which to evaluate the model.
+            min_phase_linear (float): The minimum phase of the residuals the GP was fit to,
+                which sets the zero point of the GP phase coordinate.
+
+        Returns:
+            np.ndarray: The model, in magnitudes relative to peak.
+        """
+        phases_linear = np.atleast_1d(phases_linear)
+        log_wls = np.atleast_1d(log_wls) * np.ones(len(phases_linear))
+
+        x = np.log(phases_linear - min_phase_linear + 0.1)
+        prediction = gaussian_process.predict(np.vstack((x, log_wls)).T)
+
+        template_mags = np.asarray(
+            [
+                mag_grid[
+                    np.argmin(
+                        abs(np.exp(phase_grid) - self.log_transform - phase_linear)
+                    ),
+                    np.argmin(abs(10**wl_grid - 10**log_wl)),
+                ]
+                for phase_linear, log_wl in zip(phases_linear, log_wls)
+            ]
+        )
+
+        return convert_shifted_fluxes_to_shifted_mags(
+            prediction + template_mags, sn, sn.zps[filt]
+        )
+
     def _sample_predicted_sed(self, mean_prediction, std_prediction):
         """Randomly sample the predicted SED for better uncertainty estimate in final GP surface"""
         ### Draw random sigma between -1 and 1
@@ -1146,6 +1218,7 @@ class GP3D(GP):
         interactive=False,
         run_diagnostics=False,
         save_individual_fits=False,
+        use_filter_zero_points=True,
     ):
         """
         Run the Gaussian Process Regression fitting routine on each transient
@@ -1169,6 +1242,12 @@ class GP3D(GP):
             save_individual_fits (bool, optional): Save the GP fits to each individual
                 SN object separately. If True, will save the models to the default location.
                 WARNING: This can be a lot of data. Defualts to False.
+            use_filter_zero_points (bool, optional): Convert the predicted surface to
+                magnitudes from peak with a zero point that reproduces each filter's own
+                `sn.zps[filt]` at the wavelength of its photometry (see
+                `caat.utils.filter_zero_point_function`), instead of the AB zero point at each grid
+                wavelength. `ShiftedFlux` is built with `sn.zps[filt]`, so this is consistent
+                with the photometry. Defaults to True.
 
         Raises:
             Exception: Must toggle either subtract_median or subtract_polynomial as True
@@ -1241,19 +1320,14 @@ class GP3D(GP):
                 # We have enough points to fit
                 err = residuals["MagErr"].values
 
-                if isinstance(self.kernel, Kernel):
-                    gaussian_process = GaussianProcessRegressor(
-                        kernel=self.kernel.kernel, alpha=err, n_restarts_optimizer=10
-                    )
-                else:
-                    gaussian_process = GaussianProcessRegressor(
-                        kernel=self.kernel, alpha=err, n_restarts_optimizer=10
-                    )
+                gaussian_process = self._build_gaussian_process(
+                    floor_photometry_errors(err) ** 2
+                )
 
                 gaussian_process.fit(x, y)
 
                 if plot:
-                    _, ax = Plot().create_empty_subplot()
+                    _, ax, ax_resid = Plot().create_overlay_subplots()
 
                 filts_fitted = []
 
@@ -1283,16 +1357,33 @@ class GP3D(GP):
                             test_times_linear - min(phase_residuals_linear) + 0.1
                         )
 
-                        test_waves = np.ones(len(test_times)) * np.log10(
-                            self.wle[filt] * (1 + sn.info.get("z", 0))
-                        )
+                        residuals_for_filt = residuals[
+                            (residuals["Filter"] == filt)
+                            & (
+                                residuals["Phase"]
+                                > np.log(self.phasemin + self.log_transform)
+                            )
+                            & (
+                                residuals["Phase"]
+                                < np.log(self.phasemax + self.log_transform)
+                            )
+                            & (residuals["Nondetection"] == False)
+                        ]
+
+                        ### The effective wavelength of each photometry point can differ
+                        ### (the SED shape changes), so plot the light curve slice at the
+                        ### median wavelength of this filter's data
+                        if len(residuals_for_filt) > 0:
+                            ref_log_wl = np.median(residuals_for_filt["Wavelength"].values)
+                        else:
+                            ref_log_wl = np.log10(
+                                self.wle[filt] * (1 + sn.info.get("z", 0))
+                            )
+
+                        test_waves = np.ones(len(test_times)) * ref_log_wl
 
                         ### Trying to convert back to normalized magnitudes here
-                        wl_ind = np.argmin(
-                            abs(
-                                10**wl_grid - self.wle[filt] * (1 + sn.info.get("z", 0))
-                            )
-                        )
+                        wl_ind = np.argmin(abs(10**wl_grid - 10**ref_log_wl))
                         template_mags = []
                         for i in range(len(test_times_linear)):
                             j = np.argmin(
@@ -1313,21 +1404,50 @@ class GP3D(GP):
                             np.exp(test_times) + min(phase_residuals_linear) - 0.1
                         )
 
-                        residuals_for_filt = residuals[
-                            (residuals["Filter"] == filt)
-                            & (
-                                residuals["Phase"]
-                                > np.log(self.phasemin + self.log_transform)
-                            )
-                            & (
-                                residuals["Phase"]
-                                < np.log(self.phasemax + self.log_transform)
-                            )
-                            & (residuals["Nondetection"] == False)
-                        ]
-
                         if len(inds_to_fit) > 0:
                             if plot:
+                                ### Move each point to the wavelength of the light curve
+                                ### slice using the model's own color term, so the distance
+                                ### between a point and the curve is still data - model at
+                                ### the point's own wavelength. Without any photometry in
+                                ### range, only the light curve slice is plotted.
+                                point_kwargs = {}
+                                if len(residuals_for_filt) > 0:
+                                    point_phases = (
+                                        np.exp(residuals_for_filt["Phase"].values)
+                                        - self.log_transform
+                                    )
+                                    point_wls = residuals_for_filt["Wavelength"].values
+                                    model_kwargs = dict(
+                                        gaussian_process=gaussian_process,
+                                        sn=sn,
+                                        filt=filt,
+                                        phases_linear=point_phases,
+                                        min_phase_linear=min(phase_residuals_linear),
+                                        mag_grid=mag_grid,
+                                        phase_grid=phase_grid,
+                                        wl_grid=wl_grid,
+                                    )
+                                    model_at_own_wl = self._model_mags_at(
+                                        log_wls=point_wls, **model_kwargs
+                                    )
+                                    model_at_ref_wl = self._model_mags_at(
+                                        log_wls=ref_log_wl, **model_kwargs
+                                    )
+                                    moved = abs(point_wls - ref_log_wl) > 1e-3
+                                    point_mags = residuals_for_filt["Mag"].values
+                                    point_kwargs = dict(
+                                        adjusted_mags=point_mags
+                                        - np.where(
+                                            moved,
+                                            model_at_own_wl - model_at_ref_wl,
+                                            0.0,
+                                        ),
+                                        moved=moved,
+                                        residual_ax=ax_resid,
+                                        residual_mags=point_mags - model_at_own_wl,
+                                    )
+
                                 Plot().plot_run_gp_overlay(
                                     ax=ax,
                                     test_times=test_times,
@@ -1338,6 +1458,7 @@ class GP3D(GP):
                                     log_transform=self.log_transform,
                                     filt=filt,
                                     sn=sn,
+                                    **point_kwargs,
                                 )
 
                         if run_diagnostics:
@@ -1396,9 +1517,17 @@ class GP3D(GP):
                 )
 
                 ### Convert to mags from peak
+                if use_filter_zero_points:
+                    detections = residuals[residuals["Nondetection"] == False]
+                    zero_point_at = filter_zero_point_function(
+                        sn.zps, detections["Filter"].values, 10 ** detections["Wavelength"].values
+                    )
+                else:
+                    zero_point_at = ab_zero_point
+
                 for i, col in enumerate(test_prediction_reshaped[:,]):
                     wl = 10 ** wl_grid[wl_inds_fitted][i]
-                    zp = (3631 * 10**-23 * 3e18 / wl**2)
+                    zp = zero_point_at(wl)
                     shifted_peak_mag = np.log10(
                         sn.zps[sn.info["peak_filt"]]
                         * 10 ** (-0.4 * sn.info["peak_mag"])
@@ -1555,6 +1684,7 @@ class GP3D(GP):
         run_diagnostics=False,
         fit_separately=True,
         interactive=False,
+        use_filter_zero_points=True,
     ):
         """
         Generate a Gaussian Process Regression model of the input transient sample.
@@ -1577,6 +1707,9 @@ class GP3D(GP):
             interactive (bool, optional): Interactively choose which fits to use in the
                 creation of the final Gaussian process model. If True, sets `plot` to True
                 as well. Defaults to False.
+            use_filter_zero_points (bool, optional): Convert each SN's predicted surface to
+                magnitudes using the filters' own zero points. Only used when `fit_separately`
+                is True. See `run_gp_individually`. Defaults to True.
 
         Returns:
             SNModel: An SNModel object containing the final, 3-dimensional Gaussian Process
@@ -1620,6 +1753,7 @@ class GP3D(GP):
                     subtract_polynomial=subtract_polynomial,
                     run_diagnostics=run_diagnostics,
                     interactive=interactive,
+                    use_filter_zero_points=use_filter_zero_points,
                 )
             )
 

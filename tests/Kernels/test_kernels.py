@@ -1,8 +1,9 @@
 import pytest
 from caat import Kernel
+from caat.Kernels import fix_kernel_from_theta
 
 import numpy as np
-from sklearn.gaussian_process.kernels import RBF, WhiteKernel
+from sklearn.gaussian_process.kernels import RBF, ConstantKernel, WhiteKernel
 
 class TestKernels:
 
@@ -87,3 +88,53 @@ class TestKernels:
                 self.rbf_kernel.get_params()["length_scale"]
             )
         )
+
+    def test_fix_kernel_from_theta_should_exponentiate_theta(self):
+        """theta is log-transformed, so the hyperparameters should be exp(theta)"""
+        kernel = RBF([1.0, 1.0], (0.1, 10.0))
+        fixed = fix_kernel_from_theta(kernel, np.log([2.0, 0.5]))
+        assert np.allclose(fixed.length_scale, [2.0, 0.5])
+
+    def test_fix_kernel_from_theta_should_fix_bounds(self):
+        """All free hyperparameters should be fixed"""
+        kernel = RBF([1.0, 1.0], (0.1, 10.0))
+        fixed = fix_kernel_from_theta(kernel, np.log([2.0, 0.5]))
+        assert fixed.length_scale_bounds == "fixed"
+        assert len(fixed.theta) == 0
+
+    def test_fix_kernel_from_theta_should_not_modify_input_kernel(self):
+        """The input kernel should be left unchanged"""
+        kernel = RBF([1.0, 1.0], (0.1, 10.0))
+        fix_kernel_from_theta(kernel, np.log([2.0, 0.5]))
+        assert np.allclose(kernel.length_scale, [1.0, 1.0])
+        assert len(kernel.theta) == 2
+
+    def test_fix_kernel_from_theta_should_work_for_compound_kernels(self):
+        """Each component of a compound kernel should get its own values, in order"""
+        kernel = ConstantKernel(2.0, (0.1, 100.0)) * RBF([1.0, 1.0], (0.1, 10.0)) + WhiteKernel(0.1, (1e-4, 1.0))
+        fixed = fix_kernel_from_theta(kernel, np.log([3.0, 2.0, 0.5, 0.01]))
+        params = fixed.get_params()
+        assert np.isclose(params["k1__k1__constant_value"], 3.0)
+        assert np.allclose(params["k1__k2__length_scale"], [2.0, 0.5])
+        assert np.isclose(params["k2__noise_level"], 0.01)
+        assert len(fixed.theta) == 0
+
+    def test_fix_kernel_from_theta_should_leave_already_fixed_hyperparameters_alone(self):
+        """Hyperparameters that are already fixed are not part of theta and should be kept"""
+        kernel = RBF([1.0, 1.0], (0.1, 10.0)) + WhiteKernel(0.3, "fixed")
+        fixed = fix_kernel_from_theta(kernel, np.log([2.0, 0.5]))
+        params = fixed.get_params()
+        assert np.allclose(params["k1__length_scale"], [2.0, 0.5])
+        assert np.isclose(params["k2__noise_level"], 0.3)
+
+    def test_fix_kernel_from_theta_should_return_same_type_as_input(self):
+        """A Kernel wrapper should return a Kernel wrapper, an sklearn kernel an sklearn kernel"""
+        sklearn_kernel = RBF([1.0, 1.0], (0.1, 10.0))
+        assert isinstance(fix_kernel_from_theta(Kernel(sklearn_kernel), np.log([2.0, 0.5])), Kernel)
+        assert isinstance(fix_kernel_from_theta(sklearn_kernel, np.log([2.0, 0.5])), RBF)
+
+    def test_fix_kernel_from_theta_should_raise_for_wrong_number_of_values(self):
+        """theta must have one entry per free hyperparameter"""
+        kernel = RBF([1.0, 1.0], (0.1, 10.0))
+        with pytest.raises(ValueError):
+            fix_kernel_from_theta(kernel, np.log([2.0]))

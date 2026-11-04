@@ -75,6 +75,11 @@ class Kernel(SklearnKernel):
         If Kernel is a product or sum of kernels, assumes the
         input values and bounds are in the same order as the kernels.
 
+        NOTE: `values` are the hyperparameter values themselves (e.g., length
+        scales), not the log-transformed values returned by the sklearn
+        `theta` attribute. To set hyperparameters from `theta`, use
+        `fix_kernel_from_theta`.
+
         Args:
             values (list): The kernel parameters
             bounds (list | str): The kernel parameter bounds
@@ -102,3 +107,31 @@ class Kernel(SklearnKernel):
                 bounds if isinstance(bounds, str) else bounds[k1_dim:],
                 kernel=kernel.k2,
             )
+
+
+def fix_kernel_from_theta(kernel: Kernel | SklearnKernel, theta: np.ndarray):
+    """
+    Clone a kernel with its free hyperparameters set from `theta`, and fix them.
+
+    `theta` is the log-transformed vector of free (non-fixed) hyperparameters that
+    sklearn stores in the `theta` attribute of a kernel, e.g. the `kernel_.theta` of
+    a fitted `GaussianProcessRegressor`. It is applied through sklearn's own
+    `clone_with_theta`, so it works for any single or compound (sum / product)
+    kernel, as long as `theta` has the same layout as `kernel.theta`.
+
+    Args:
+        kernel (Kernel | SklearnKernel): The kernel to clone. It is not modified.
+        theta (np.ndarray): The log-transformed values of the free hyperparameters.
+
+    Returns:
+        Kernel | SklearnKernel: A new kernel of the same type as `kernel`, with the
+            hyperparameters set from `theta` and the bounds of every free
+            hyperparameter set to "fixed".
+    """
+    inner_kernel = kernel.kernel if isinstance(kernel, Kernel) else kernel
+    fixed_kernel = inner_kernel.clone_with_theta(np.asarray(theta))
+    for hyperparameter in fixed_kernel.hyperparameters:
+        if not hyperparameter.fixed:
+            fixed_kernel.set_params(**{f"{hyperparameter.name}_bounds": "fixed"})
+
+    return Kernel(fixed_kernel) if isinstance(kernel, Kernel) else fixed_kernel
