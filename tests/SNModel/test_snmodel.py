@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from unittest.mock import patch
 
 import matplotlib
 import numpy as np
@@ -8,6 +9,7 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
 
 from caat import SNModel
+from caat.Plot import Plot
 from caat.SNModel import SurfaceArray
 from caat.utils import (
     WLE,
@@ -382,3 +384,108 @@ class TestZeroPointOfTheConversion:
         assert np.isclose(model._zero_point(5600.0), sn.zps["V"])
         # With only B and V as nodes, the red end continues with the AB slope from V (not from r)
         assert np.isclose(model._zero_point(7000.0) / model._zero_point(14000.0), 4.0)
+
+
+class TestFitPhotometryOverlayIsAtTheWavelengthOfThePhotometry:
+    """
+    The photometry of a filter can sit at different wavelengths (the SED shape changes), and the
+    zero point of the filter applies at the median of them, so that is where the light curve
+    slice is plotted. The points are moved to the slice with the model's own color term.
+    """
+
+    PHASES_FIT = (0.0, 8.0, 16.0, 24.0, 32.0)
+    WAVELENGTHS_FIT = {"B": (4000.0, 4200.0, 4400.0, 4600.0, 4800.0), "V": (5400.0, 5500.0, 5600.0, 5700.0, 5800.0)}
+
+    @staticmethod
+    def _sn(tmp_path):
+        sn = _mock_sn()
+        sn.zps = {**sn.zps, "B": 6.5e-9, "V": 3.0e-9}  # not AB, so the filters' own zero points matter
+        sn.base_path, sn.classification, sn.subtype = str(tmp_path), "Other", "TDE"
+        (tmp_path / "Other" / "TDE" / sn.name).mkdir(parents=True)
+        rows = [
+            dict(
+                Phase=phase, Filter=filt, ShiftedFilter=filt, ShiftedWavelength=wl, Nondetection=False,
+                Mag=15.4 + 0.01 * phase + 0.05 * i, ShiftedFlux=-0.1 - 0.004 * phase + 0.02 * i, ShiftedFluxerr=0.1,
+            )
+            for filt, wls in TestFitPhotometryOverlayIsAtTheWavelengthOfThePhotometry.WAVELENGTHS_FIT.items()
+            for i, (phase, wl) in enumerate(zip(TestFitPhotometryOverlayIsAtTheWavelengthOfThePhotometry.PHASES_FIT, wls))
+        ]
+        pd.DataFrame(rows).to_csv(tmp_path / "Other" / "TDE" / sn.name / f"{sn.name}_datacube_mangled.csv")
+        return sn
+
+    @staticmethod
+    def _fit(model, **fit_kwargs):
+        calls = {}
+        original = Plot.plot_run_gp_overlay
+
+        def record(self, **kwargs):
+            calls[kwargs["filt"]] = kwargs
+            return original(self, **kwargs)
+
+        with patch.object(Plot, "plot_run_gp_overlay", record):
+            model.fit_photometry(keep_new_fit=True, show=False, **fit_kwargs)
+        return calls
+
+    def test_the_slice_and_the_template_are_at_the_median_wavelength(self, tmp_path):
+        model = _surface_array_model()
+        sn = self._sn(tmp_path)
+        calls = self._fit(model, sn_to_fit=sn)
+        assert set(calls) == {"B", "V"}
+
+        for filt, wls in self.WAVELENGTHS_FIT.items():
+            ref_wl = float(np.median(wls))
+            kwargs = calls[filt]
+            x = np.column_stack(
+                (np.log(kwargs["test_times"] - model._fit_phase_min + 0.1), np.full(len(kwargs["test_times"]), np.log10(ref_wl)))
+            )
+            assert np.allclose(kwargs["test_prediction"], model.surface.predict(x))
+            expected_template = [
+                model.template[np.argmin(abs(PHASES - t)), np.argmin(abs(WAVELENGTHS - ref_wl))] for t in kwargs["test_times"]
+            ]
+            assert np.allclose(kwargs["template_mags"], expected_template)
+
+    def test_points_are_moved_to_the_slice_with_the_color_term_of_the_model(self, tmp_path):
+        model = _surface_array_model()
+        sn = self._sn(tmp_path)
+        calls = self._fit(model, sn_to_fit=sn)
+
+        def model_mags(filt, phases, wavelengths):
+            """Independent evaluation of the fit in magnitudes from peak, with the zero point of the filter"""
+            wavelengths = np.asarray(wavelengths) * np.ones(len(phases))
+            x = np.column_stack((np.log(np.asarray(phases) - model._fit_phase_min + 0.1), np.log10(wavelengths)))
+            template = [model.template[np.argmin(abs(PHASES - p)), np.argmin(abs(WAVELENGTHS - w))] for p, w in zip(phases, wavelengths)]
+            return convert_shifted_fluxes_to_shifted_mags(model.surface.predict(x) + template, sn, sn.zps[filt])
+
+        for filt, wls in self.WAVELENGTHS_FIT.items():
+            ref_wl = float(np.median(wls))
+            kwargs = calls[filt]
+            mags_from_peak = sn.info["peak_mag"] - (15.4 + 0.01 * np.asarray(self.PHASES_FIT) + 0.05 * np.arange(5))
+            own = model_mags(filt, self.PHASES_FIT, wls)
+            at_ref = model_mags(filt, self.PHASES_FIT, ref_wl)
+
+            assert np.allclose(kwargs["adjusted_mags"], mags_from_peak - (own - at_ref))
+            # The point at the median wavelength is not moved
+            assert np.isclose(kwargs["adjusted_mags"][wls.index(ref_wl)], mags_from_peak[wls.index(ref_wl)])
+            # The distance from a point to the slice is data - model at the point's own wavelength
+            assert np.allclose(kwargs["adjusted_mags"] - at_ref, mags_from_peak - own)
+            # No diagnostics: no residual panel and no special markers for the moved points
+            assert kwargs.get("residual_ax") is None
+            assert kwargs.get("moved") is None
+
+    def test_photometry_without_a_sn_is_plotted_at_the_nominal_wavelength(self):
+        model = _surface_array_model()
+        calls = self._fit(model, photometry=dict(TestFitPhotometryKeepsTheFitSN.PHOTOMETRY))
+
+        for filt in ("B", "V"):
+            kwargs = calls[filt]
+            x = np.column_stack(
+                (np.log(kwargs["test_times"] - model._fit_phase_min + 0.1), np.full(len(kwargs["test_times"]), np.log10(WLE[filt])))
+            )
+            assert np.allclose(kwargs["test_prediction"], model.surface.predict(x))
+            # At the nominal wavelength nothing is moved: the points are the photometry itself
+            assert np.allclose(kwargs["adjusted_mags"], kwargs["residuals"]["Mag"].values)
+
+    def test_drawing_samples_at_the_median_wavelength_does_not_fail(self, tmp_path):
+        model = _surface_array_model()
+        model.fit_photometry(sn_to_fit=self._sn(tmp_path), nsamples=3, keep_new_fit=True, show=False)
+        assert isinstance(model.surface, GaussianProcessRegressor)

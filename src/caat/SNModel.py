@@ -437,6 +437,42 @@ class SNModel:
             log_fluxes, sn, zero_point(np.asarray(wavelengths, dtype=float))
         )
 
+    def _fit_mags_at(
+        self,
+        gaussian_process,
+        sn,
+        filt: str,
+        fit_phase_min: float,
+        phases: np.ndarray,
+        wavelengths: np.ndarray,
+    ):
+        """
+        Evaluate a residual Gaussian process from `fit_photometry`, plus the template, in
+        magnitudes relative to peak.
+
+        The conversion uses the zero point of the filter, `sn.zps[filt]`, which is the one
+        the fluxes of that filter were built with, so it is only appropriate at the wavelength
+        where the flux of that filter sits (the median wavelength of its photometry).
+
+        Args:
+            gaussian_process (GaussianProcessRegressor): The fit to the residuals.
+            sn (SN): The SN that was fit.
+            filt (str): The filter whose zero point is used.
+            fit_phase_min (float): The first phase of the photometry that was fit, which sets
+                the zero point of the phase coordinate of the Gaussian process.
+            phases (np.ndarray): Phases, in days.
+            wavelengths (np.ndarray): Wavelengths, in Angstroms.
+
+        Returns:
+            np.ndarray: The model, in magnitudes relative to peak.
+        """
+        phases = np.atleast_1d(np.asarray(phases, dtype=float))
+        wavelengths = np.atleast_1d(np.asarray(wavelengths, dtype=float)) * np.ones(len(phases))
+
+        x = np.vstack((np.log(phases - fit_phase_min + 0.1), np.log10(wavelengths))).T
+        log_fluxes = gaussian_process.predict(x) + self._template_at(phases, wavelengths)
+        return convert_shifted_fluxes_to_shifted_mags(log_fluxes, sn, sn.zps[filt])
+
     def _gp_phase_coordinate(self, phases: np.ndarray):
         """
         The phase coordinate of a Gaussian process on residuals, log(phase - first phase + 0.1),
@@ -948,15 +984,23 @@ class SNModel:
         ### Predict lightcurves given the GP fit
         _, ax = plt.subplots()
         for filt in list(set(residuals["Filter"].values)):
+            residuals_for_filt = residuals[residuals["Filter"] == filt].copy()
+
             test_times_linear = np.arange(
                 min(residuals["Phase"].values),
                 max(residuals["Phase"].values),
                 1.0 / 24
             )
             test_times = np.log(test_times_linear - fit_phase_min + 0.1)
-            test_waves = np.ones(len(test_times)) * np.log10(WLE[filt])
 
-            wl_ind = np.argmin(abs(self.wl_grid - WLE[filt]))
+            ### The effective wavelength of each point can differ (the SED shape changes), so
+            ### plot the light curve slice at the median wavelength of this filter's photometry,
+            ### where the zero point of the filter applies. For photometry given without
+            ### a SN this is the nominal wavelength of the filter.
+            ref_wl = float(np.median(residuals_for_filt["Wavelength"].values))
+            test_waves = np.ones(len(test_times)) * np.log10(ref_wl)
+
+            wl_ind = np.argmin(abs(self.wl_grid - ref_wl))
             template_mags = []
             for i in range(len(test_times_linear)):
                 j = np.argmin(abs(self.phase_grid - test_times_linear[i]))
@@ -972,7 +1016,19 @@ class SNModel:
                     np.vstack((test_times, test_waves)).T, n_samples=nsamples
                 )
 
-            residuals_for_filt = residuals[residuals["Filter"] == filt]
+            ### Move each point to the wavelength of the light curve slice using the model's own
+            ### color term, so the distance between a point and the curve is still data - model
+            ### at the point's own wavelength (the shift is 0 for a point at the slice wavelength)
+            point_phases = residuals_for_filt["Phase"].values
+            point_wls = residuals_for_filt["Wavelength"].values
+            point_mags = residuals_for_filt["Mag"].values
+            model_at_own_wl = self._fit_mags_at(
+                gp, sn_to_fit, filt, fit_phase_min, point_phases, point_wls
+            )
+            model_at_ref_wl = self._fit_mags_at(
+                gp, sn_to_fit, filt, fit_phase_min, point_phases, ref_wl
+            )
+            adjusted_mags = point_mags - (model_at_own_wl - model_at_ref_wl)
 
             if nsamples == 1:
                 residuals_for_filt["Phase"] = np.log(
@@ -989,6 +1045,7 @@ class SNModel:
                     log_transform=self.log_transform,
                     filt=filt,
                     sn=sn_to_fit,
+                    adjusted_mags=adjusted_mags,
                 )
             else:
                 for sample in samples.T:
@@ -1002,7 +1059,7 @@ class SNModel:
                     )
                     ax.errorbar(
                         residuals_for_filt["Phase"].values,
-                        residuals_for_filt["Mag"].values,
+                        adjusted_mags,
                         yerr=residuals_for_filt["MagErr"].values,
                         fmt="o",
                         color=colors.get(filt, "k"),
