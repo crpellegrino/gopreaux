@@ -248,8 +248,6 @@ class TestGP3D:
         ), patch(
             "caat.GP3D.GP3D._subtract_data_from_grid", Mock(return_value=residuals)
         ), patch(
-            "caat.GP3D.GP3D._iteratively_warp_sed", lambda self, _res, pred, *a, **k: pred
-        ), patch(
             "caat.GP3D.GP3D._smooth_predicted_model", lambda self, pred, *a, **k: pred
         ), patch(
             "caat.GP3D.GP3D._sample_predicted_sed", lambda self, grid, std: grid.copy()
